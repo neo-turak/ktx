@@ -1,4 +1,5 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
+
 
 /**
  *@author   Hugo
@@ -12,7 +13,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
-import com.hi.dhl.ktkit.common.AnkoContext
+
 import java.lang.ref.WeakReference
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

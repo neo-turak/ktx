@@ -1,6 +1,6 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
-package com.hi.dhl.ktkit.ui
+package com.github.neoturak.ktkit.ui
 
 import android.app.Activity
 import android.content.Context

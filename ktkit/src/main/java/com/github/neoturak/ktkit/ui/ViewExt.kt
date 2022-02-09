@@ -1,7 +1,7 @@
 @file:OptIn(ExperimentalContracts::class, ExperimentalCoroutinesApi::class, FlowPreview::class)
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
-package com.hi.dhl.ktkit.ui
+package com.github.neoturak.ktkit.ui
 
 import android.graphics.drawable.GradientDrawable
 import android.view.View

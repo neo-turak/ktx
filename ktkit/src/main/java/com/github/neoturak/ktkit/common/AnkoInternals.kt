@@ -1,4 +1,5 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
+
 import android.app.Activity
 import android.app.Service
 import android.app.UiModeManager
@@ -15,9 +16,7 @@ import android.view.ContextThemeWrapper
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
-import com.hi.dhl.ktkit.common.AnkoContext
-import com.hi.dhl.ktkit.common.AnkoContextImpl
-import com.hi.dhl.ktkit.common.UI
+
 
 
 import java.io.Serializable

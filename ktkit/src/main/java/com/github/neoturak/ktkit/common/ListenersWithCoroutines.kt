@@ -1,6 +1,5 @@
 
-package com.hi.dhl.ktkit.common
-
+package com.github.neoturak.ktkit.common
 
 import android.os.Build
 import android.view.WindowInsets

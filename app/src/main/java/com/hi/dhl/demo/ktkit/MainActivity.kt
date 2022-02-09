@@ -7,13 +7,14 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.github.neoturak.ktkit.ui.*
 import com.hi.dhl.binding.viewbind
 import com.hi.dhl.demo.ktkit.databinding.ActivityMainBinding
 import com.hi.dhl.demo.ktkit.login.LoginActivity
 import com.hi.dhl.demo.ktkit.model.PeopleModel
-import com.hi.dhl.ktkit.common.*
+
+-turak.*
 import com.hi.dhl.ktkit.ui.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

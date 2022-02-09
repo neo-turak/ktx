@@ -1,4 +1,4 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
 
 import android.graphics.drawable.Drawable
 import android.os.Build

@@ -1,5 +1,5 @@
 
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
 
 import android.content.Context
 

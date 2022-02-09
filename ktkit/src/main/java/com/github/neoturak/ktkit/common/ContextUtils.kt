@@ -1,4 +1,4 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
 
 import android.app.Activity
 import android.app.Dialog
@@ -14,8 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
-import com.hi.dhl.ktkit.common.AnkoContext
-
 import java.io.Serializable
 
 /**

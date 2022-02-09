@@ -1,4 +1,5 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
+
 
 import android.app.Activity
 import android.app.Service
@@ -9,7 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.hi.dhl.ktkit.common.AnkoContext
+
 
 
 inline fun <reified T: Activity> Context.startActivity(vararg params: Pair<String, Any?>) =

@@ -1,5 +1,4 @@
-package com.hi.dhl.ktkit.common
-
+package com.github.neoturak.ktkit.common
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
@@ -8,14 +7,10 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.text.TextUtils
-import com.google.gson.GsonBuilder
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.File
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.regex.Pattern
 
 /**
  * 数据扩展类

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hi.dhl.binding.viewbind
 import com.hi.dhl.demo.ktkit.R
 import com.hi.dhl.demo.ktkit.databinding.ActivityLoginBinding
-import com.hi.dhl.ktkit.ui.startActivity
+import com.github.neoturak.ktkit.ui.startActivity
 
 /**
  * <pre>

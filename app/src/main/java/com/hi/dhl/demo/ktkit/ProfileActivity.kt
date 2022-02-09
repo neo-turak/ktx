@@ -8,10 +8,10 @@ import android.view.View
 import com.hi.dhl.binding.viewbind
 import com.hi.dhl.demo.ktkit.databinding.ActivityProfileBinding
 import com.hi.dhl.demo.ktkit.model.PeopleModel
-import com.hi.dhl.ktkit.ui.intent
-import com.hi.dhl.ktkit.ui.isNotNullOrEmpty
-import com.hi.dhl.ktkit.ui.setActivityResult
-import com.hi.dhl.ktkit.ui.startActivityForResult
+import com.github.neoturak.ktkit.ui.intent
+import com.github.neoturak.ktkit.ui.isNotNullOrEmpty
+import com.github.neoturak.ktkit.ui.setActivityResult
+import com.github.neoturak.ktkit.ui.startActivityForResult
 
 /**
  * <pre>

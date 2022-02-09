@@ -1,4 +1,4 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
 
 import android.app.Activity
 import android.content.Context
@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
 import androidx.fragment.app.Fragment
-import com.hi.dhl.ktkit.common.AnkoInternals.createAnkoContext
+import com.github.neoturak.ktkit.common.AnkoInternals.createAnkoContext
+
 
 /*@DslMarker
 private annotation class AnkoContextDslMarker*/

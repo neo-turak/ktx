@@ -1,7 +1,7 @@
 @file:OptIn(ExperimentalContracts::class)
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

@@ -7,8 +7,7 @@ import com.hi.dhl.binding.viewbind
 import com.hi.dhl.demo.ktkit.R
 import com.hi.dhl.demo.ktkit.databinding.FragmentLoginBinding
 import com.hi.dhl.demo.ktkit.model.PeopleModel
-import com.hi.dhl.ktkit.ui.intent
-import com.hi.dhl.ktkit.ui.makeBundle
+import com.github.neoturak.ktkit.ui.makeBundle
 
 /**
  * <pre>

@@ -1,9 +1,10 @@
-package com.hi.dhl.ktkit.common
+package com.github.neoturak.ktkit.common
+
 import android.app.Activity
 import android.content.Context
 import android.os.Build
 import androidx.fragment.app.Fragment
-import com.hi.dhl.ktkit.common.AnkoContext
+
 
 open class AnkoException(message: String = "") : RuntimeException(message)
 
