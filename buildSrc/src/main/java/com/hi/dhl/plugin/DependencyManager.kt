@@ -16,7 +16,7 @@ object Versions {
     const val constraintlayout = "2.0.4"
     const val paging = "3.0.0-alpha02"
     const val timber = "4.7.1"
-    const val kotlin = "1.4.31"
+    const val kotlin = "1.6.10"
     const val kotlinCoroutinesCore = "1.4.0"
     const val kotlinCoroutinesAndrid = "1.4.0"
     const val koin = "2.1.5"
@@ -25,11 +25,7 @@ object Versions {
     const val cardview = "1.0.0"
     const val recyclerview = "1.0.0"
     const val fragment = "1.3.0-alpha06"
-    const val anko = "0.10.8"
     const val swiperefreshlayout = "1.1.0"
-    const val junit = "4.13.1"
-    const val junitExt = "1.1.2"
-    const val espressoCore = "3.3.0"
     const val jDatabinding = "1.0.4"
     const val progressview = "1.0.2"
     const val runtime = "1.1.0"
@@ -38,8 +34,8 @@ object Versions {
     const val appStartup = "1.0.0"
     const val material = "1.3.0"
     const val binding = "1.1.3"
-    const val ktkitSnapshot = "1.0.0-SNAPSHOT"
-    const val ktkit = "1.0.0"
+/*    const val ktkitSnapshot = "1.0.0-SNAPSHOT"
+    const val ktkit = "1.0.0"*/
     const val lifecycleVersion = "2.3.0-beta01"
 }
 
@@ -95,7 +91,6 @@ object Kt {
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutinesCore}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesAndrid}"
-    const val test = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 }
 
@@ -106,13 +101,6 @@ object Koin {
     const val androidScope = "org.koin:koin-android-scope:$${Versions.koin}"
 }
 
-object Anko {
-    const val common = "org.jetbrains.anko:anko-common:${Versions.anko}"
-    const val sqlite = "org.jetbrains.anko:anko-sqlite:${Versions.anko}"
-    const val coroutines = "org.jetbrains.anko:anko-coroutines:${Versions.anko}"
-    const val design = "org.jetbrains.anko:anko-design:${Versions.anko}" // For SnackBars
-}
-
 object Retrofit {
     const val runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
@@ -121,16 +109,13 @@ object Retrofit {
 }
 
 object Depend {
-    const val junit = "junit:junit:${Versions.junit}"
-    const val androidTestJunit = "androidx.test.ext:junit:${Versions.junitExt}"
-    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
-    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val jDatabinding = "com.hi-dhl:jdatabinding:${Versions.jDatabinding}"
     const val progressview = "com.hi-dhl:progressview:${Versions.progressview}"
     const val binding = "com.hi-dhl:binding:${Versions.binding}"
-    const val ktkit = "com.hi-dhl:ktkit:${Versions.ktkit}"
-    const val ktkitSnapshot = "com.hi-dhl:ktkit:${Versions.ktkitSnapshot}"
+/*    const val ktkit = "com.hi-dhl:ktkit:${Versions.ktkit}"
+    const val ktkitSnapshot = "com.hi-dhl:ktkit:${Versions.ktkitSnapshot}"*/
 }
 
 

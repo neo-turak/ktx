@@ -11,13 +11,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.hi.dhl.demo.ktkit"
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 10000
         versionName "1.0.0"
 
@@ -38,7 +38,6 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        dataBinding = true
         viewBinding = true
     }
 }
@@ -53,16 +52,12 @@ dependencies {
     implementation Depend.binding
     if (remote) {
         implementation Depend.ktkit
-//        implementation Depend.ktkitSnapshot
     } else {
         implementation project(":ktkit")
     }
 
     implementation Lifecycle.runtimeKtx
     implementation Lifecycle.commonJava8
-    testImplementation Depend.junit
-    androidTestImplementation Depend.androidTestJunit
-    androidTestImplementation Depend.espressoCore
 }
 
 apply from: "$rootDir/spotless.gradle"

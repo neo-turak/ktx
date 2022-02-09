@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.2"
 
     defaultConfig {
@@ -53,9 +53,6 @@ dependencies {
     implementation Lifecycle.runtimeKtx
     implementation Retrofit.gson
 
-    testImplementation Depend.junit
-    androidTestImplementation Depend.androidTestJunit
-    androidTestImplementation Depend.espressoCore
 }
 
 apply from: "$rootDir/spotless.gradle"

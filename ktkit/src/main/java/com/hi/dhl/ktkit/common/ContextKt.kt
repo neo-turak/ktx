@@ -1,6 +1,6 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
-package com.hi.dhl.ktkit.core
+package com.hi.dhl.ktkit.common
 
 import android.app.Activity
 import android.content.Context

@@ -12,11 +12,9 @@ import com.hi.dhl.demo.ktkit.databinding.ActivityMainBinding
 import com.hi.dhl.demo.ktkit.login.LoginActivity
 import com.hi.dhl.demo.ktkit.model.PeopleModel
 import com.hi.dhl.ktkit.common.*
-import com.hi.dhl.ktkit.core.*
 import com.hi.dhl.ktkit.ui.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
