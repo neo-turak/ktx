@@ -1,4 +1,4 @@
-package com.hi.dhl.demo.ktkit
+package com.github.neoturak.demo.ktkit
 
 import android.app.Activity
 import android.content.Context
@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.View
 import com.hi.dhl.binding.viewbind
 import com.hi.dhl.demo.ktkit.databinding.ActivityProfileBinding
-import com.hi.dhl.demo.ktkit.model.PeopleModel
+import com.github.neoturak.demo.ktkit.model.PeopleModel
 import com.github.neoturak.ktkit.ui.intent
 import com.github.neoturak.ktkit.ui.isNotNullOrEmpty
 import com.github.neoturak.ktkit.ui.setActivityResult

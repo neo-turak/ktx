@@ -1,4 +1,4 @@
-package com.hi.dhl.demo.ktkit.model
+package com.github.neoturak.demo.ktkit.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

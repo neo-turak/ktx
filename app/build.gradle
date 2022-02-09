@@ -15,13 +15,11 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.hi.dhl.demo.ktkit"
+        applicationId "com.github.neoturak.ktkit"
         minSdkVersion 14
         targetSdkVersion 31
         versionCode 10000
         versionName "1.0.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {

@@ -1,4 +1,4 @@
-package com.hi.dhl.demo.ktkit
+package com.github.neoturak.demo.ktkit
 
 import android.content.Intent
 import android.os.Build
@@ -10,11 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import com.github.neoturak.ktkit.ui.*
 import com.hi.dhl.binding.viewbind
 import com.hi.dhl.demo.ktkit.databinding.ActivityMainBinding
-import com.hi.dhl.demo.ktkit.login.LoginActivity
-import com.hi.dhl.demo.ktkit.model.PeopleModel
+import com.github.neoturak.demo.ktkit.login.LoginActivity
+import com.github.neoturak.demo.ktkit.model.PeopleModel
+import com.github.neoturak.ktkit.common.*
 
--turak.*
-import com.hi.dhl.ktkit.ui.*
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -49,20 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testNetwork() {
-        Log.e(TAG, "hasNetwork = ${hasNetwork()}")
-        Log.e(TAG, "getNetworkType = ${getNetworkType()}")
-        Log.e(TAG, "connectedToWifi = ${isConnectedToWifi()}")
-        Log.e(TAG, "connectedToBluetooth = ${isConnectedToBluetooth()}")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Log.e(TAG, "getBandwidthKbps = ${getBandwidthKbps()}")
-        }
-        lifecycleScope.launch {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                bindFastNetWorkWithWifi().collect {
-                    Log.e(TAG, "listenNetwork = $it")
-                }
-            }
-        }
+
     }
 
     private fun initView() {

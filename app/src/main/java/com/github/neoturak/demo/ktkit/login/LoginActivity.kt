@@ -1,10 +1,10 @@
-package com.hi.dhl.demo.ktkit.login
+package com.github.neoturak.demo.ktkit.login
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.github.neoturak.demo.ktkit.R
 import com.hi.dhl.binding.viewbind
-import com.hi.dhl.demo.ktkit.R
 import com.hi.dhl.demo.ktkit.databinding.ActivityLoginBinding
 import com.github.neoturak.ktkit.ui.startActivity
 

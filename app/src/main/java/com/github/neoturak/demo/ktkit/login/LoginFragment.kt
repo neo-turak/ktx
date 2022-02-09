@@ -1,12 +1,13 @@
-package com.hi.dhl.demo.ktkit.login
+package com.github.neoturak.demo.ktkit.login
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.github.neoturak.demo.ktkit.R
 import com.hi.dhl.binding.viewbind
-import com.hi.dhl.demo.ktkit.R
 import com.hi.dhl.demo.ktkit.databinding.FragmentLoginBinding
-import com.hi.dhl.demo.ktkit.model.PeopleModel
+import com.github.neoturak.demo.ktkit.model.PeopleModel
+import com.github.neoturak.ktkit.ui.intent
 import com.github.neoturak.ktkit.ui.makeBundle
 
 /**
