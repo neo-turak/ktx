@@ -8,7 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 
@@ -26,6 +28,58 @@ inline fun <reified T: Activity> Activity.startActivityForResult(requestCode: In
 @RequiresApi(Build.VERSION_CODES.M)
 inline fun <reified T: Activity> Fragment.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) =
         startActivityForResult(AnkoInternals.createIntent(this.requireContext(), T::class.java, params), requestCode)
+
+/**
+ * Example:
+ * 使用方法.
+ *
+ * ```
+ * this.startActivityForResult<ProfileActivity>(KEY to "value",key to "value"){it:Intent?->
+ * here is result of your callback.
+ * }
+ *
+ * ```
+ *
+ */
+inline fun <reified T : Activity> Fragment.startActivityWithResult(
+    vararg params: Pair<String, Any?>,
+    crossinline callback: (i: Intent?) -> Unit
+) {
+    registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            callback(it.data)
+        }
+    }.launch(AnkoInternals.createIntent(this.requireContext(), T::class.java, params))
+}
+
+
+/**
+ * Example:
+ * 使用方法.
+ *
+ * ```
+ * this.startActivityForResult<ProfileActivity>(KEY to "value",key to "value"){it:Intent?->
+ *  //here is result of your callback.
+ * }
+ *
+ * ```
+ *
+ */
+
+inline fun <reified T : Activity> AppCompatActivity.startActivityWithResult(
+    vararg params: Pair<String, Any?>,
+    crossinline callback: (i: Intent?) -> Unit
+) {
+    androidx.activity.ComponentActivity()
+        .registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                callback(it.data)
+            }
+        }.launch(AnkoInternals.createIntent(this, T::class.java, params))
+}
+
 
 inline fun <reified T: Service> Context.startService(vararg params: Pair<String, Any?>) =
         AnkoInternals.internalStartService(this, T::class.java, params)

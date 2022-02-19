@@ -38,7 +38,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    lintOptions {
+        disable "UnsafeExperimentalUsageError",
+                "UnsafeExperimentalUsageWarning"
+    }
 }
+
 
 dependencies {
     def remote = false

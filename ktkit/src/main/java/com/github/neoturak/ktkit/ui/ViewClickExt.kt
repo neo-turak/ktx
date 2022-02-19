@@ -29,7 +29,7 @@ import kotlin.contracts.ExperimentalContracts
 // 感谢 FlowBinding
 @kotlin.internal.InlineOnly
 inline fun <E> SendChannel<E>.safeOffer(value: E) = !isClosedForSend && try {
-    offer(value)
+    trySend(value).isSuccess
 } catch (e: CancellationException) {
     false
 }

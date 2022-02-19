@@ -7,9 +7,9 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.github.neoturak.demo.ktkit.databinding.ActivityMainBinding
 import com.github.neoturak.ktkit.ui.*
 import com.hi.dhl.binding.viewbind
-import com.hi.dhl.demo.ktkit.databinding.ActivityMainBinding
 import com.github.neoturak.demo.ktkit.login.LoginActivity
 import com.github.neoturak.demo.ktkit.model.PeopleModel
 import com.github.neoturak.ktkit.common.*
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 onClick(it)
             }
         }
+
 
         binding.btnDebounce.clickTrigger(lifecycleScope, 1000) {
             onClick(it)

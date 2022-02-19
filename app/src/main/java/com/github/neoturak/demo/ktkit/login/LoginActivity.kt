@@ -4,8 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.neoturak.demo.ktkit.R
+import com.github.neoturak.demo.ktkit.databinding.ActivityLoginBinding
 import com.hi.dhl.binding.viewbind
-import com.hi.dhl.demo.ktkit.databinding.ActivityLoginBinding
+
 import com.github.neoturak.ktkit.ui.startActivity
 
 /**

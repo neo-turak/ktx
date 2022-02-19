@@ -5,8 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.github.neoturak.demo.ktkit.databinding.ActivityProfileBinding
 import com.hi.dhl.binding.viewbind
-import com.hi.dhl.demo.ktkit.databinding.ActivityProfileBinding
 import com.github.neoturak.demo.ktkit.model.PeopleModel
 import com.github.neoturak.ktkit.ui.intent
 import com.github.neoturak.ktkit.ui.isNotNullOrEmpty
