@@ -11,7 +11,6 @@ import android.widget.TextView
  *@author   Hugo
  *@Description
  *@time    1/24/22 7:21 PM
- *@project  client-juran
  *Think Twice, Code Once!
  */
 var View.backgroundDrawable: Drawable?

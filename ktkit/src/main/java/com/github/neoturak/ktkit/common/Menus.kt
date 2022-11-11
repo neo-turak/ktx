@@ -8,7 +8,7 @@ import android.view.SubMenu
 /**
  * Create a plain menu item
  */
-inline fun Menu.item(title: CharSequence, /*@DrawableRes*/ icon: Int = 0, checkable: Boolean = false): MenuItem =
+fun Menu.item(title: CharSequence, /*@DrawableRes*/ icon: Int = 0, checkable: Boolean = false): MenuItem =
         add(title).apply {
             setIcon(icon)
             isCheckable = checkable

@@ -1,23 +1,17 @@
-import com.hi.dhl.plugin.Android
-import com.hi.dhl.plugin.AndroidX
-import com.hi.dhl.plugin.Depend
-import com.hi.dhl.plugin.Kt
-import com.hi.dhl.plugin.Lifecycle
 
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-parcelize'
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.github.neoturak.ktkit"
         minSdkVersion 14
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 10000
         versionName "1.0.0"
     }
@@ -35,33 +29,16 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
-    buildFeatures {
-        viewBinding = true
-    }
 
-    lintOptions {
-        disable "UnsafeExperimentalUsageError",
-                "UnsafeExperimentalUsageWarning"
+    lint {
+        disable 'UnsafeExperimentalUsageError',
+                'UnsafeExperimentalUsageWarning'
     }
+    namespace 'com.github.neoturak.demo.ktkit'
+
 }
-
 
 dependencies {
-    def remote = false
-    implementation Kt.kotlinStdlib
-    implementation AndroidX.coreKtx
-    implementation AndroidX.appcompat
-    implementation Android.material
-    implementation AndroidX.constraintlayout
-    implementation Depend.binding
-    if (remote) {
-        implementation Depend.ktkit
-    } else {
-        implementation project(":ktkit")
-    }
-
-    implementation Lifecycle.runtimeKtx
-    implementation Lifecycle.commonJava8
+    implementation('androidx.appcompat:appcompat:1.5.1')
 }
 
-apply from: "$rootDir/spotless.gradle"

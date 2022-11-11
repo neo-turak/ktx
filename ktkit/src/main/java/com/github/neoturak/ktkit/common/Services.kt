@@ -70,6 +70,7 @@ val Context.alarmManager: AlarmManager
 
 /** Returns the AppOpsManager instance. **/
 val Context.appOpsManager: AppOpsManager
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     get() = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
 
 
@@ -85,16 +86,19 @@ val Context.batteryManager: BatteryManager
 
 /** Returns the BluetoothManager instance. **/
 val Context.bluetoothManager: BluetoothManager
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     get() = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
 
 
 /** Returns the CameraManager instance. **/
 val Context.cameraManager: CameraManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
 
 /** Returns the CaptioningManager instance. **/
 val Context.captioningManager: CaptioningManager
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     get() = getSystemService(Context.CAPTIONING_SERVICE) as CaptioningManager
 
 
@@ -122,6 +126,7 @@ val Context.connectivityManager: ConnectivityManager
 
 /** Returns the ConsumerIrManager instance. **/
 val Context.consumerIrManager: ConsumerIrManager
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     get() = getSystemService(Context.CONSUMER_IR_SERVICE) as ConsumerIrManager
 
 
@@ -132,6 +137,7 @@ val Context.devicePolicyManager: DevicePolicyManager
 
 /** Returns the DisplayManager instance. **/
 val Context.displayManager: DisplayManager
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     get() = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
 
 
@@ -160,6 +166,7 @@ val Context.hardwarePropertiesManager: HardwarePropertiesManager
 
 /** Returns the InputManager instance. **/
 val Context.inputManager: InputManager
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     get() = getSystemService(Context.INPUT_SERVICE) as InputManager
 
 
@@ -180,11 +187,13 @@ val Context.locationManager: LocationManager
 
 /** Returns the MediaProjectionManager instance. **/
 val Context.mediaProjectionManager: MediaProjectionManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
 
 /** Returns the MediaSessionManager instance. **/
 val Context.mediaSessionManager: MediaSessionManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.MEDIA_SESSION_SERVICE) as MediaSessionManager
 
 
@@ -212,6 +221,7 @@ val Context.notificationManager: NotificationManager
 
 /** Returns the NsdManager instance. **/
 val Context.nsdManager: NsdManager
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     get() = getSystemService(Context.NSD_SERVICE) as NsdManager
 
 
@@ -222,11 +232,13 @@ val Context.powerManager: PowerManager
 
 /** Returns the PrintManager instance. **/
 val Context.printManager: PrintManager
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     get() = getSystemService(Context.PRINT_SERVICE) as PrintManager
 
 
 /** Returns the RestrictionsManager instance. **/
 val Context.restrictionsManager: RestrictionsManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.RESTRICTIONS_SERVICE) as RestrictionsManager
 
 
@@ -265,6 +277,7 @@ val Context.systemHealthManager: SystemHealthManager
 
 /** Returns the TelecomManager instance. **/
 val Context.telecomManager: TelecomManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.TELECOM_SERVICE) as TelecomManager
 
 
@@ -281,6 +294,7 @@ val Context.textClassificationManager: TextClassificationManager
 
 /** Returns the TvInputManager instance. **/
 val Context.tvInputManager: TvInputManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.TV_INPUT_SERVICE) as TvInputManager
 
 
@@ -291,6 +305,7 @@ val Context.uiModeManager: UiModeManager
 
 /** Returns the UsageStatsManager instance. **/
 val Context.usageStatsManager: UsageStatsManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
 
 
@@ -301,6 +316,7 @@ val Context.usbManager: UsbManager
 
 /** Returns the UserManager instance. **/
 val Context.userManager: UserManager
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     get() = getSystemService(Context.USER_SERVICE) as UserManager
 
 

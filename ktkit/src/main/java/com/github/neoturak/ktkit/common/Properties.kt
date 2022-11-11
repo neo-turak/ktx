@@ -1,5 +1,8 @@
 package com.github.neoturak.ktkit.common
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+
 
 /**
  *@author   Hugo
@@ -75,6 +78,7 @@ var android.widget.AbsListView.selectorResource: Int
 
 var android.widget.CalendarView.selectedDateVerticalBarResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     set(v) = setSelectedDateVerticalBar(v)
 
 var android.widget.CheckedTextView.checkMarkDrawableResource: Int
@@ -103,24 +107,30 @@ var android.widget.TextView.textResource: Int
 
 var android.widget.Toolbar.logoResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     set(v) = setLogo(v)
 
 var android.widget.Toolbar.logoDescriptionResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     set(v) = setLogoDescription(v)
 
 var android.widget.Toolbar.navigationContentDescriptionResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     set(v) = setNavigationContentDescription(v)
 
 var android.widget.Toolbar.navigationIconResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     set(v) = setNavigationIcon(v)
 
 var android.widget.Toolbar.subtitleResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     set(v) = setSubtitle(v)
 
 var android.widget.Toolbar.titleResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     set(v) = setTitle(v)

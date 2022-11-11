@@ -5,12 +5,6 @@ package com.github.neoturak.ktkit.lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 
-/**
- * LifecycleOwner的扩展
- *
- * @author Qu Yunshuo
- * @since 2021/8/1 4:00 下午
- */
 
 /**
  * 对LiveData订阅的简化封装

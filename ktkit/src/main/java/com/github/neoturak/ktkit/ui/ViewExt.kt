@@ -3,6 +3,7 @@
 
 package com.github.neoturak.ktkit.ui
 
+import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.annotation.ColorInt
@@ -92,6 +93,53 @@ inline fun View.setRoundRectBg(
         background = GradientDrawable().apply {
             setColor(color)
             setCornerRadius(cornerRadius)
+        }
+    }
+}
+
+
+/**
+ * px 转换万能公式
+ */
+inline fun <reified T:Any> Context.px2dp(v:T):T{
+    when(v){
+        is Int->{
+            return v.div(resources.displayMetrics.density).plus(0.5).toInt() as T
+        }
+        is Float->{
+            return v.div(resources.displayMetrics.density).plus(0.5).toFloat() as T
+        }
+        is Double->{
+            return v.div(resources.displayMetrics.density).plus(0.5) as T
+        }
+        is Long->{
+            return v.div(resources.displayMetrics.density).plus(0.5).toLong() as T
+        }
+        else-> {
+            return 0 as T
+        }
+    }
+}
+
+/**
+ * sp 转换万能公式
+ */
+inline fun <reified T:Any> Context.sp2px(v:T):T{
+    when(v){
+        is Int->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toInt() as T
+        }
+        is Float->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toFloat() as T
+        }
+        is Double->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)) as T
+        }
+        is Long->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toLong() as T
+        }
+        else-> {
+            return 0 as T
         }
     }
 }

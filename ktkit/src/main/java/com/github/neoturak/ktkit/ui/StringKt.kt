@@ -4,7 +4,6 @@
 package com.github.neoturak.ktkit.ui
 
 import android.util.Patterns
-import com.google.i18n.phonenumbers.PhoneNumberUtil
 import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.contracts.ExperimentalContracts
@@ -33,24 +32,6 @@ inline fun String.isValidPhone(): Boolean {
     return this.isNotNullOrEmpty() && Patterns.PHONE.matcher(this).matches()
 }
 
-/**
- * format Phone number
- *
- * Example:
- *
- * ```
- * val phontNumberStr = "044 668 18 00"
- * phontNumberStr.formatPhoneNumber("CH")
- * ```
- */
-@kotlin.internal.InlineOnly
-inline fun String.formatPhoneNumber(region: String): String? {
-    val phoneNumberUtil = PhoneNumberUtil.getInstance()
-    val number = phoneNumberUtil.parse(this, region)
-    if (!phoneNumberUtil.isValidNumber(number))
-        return null
-    return phoneNumberUtil.format(number, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
-}
 
 @kotlin.internal.InlineOnly
 inline fun String.isValidEmail(): Boolean {
