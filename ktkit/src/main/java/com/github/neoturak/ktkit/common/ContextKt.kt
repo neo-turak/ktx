@@ -54,13 +54,79 @@ inline val Context.screenHeight: Int
 inline val Context.density: Float
     get() = resources.displayMetrics.density
 
-// dp to px
-@kotlin.internal.InlineOnly
-inline fun Context.dp2px(value: Int): Int = (density * value).toInt()
 
-// px to dp
+/**
+ * 这个方法 你给什么（T），就返回什么类型的数据（T）。
+ * 万能公式
+ */
 @kotlin.internal.InlineOnly
-inline fun Context.px2dp(value: Int): Float = value.toFloat() / density
+inline fun <reified T:Any> Context.dp2px(v:T):T{
+    when(v){
+        is Int->{
+            return (resources.displayMetrics.density.times(v).plus(0.5)).toInt() as T
+        }
+        is Float->{
+            return (resources.displayMetrics.density.times(v).plus(0.5)).toFloat() as T
+        }
+        is Double->{
+            return (resources.displayMetrics.density.times(v).plus(0.5)) as T
+        }
+        is Long->{
+            return (resources.displayMetrics.density.times(v).plus(0.5)).toLong() as T
+        }
+        else-> {
+            return 0 as T
+        }
+    }
+}
+
+/**
+ * px 转换万能公式
+ */
+@kotlin.internal.InlineOnly
+inline fun <reified T:Any> Context.px2dp(v:T):T{
+    when(v){
+        is Int->{
+            return v.div(resources.displayMetrics.density).plus(0.5).toInt() as T
+        }
+        is Float->{
+            return v.div(resources.displayMetrics.density).plus(0.5).toFloat() as T
+        }
+        is Double->{
+            return v.div(resources.displayMetrics.density).plus(0.5) as T
+        }
+        is Long->{
+            return v.div(resources.displayMetrics.density).plus(0.5).toLong() as T
+        }
+        else-> {
+            return 0 as T
+        }
+    }
+}
+
+/**
+ * sp 转换万能公式
+ */
+@kotlin.internal.InlineOnly
+inline fun <reified T:Any> Context.sp2px(v:T):T{
+    when(v){
+        is Int->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toInt() as T
+        }
+        is Float->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toFloat() as T
+        }
+        is Double->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)) as T
+        }
+        is Long->{
+            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toLong() as T
+        }
+        else-> {
+            return 0 as T
+        }
+    }
+}
 
 /**
  * 设置状态栏的颜色
@@ -68,14 +134,14 @@ inline fun Context.px2dp(value: Int): Float = value.toFloat() / density
  * usage：
  * setSatatusBarColor(android.R.color.darker_gray)
  */
-fun Context.setSatatusBarColor(@ColorRes colorResId: Int) {
+fun Context.setStatusBarColor(@ColorRes colorResId: Int) {
 
     if (this is Activity) {
-        setSatatusBarColor(WeakReference<Activity>(this), colorResId)
+        setStatusBarColor(WeakReference<Activity>(this), colorResId)
     }
 }
 
-private fun Context.setSatatusBarColor(context: WeakReference<Activity>, @ColorRes colorResId: Int) {
+private fun Context.setStatusBarColor(context: WeakReference<Activity>, @ColorRes colorResId: Int) {
     context.get()?.run {
         if (Build.VERSION.SDK_INT >= 21) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
