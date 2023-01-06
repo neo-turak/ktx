@@ -5,7 +5,7 @@ package com.github.neoturak.db
 
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
-import com.github.neoturak.ktkit.common.AnkoInternals
+import com.github.neoturak.common.AnkoInternals
 import java.util.ArrayList
 
 interface RowParser<out T> {

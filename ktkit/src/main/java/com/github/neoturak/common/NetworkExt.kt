@@ -12,7 +12,7 @@ import android.net.NetworkRequest
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.github.neoturak.ktkit.ui.safeOffer
+import com.github.neoturak.ui.safeOffer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose

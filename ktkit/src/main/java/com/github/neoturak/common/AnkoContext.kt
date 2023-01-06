@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
 import androidx.fragment.app.Fragment
-import com.github.neoturak.ktkit.common.AnkoInternals.createAnkoContext
+import com.github.neoturak.common.AnkoInternals.createAnkoContext
 
 
 /*@DslMarker

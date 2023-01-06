@@ -4,8 +4,8 @@ package com.github.neoturak.db
 
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.github.neoturak.ktkit.common.AnkoException
-import com.github.neoturak.ktkit.common.AnkoInternals
+import com.github.neoturak.common.AnkoException
+import com.github.neoturak.common.AnkoInternals
 
 abstract class SelectQueryBuilder(val tableName: String) {
     private val columns = arrayListOf<String>()

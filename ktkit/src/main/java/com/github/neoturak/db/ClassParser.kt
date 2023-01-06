@@ -2,7 +2,7 @@
 @file:Suppress("unused")
 package com.github.neoturak.db
 
-import com.github.neoturak.ktkit.common.AnkoException
+import com.github.neoturak.common.AnkoException
 import com.github.neoturak.db.JavaSqliteUtils.PRIMITIVES_TO_WRAPPERS
 import java.lang.reflect.Modifier
 
@@ -44,7 +44,7 @@ internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
                         "failed to parse the row: $columnsRendered (constructor parameter types: $parameterTypesRendered)")
             }
 
-            for (index in 0..(parameterTypes.size - 1)) {
+            for (index in parameterTypes.indices) {
                 val type = parameterTypes[index]
                 val columnValue = columns[index]
                 if (!type.isInstance(columnValue)) {
@@ -54,7 +54,7 @@ internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
             }
 
             @Suppress("UNCHECKED_CAST")
-            return (_root_ide_package_.com.github.neoturak.db.JavaSqliteUtils.newInstance(preferredConstructor, columns)) as T
+            return (JavaSqliteUtils.newInstance(preferredConstructor, columns)) as T
         }
     }
 }

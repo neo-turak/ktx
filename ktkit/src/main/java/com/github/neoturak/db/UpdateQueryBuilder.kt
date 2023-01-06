@@ -5,7 +5,7 @@ package com.github.neoturak.db
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
-import com.github.neoturak.ktkit.common.AnkoException
+import com.github.neoturak.common.AnkoException
 
 abstract class UpdateQueryBuilder(
         val tableName: String,
