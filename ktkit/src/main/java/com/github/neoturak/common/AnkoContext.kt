@@ -6,14 +6,8 @@ import android.content.ContextWrapper
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
-import androidx.fragment.app.Fragment
-import com.github.neoturak.common.AnkoInternals.createAnkoContext
 
 
-/*@DslMarker
-private annotation class AnkoContextDslMarker*/
-
-//@AnkoContextDslMarker
 interface AnkoContext<out T> : ViewManager {
     val ctx: Context
     val owner: T
@@ -98,21 +92,5 @@ open class AnkoContextImpl<T>(
             else -> throw IllegalStateException("Context is not an Activity, can't set content view")
         }
     }
-    open protected fun alreadyHasView(): Unit = throw IllegalStateException("View is already set: $myView")
+    protected open fun alreadyHasView(): Unit = throw IllegalStateException("View is already set: $myView")
 }
-
-inline fun Context.UI(setContentView: Boolean, init: AnkoContext<Context>.() -> Unit): AnkoContext<Context> =
-        createAnkoContext(this, init, setContentView)
-
-inline fun Context.UI(init: AnkoContext<Context>.() -> Unit): AnkoContext<Context> =
-        createAnkoContext(this, init)
-
-inline fun Fragment.UI(init: AnkoContext<Fragment>.() -> Unit): AnkoContext<Fragment> =
-        createAnkoContext(this.requireContext(), init)
-
-interface AnkoComponent<in T> {
-    fun createView(ui: AnkoContext<T>): View
-}
-
-fun <T : Activity> AnkoComponent<T>.setContentView(activity: T): View =
-        createView(AnkoContextImpl(activity, activity, true))

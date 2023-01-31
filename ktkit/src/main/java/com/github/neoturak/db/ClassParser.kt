@@ -21,7 +21,7 @@ internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
     }
 
     if (applicableConstructors.isEmpty()) {
-        throw AnkoException("Can't initialize object parser for ${clazz.canonicalName}, no acceptable constructors found")
+        throw Exception("Can't initialize object parser for ${clazz.canonicalName}, no acceptable constructors found")
     }
 
     val preferredConstructor = if (applicableConstructors.size > 1) {

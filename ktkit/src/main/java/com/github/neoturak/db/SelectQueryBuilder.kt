@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.github.neoturak.common.AnkoException
 import com.github.neoturak.common.AnkoInternals
 
+
 abstract class SelectQueryBuilder(val tableName: String) {
     private val columns = arrayListOf<String>()
     private val groupBy = arrayListOf<String>()

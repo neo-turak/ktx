@@ -22,7 +22,7 @@ abstract class UpdateQueryBuilder(
 
     fun whereArgs(select: String, vararg args: Pair<String, Any>): UpdateQueryBuilder {
         if (selectionApplied) {
-            throw AnkoException("Query selection was already applied.")
+            throw Exception("Query selection was already applied.")
         }
 
         selectionApplied = true

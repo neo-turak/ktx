@@ -35,9 +35,6 @@ object AnkoInternals {
         else -> throw AnkoException("$manager is the wrong parent")
     }
 
-    fun <T : View> addView(ctx: Context, view: T) {
-        ctx.UI { addView(this, view) }
-    }
 
     fun <T : View> addView(activity: Activity, view: T) {
         createAnkoContext(activity, { addView(this, view) }, true)
