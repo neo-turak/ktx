@@ -35,47 +35,6 @@ object AnkoInternals {
         else -> throw AnkoException("$manager is the wrong parent")
     }
 
-
-    fun <T : View> addView(activity: Activity, view: T) {
-        createAnkoContext(activity, { addView(this, view) }, true)
-    }
-
-    fun wrapContextIfNeeded(ctx: Context, theme: Int): Context {
-        return if (theme != 0 && (ctx !is AnkoContextThemeWrapper || ctx.theme != theme)) {
-            // If the context isn't a ContextThemeWrapper, or it is but does not have
-            // the same theme as we need, wrap it in a new wrapper
-            AnkoContextThemeWrapper(ctx, theme)
-        } else {
-            ctx
-        }
-    }
-
-    fun applyRecursively(v: View, style: (View) -> Unit) {
-        style(v)
-        if (v is ViewGroup) {
-            val maxIndex = v.childCount - 1
-            for (i in 0 .. maxIndex) {
-                v.getChildAt(i)?.let { applyRecursively(it, style) }
-            }
-        }
-    }
-
-    fun getContext(manager: ViewManager): Context = when (manager) {
-        is ViewGroup -> manager.context
-        is AnkoContext<*> -> manager.ctx
-        else -> throw AnkoException("$manager is the wrong parent")
-    }
-
-    inline fun <T> T.createAnkoContext(
-        ctx: Context,
-        init: AnkoContext<T>.() -> Unit,
-        setContentView: Boolean = false
-    ): AnkoContext<T> {
-        val dsl = AnkoContextImpl(ctx, this, setContentView)
-        dsl.init()
-        return dsl
-    }
-
     // Some constants not present in Android SDK v.15
     private object InternalConfiguration {
         val SCREENLAYOUT_LAYOUTDIR_MASK = 0xC0
