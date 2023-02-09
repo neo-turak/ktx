@@ -2,6 +2,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.github.neoturak.ktkit"
+        applicationId "com.github.neoturak"
         minSdkVersion 14
         targetSdkVersion 33
         versionCode 10000
@@ -30,16 +31,21 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures{
+        viewBinding true
+    }
+
     lint {
         disable 'UnsafeExperimentalUsageError',
                 'UnsafeExperimentalUsageWarning'
     }
-    namespace 'com.github.neoturak.demo.ktkit'
+    namespace 'com.github.neoturak'
 
 }
 
 dependencies {
     implementation('androidx.appcompat:appcompat:1.6.0')
     implementation project(":ktkit")
+    implementation 'androidx.core:core-ktx:1.9.0'
 }
 

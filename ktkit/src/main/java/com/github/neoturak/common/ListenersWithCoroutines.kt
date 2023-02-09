@@ -20,14 +20,14 @@ fun android.view.View.onLayoutChange(
 
 fun android.view.View.onAttachStateChangeListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __View_OnAttachStateChangeListener.() -> Unit
+        init: ViewOnAttachStateChangeListener.() -> Unit
 ) {
-    val listener = __View_OnAttachStateChangeListener(context)
+    val listener = ViewOnAttachStateChangeListener(context)
     listener.init()
     addOnAttachStateChangeListener(listener)
 }
 
-class __View_OnAttachStateChangeListener(private val context: CoroutineContext) : android.view.View.OnAttachStateChangeListener {
+class ViewOnAttachStateChangeListener(private val context: CoroutineContext) : android.view.View.OnAttachStateChangeListener {
 
     private var _onViewAttachedToWindow: (suspend CoroutineScope.(android.view.View) -> Unit)? = null
     
@@ -79,14 +79,14 @@ fun android.view.View.onUnhandledKeyEvent(
 
 fun android.widget.TextView.textChangedListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __TextWatcher.() -> Unit
+        init: TextWatcher.() -> Unit
 ) {
-    val listener = __TextWatcher(context)
+    val listener = TextWatcher(context)
     listener.init()
     addTextChangedListener(listener)
 }
 
-class __TextWatcher(private val context: CoroutineContext) : android.text.TextWatcher {
+class TextWatcher(private val context: CoroutineContext) : android.text.TextWatcher {
 
     private var _beforeTextChanged: (suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit)? = null
     
@@ -138,14 +138,14 @@ class __TextWatcher(private val context: CoroutineContext) : android.text.TextWa
 
 }fun android.gesture.GestureOverlayView.onGestureListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __GestureOverlayView_OnGestureListener.() -> Unit
+        init: GestureOverlayViewOnGestureListener.() -> Unit
 ) {
-    val listener = __GestureOverlayView_OnGestureListener(context)
+    val listener = GestureOverlayViewOnGestureListener(context)
     listener.init()
     addOnGestureListener(listener)
 }
 
-class __GestureOverlayView_OnGestureListener(private val context: CoroutineContext) : android.gesture.GestureOverlayView.OnGestureListener {
+class GestureOverlayViewOnGestureListener(private val context: CoroutineContext) : android.gesture.GestureOverlayView.OnGestureListener {
 
     private var _onGestureStarted: (suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit)? = null
     
@@ -224,14 +224,14 @@ class __GestureOverlayView_OnGestureListener(private val context: CoroutineConte
 
 fun android.gesture.GestureOverlayView.onGesturingListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __GestureOverlayView_OnGesturingListener.() -> Unit
+        init: GestureOverlayViewOnGesturingListener.() -> Unit
 ) {
-    val listener = __GestureOverlayView_OnGesturingListener(context)
+    val listener = GestureOverlayViewOnGesturingListener(context)
     listener.init()
     addOnGesturingListener(listener)
 }
 
-class __GestureOverlayView_OnGesturingListener(private val context: CoroutineContext) : android.gesture.GestureOverlayView.OnGesturingListener {
+class GestureOverlayViewOnGesturingListener(private val context: CoroutineContext) : android.gesture.GestureOverlayView.OnGesturingListener {
 
     private var _onGesturingStarted: (suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit)? = null
     
@@ -265,7 +265,10 @@ class __GestureOverlayView_OnGesturingListener(private val context: CoroutineCon
         _onGesturingEnded = listener
     }
 
-}fun android.media.tv.TvView.onUnhandledInputEvent(
+}
+
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+fun android.media.tv.TvView.onUnhandledInputEvent(
         context: CoroutineContext = Dispatchers.Main,
         returnValue: Boolean = false,
         handler: suspend CoroutineScope.(event: android.view.InputEvent?) -> Unit
@@ -278,6 +281,7 @@ class __GestureOverlayView_OnGesturingListener(private val context: CoroutineCon
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
 fun android.view.View.onApplyWindowInsets(
         context: CoroutineContext = Dispatchers.Main,
         returnValue: WindowInsets,
@@ -455,14 +459,14 @@ fun android.view.View.onTouch(
 
 fun android.view.ViewGroup.onHierarchyChangeListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __ViewGroup_OnHierarchyChangeListener.() -> Unit
+        init: ViewGroupOnHierarchyChangeListener.() -> Unit
 ) {
-    val listener = __ViewGroup_OnHierarchyChangeListener(context)
+    val listener = ViewGroupOnHierarchyChangeListener(context)
     listener.init()
     setOnHierarchyChangeListener(listener)
 }
 
-class __ViewGroup_OnHierarchyChangeListener(private val context: CoroutineContext) : android.view.ViewGroup.OnHierarchyChangeListener {
+class ViewGroupOnHierarchyChangeListener(private val context: CoroutineContext) : android.view.ViewGroup.OnHierarchyChangeListener {
 
     private var _onChildViewAdded: (suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit)? = null
     
@@ -509,14 +513,14 @@ class __ViewGroup_OnHierarchyChangeListener(private val context: CoroutineContex
 
 fun android.widget.AbsListView.onScrollListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __AbsListView_OnScrollListener.() -> Unit
+        init: AbsListViewOnScrollListener.() -> Unit
 ) {
-    val listener = __AbsListView_OnScrollListener(context)
+    val listener = AbsListViewOnScrollListener(context)
     listener.init()
     setOnScrollListener(listener)
 }
 
-class __AbsListView_OnScrollListener(private val context: CoroutineContext) : android.widget.AbsListView.OnScrollListener {
+class AbsListViewOnScrollListener(private val context: CoroutineContext) : android.widget.AbsListView.OnScrollListener {
 
     private var _onScrollStateChanged: (suspend CoroutineScope.(android.widget.AbsListView?, Int) -> Unit)? = null
     
@@ -550,7 +554,10 @@ class __AbsListView_OnScrollListener(private val context: CoroutineContext) : an
         _onScroll = listener
     }
 
-}fun android.widget.ActionMenuView.onMenuItemClick(
+}
+
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+fun android.widget.ActionMenuView.onMenuItemClick(
         context: CoroutineContext = Dispatchers.Main,
         returnValue: Boolean = false,
         handler: suspend CoroutineScope.(item: android.view.MenuItem?) -> Unit
@@ -589,14 +596,14 @@ fun android.widget.AdapterView<out android.widget.Adapter>.onItemLongClick(
 
 fun android.widget.AdapterView<out android.widget.Adapter>.onItemSelectedListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __AdapterView_OnItemSelectedListener.() -> Unit
+        init: AdapterViewOnItemSelectedListener.() -> Unit
 ) {
-    val listener = __AdapterView_OnItemSelectedListener(context)
+    val listener = AdapterViewOnItemSelectedListener(context)
     listener.init()
-    setOnItemSelectedListener(listener)
+    onItemSelectedListener = listener
 }
 
-class __AdapterView_OnItemSelectedListener(private val context: CoroutineContext) : android.widget.AdapterView.OnItemSelectedListener {
+class AdapterViewOnItemSelectedListener(private val context: CoroutineContext) : android.widget.AdapterView.OnItemSelectedListener {
 
     private var _onItemSelected: (suspend CoroutineScope.(android.widget.AdapterView<*>?, android.view.View?, Int, Long) -> Unit)? = null
     
@@ -630,11 +637,14 @@ class __AdapterView_OnItemSelectedListener(private val context: CoroutineContext
         _onNothingSelected = listener
     }
 
-}fun android.widget.AutoCompleteTextView.onDismiss(
+}
+
+@RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+fun android.widget.AutoCompleteTextView.onDismiss(
         context: CoroutineContext = Dispatchers.Main,
         handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnDismissListener {  ->
+    setOnDismissListener {
         GlobalScope.launch(context, CoroutineStart.DEFAULT, block = handler)
     }
 }
@@ -781,7 +791,7 @@ fun android.widget.SearchView.onClose(
         returnValue: Boolean = false,
         handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnCloseListener {  ->
+    setOnCloseListener {
         GlobalScope.launch(context, CoroutineStart.DEFAULT, block = handler)
         returnValue
     }
@@ -800,21 +810,21 @@ fun android.widget.SearchView.onQueryTextFocusChange(
 
 fun android.widget.SearchView.onQueryTextListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __SearchView_OnQueryTextListener.() -> Unit
+        init: SearchViewOnQueryTextListener.() -> Unit
 ) {
-    val listener = __SearchView_OnQueryTextListener(context)
+    val listener = SearchViewOnQueryTextListener(context)
     listener.init()
     setOnQueryTextListener(listener)
 }
 
-class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : android.widget.SearchView.OnQueryTextListener {
+class SearchViewOnQueryTextListener(private val context: CoroutineContext) : android.widget.SearchView.OnQueryTextListener {
 
-    private var _onQueryTextSubmit: (suspend CoroutineScope.(String?) -> Boolean)? = null
-    private var _onQueryTextSubmit_returnValue: Boolean = false
+    private var onQueryTextSubmit: (suspend CoroutineScope.(String?) -> Boolean)? = null
+    private var onQueryTextSubmitReturnValue: Boolean = false
 
     override fun onQueryTextSubmit(query: String?) : Boolean {
-        val returnValue = _onQueryTextSubmit_returnValue
-        val handler = _onQueryTextSubmit ?: return returnValue
+        val returnValue = onQueryTextSubmitReturnValue
+        val handler = onQueryTextSubmit ?: return returnValue
         GlobalScope.launch(context) {
             handler(query)
         }
@@ -825,16 +835,16 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
             returnValue: Boolean = false,
             listener: suspend CoroutineScope.(String?) -> Boolean
     ) {
-        _onQueryTextSubmit = listener
-        _onQueryTextSubmit_returnValue = returnValue
+        onQueryTextSubmit = listener
+        onQueryTextSubmitReturnValue = returnValue
     }
 
-    private var _onQueryTextChange: (suspend CoroutineScope.(String?) -> Boolean)? = null
-    private var _onQueryTextChange_returnValue: Boolean = false
+    private var onQueryTextChange: (suspend CoroutineScope.(String?) -> Boolean)? = null
+    private var onQueryTextChangeReturnValue: Boolean = false
 
     override fun onQueryTextChange(newText: String?) : Boolean {
-        val returnValue = _onQueryTextChange_returnValue
-        val handler = _onQueryTextChange ?: return returnValue
+        val returnValue = onQueryTextChangeReturnValue
+        val handler = onQueryTextChange ?: return returnValue
         GlobalScope.launch(context) {
             handler(newText)
         }
@@ -845,8 +855,8 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
             returnValue: Boolean = false,
             listener: suspend CoroutineScope.(String?) -> Boolean
     ) {
-        _onQueryTextChange = listener
-        _onQueryTextChange_returnValue = returnValue
+        onQueryTextChange = listener
+        onQueryTextChangeReturnValue = returnValue
     }
 
 }fun android.widget.SearchView.onSearchClick(
@@ -862,20 +872,20 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
 
 fun android.widget.SearchView.onSuggestionListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __SearchView_OnSuggestionListener.() -> Unit
+        init: SearchViewOnSuggestionListener.() -> Unit
 ) {
-    val listener = __SearchView_OnSuggestionListener(context)
+    val listener = SearchViewOnSuggestionListener(context)
     listener.init()
     setOnSuggestionListener(listener)
 }
 
-class __SearchView_OnSuggestionListener(private val context: CoroutineContext) : android.widget.SearchView.OnSuggestionListener {
+class SearchViewOnSuggestionListener(private val context: CoroutineContext) : android.widget.SearchView.OnSuggestionListener {
 
     private var _onSuggestionSelect: (suspend CoroutineScope.(Int) -> Boolean)? = null
-    private var _onSuggestionSelect_returnValue: Boolean = false
+    private var _onSuggestionSelectReturnValue: Boolean = false
 
     override fun onSuggestionSelect(position: Int) : Boolean {
-        val returnValue = _onSuggestionSelect_returnValue
+        val returnValue = _onSuggestionSelectReturnValue
         val handler = _onSuggestionSelect ?: return returnValue
         GlobalScope.launch(context) {
             handler(position)
@@ -888,15 +898,15 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
             listener: suspend CoroutineScope.(Int) -> Boolean
     ) {
         _onSuggestionSelect = listener
-        _onSuggestionSelect_returnValue = returnValue
+        _onSuggestionSelectReturnValue = returnValue
     }
 
-    private var _onSuggestionClick: (suspend CoroutineScope.(Int) -> Boolean)? = null
-    private var _onSuggestionClick_returnValue: Boolean = false
+    private var onSuggestionClick: (suspend CoroutineScope.(Int) -> Boolean)? = null
+    private var onSuggestionClickReturnValue: Boolean = false
 
     override fun onSuggestionClick(position: Int) : Boolean {
-        val returnValue = _onSuggestionClick_returnValue
-        val handler = _onSuggestionClick ?: return returnValue
+        val returnValue = onSuggestionClickReturnValue
+        val handler = onSuggestionClick ?: return returnValue
         GlobalScope.launch(context) {
             handler(position)
         }
@@ -907,20 +917,20 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
             returnValue: Boolean = false,
             listener: suspend CoroutineScope.(Int) -> Boolean
     ) {
-        _onSuggestionClick = listener
-        _onSuggestionClick_returnValue = returnValue
+        onSuggestionClick = listener
+        onSuggestionClickReturnValue = returnValue
     }
 
 }fun android.widget.SeekBar.onSeekBarChangeListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __SeekBar_OnSeekBarChangeListener.() -> Unit
+        init: SeekBarOnSeekBarChangeListener.() -> Unit
 ) {
-    val listener = __SeekBar_OnSeekBarChangeListener(context)
+    val listener = SeekBarOnSeekBarChangeListener(context)
     listener.init()
     setOnSeekBarChangeListener(listener)
 }
 
-class __SeekBar_OnSeekBarChangeListener(private val context: CoroutineContext) : android.widget.SeekBar.OnSeekBarChangeListener {
+class SeekBarOnSeekBarChangeListener(private val context: CoroutineContext) : android.widget.SeekBar.OnSeekBarChangeListener {
 
     private var _onProgressChanged: (suspend CoroutineScope.(android.widget.SeekBar?, Int, Boolean) -> Unit)? = null
     
@@ -974,7 +984,7 @@ class __SeekBar_OnSeekBarChangeListener(private val context: CoroutineContext) :
         context: CoroutineContext = Dispatchers.Main,
         handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnDrawerCloseListener {  ->
+    setOnDrawerCloseListener {
         GlobalScope.launch(context, CoroutineStart.DEFAULT, block = handler)
     }
 }
@@ -983,25 +993,26 @@ fun android.widget.SlidingDrawer.onDrawerOpen(
         context: CoroutineContext = Dispatchers.Main,
         handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnDrawerOpenListener {  ->
+    setOnDrawerOpenListener {
         GlobalScope.launch(context, CoroutineStart.DEFAULT, block = handler)
     }
 }
 
 fun android.widget.SlidingDrawer.onDrawerScrollListener(
         context: CoroutineContext = Dispatchers.Main,
-        init: __SlidingDrawer_OnDrawerScrollListener.() -> Unit
+        init: SlidingDrawerOnDrawerScrollListener.() -> Unit
 ) {
-    val listener = __SlidingDrawer_OnDrawerScrollListener(context)
+    val listener = SlidingDrawerOnDrawerScrollListener(context)
     listener.init()
     setOnDrawerScrollListener(listener)
 }
 
-class __SlidingDrawer_OnDrawerScrollListener(private val context: CoroutineContext) : android.widget.SlidingDrawer.OnDrawerScrollListener {
+class SlidingDrawerOnDrawerScrollListener(private val context: CoroutineContext) : android.widget.SlidingDrawer.OnDrawerScrollListener {
 
     private var _onScrollStarted: (suspend CoroutineScope.() -> Unit)? = null
     
 
+    @Deprecated("Deprecated in Java")
     override fun onScrollStarted() {
         val handler = _onScrollStarted ?: return
         GlobalScope.launch(context, block = handler)
@@ -1016,6 +1027,7 @@ class __SlidingDrawer_OnDrawerScrollListener(private val context: CoroutineConte
     private var _onScrollEnded: (suspend CoroutineScope.() -> Unit)? = null
     
 
+    @Deprecated("Deprecated in Java")
     override fun onScrollEnded() {
         val handler = _onScrollEnded ?: return
         GlobalScope.launch(context, block = handler)
@@ -1062,6 +1074,7 @@ fun android.widget.TimePicker.onTimeChanged(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 fun android.widget.Toolbar.onMenuItemClick(
         context: CoroutineContext = Dispatchers.Main,
         returnValue: Boolean = false,
@@ -1099,6 +1112,7 @@ fun android.widget.VideoView.onError(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 fun android.widget.VideoView.onInfo(
         context: CoroutineContext = Dispatchers.Main,
         returnValue: Boolean = false,

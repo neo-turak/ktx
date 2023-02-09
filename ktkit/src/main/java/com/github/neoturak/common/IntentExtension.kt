@@ -50,7 +50,7 @@ inline fun <reified T : Activity> Fragment.startActivityForResult(
  * ```
  *
  */
-inline fun <reified T : Activity> Fragment.registerLauncher(
+inline fun Fragment.registerLauncher(
     crossinline callback: (i: Intent?) -> Unit
 ): ActivityResultLauncher<Intent> {
    return this.registerForActivityResult(
