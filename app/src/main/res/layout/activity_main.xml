@@ -1,15 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home"
-    android:background="#123456"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:background="#000000"
+    android:orientation="vertical"
     >
 
-    <TextView
-        android:layout_width="match_parent"
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:background="#0000CC"
-        android:layout_gravity="bottom"
+        app:sv_soldColor="#cc0000"
+        app:sv_strokeColor="#000000"
+        app:sv_strokeWidth="2dp"
+        app:sv_cornersRadius="8dp"
         />
-</FrameLayout>
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_strokeColor="#2b2b2b"
+        app:sv_strokeWidth="5dp"
+        app:sv_cornersRadius="8dp"
+        />
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_strokeColor="#2b2b2b"
+        app:sv_strokeWidth="2dp"
+        app:sv_cornerBottomLeft="10dp"
+        app:sv_cornerTopRight="10dp"
+        />
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_strokeColor="#000000"
+
+        />
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_strokeColor="#000000"
+        app:sv_cornerTopRight="15dp"
+        app:sv_cornerTopLeft="15dp"
+        />
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_cornersRadius="40dp"
+        />
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_cornersRadius="40dp"
+        />
+
+    <com.github.neoturak.view.ShapeableView
+        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:sv_soldColor="#00cccc"
+        app:sv_strokeWidth="2dp"
+        app:sv_strokeColor="#000000"
+        app:sv_cornersRadius="40dp"
+        />
+
+</LinearLayout>
