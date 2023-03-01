@@ -10,35 +10,39 @@
     android:orientation="vertical"
     >
 
+
     <com.github.neoturak.view.ShapeableView
         android:layout_marginTop="10dp"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        app:sv_soldColor="#cc0000"
-        app:sv_strokeColor="#000000"
-        app:sv_strokeWidth="2dp"
-        app:sv_cornersRadius="8dp"
+        app:shape_soldColor="#00cccc"
+        app:shape_strokeColor="#2b2b2b"
+        android:id="@+id/sv_shape"
+        app:shape_strokeWidth="5dp"
+        app:shape_cornersRadius="8dp"
         />
 
     <com.github.neoturak.view.ShapeableView
         android:layout_marginTop="10dp"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_strokeColor="#2b2b2b"
-        app:sv_strokeWidth="5dp"
-        app:sv_cornersRadius="8dp"
+        app:shape_soldColor="#00cccc"
+        app:shape_strokeColor="#2b2b2b"
+        app:shape_strokeWidth="2dp"
+        app:shape_cornerBottomLeft="10dp"
+        app:shape_cornerTopRight="10dp"
         />
+
 
     <com.github.neoturak.view.ShapeableView
         android:layout_marginTop="10dp"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_strokeColor="#2b2b2b"
-        app:sv_strokeWidth="2dp"
-        app:sv_cornerBottomLeft="10dp"
-        app:sv_cornerTopRight="10dp"
+        android:padding="10dp"
+        app:shape_soldColor="#00cccc"
+        app:shape_strokeColor="#000000"
+        app:shape_cornerTopRight="15dp"
+        app:shape_cornerTopLeft="15dp"
         />
 
     <com.github.neoturak.view.ShapeableView
@@ -46,29 +50,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_strokeColor="#000000"
-
-        />
-
-    <com.github.neoturak.view.ShapeableView
-        android:layout_marginTop="10dp"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:padding="10dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_strokeColor="#000000"
-        app:sv_cornerTopRight="15dp"
-        app:sv_cornerTopLeft="15dp"
-        />
-
-    <com.github.neoturak.view.ShapeableView
-        android:layout_marginTop="10dp"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:padding="10dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_cornersRadius="40dp"
+        app:shape_soldColor="#00cccc"
+        app:shape_cornersRadius="40dp"
         />
 
     <com.github.neoturak.view.ShapeableView
@@ -76,8 +59,8 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_cornersRadius="40dp"
+        app:shape_soldColor="#00cccc"
+        app:shape_cornersRadius="40dp"
         />
 
     <com.github.neoturak.view.ShapeableView
@@ -85,10 +68,50 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        app:sv_soldColor="#00cccc"
-        app:sv_strokeWidth="2dp"
-        app:sv_strokeColor="#000000"
-        app:sv_cornersRadius="40dp"
+        app:shape_soldColor="#00cccc"
+        app:shape_strokeWidth="2dp"
+        app:shape_strokeColor="#000000"
+        app:shape_cornersRadius="40dp"
         />
+    <com.github.neoturak.view.ShapeableTextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="hello world"
+        app:shape_soldColor="#cc0000"
+        android:layout_marginTop="10dp"
+        app:shape_strokeColor="#000000"
+        app:shape_cornersRadius="8dp"
+        android:textSize="14sp"
+        android:textColor="#FFF"
+        />
+
+    <com.github.neoturak.view.ShapeableTextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="hello world"
+        android:layout_marginTop="10dp"
+
+        app:shape_soldColor="#cc0000"
+        app:shape_strokeColor="#000000"
+        app:shape_cornerBottomLeft="8dp"
+        app:shape_cornerTopRight="8dp"
+
+        android:textSize="14sp"
+        android:textColor="#FFF"
+        />
+
+    <com.github.neoturak.view.ShapeableButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:id="@+id/sb_button"
+        app:shape_soldColor="#cc0000"
+        app:shape_strokeColor="#000000"
+       app:shape_cornersRadius="20dp"
+        />
+
 
 </LinearLayout>

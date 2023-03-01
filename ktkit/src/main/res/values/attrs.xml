@@ -1,22 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ShapeableView">
-<!--        全部角半径-->
-        <attr name="sv_cornersRadius" format="dimension"/>
-<!--        左上角半径-->
-        <attr name="sv_cornerTopLeft" format="dimension"/>
-<!--        右上角 半径-->
-        <attr name="sv_cornerTopRight" format="dimension"/>
-<!--        左下角半径-->
-        <attr name="sv_cornerBottomLeft" format="dimension"/>
-<!--        右下角半径-->
-        <attr name="sv_cornerBottomRight" format="dimension"/>
-<!--        描边颜色-->
-        <attr name="sv_strokeColor" format="color" />
-<!--        描边厚度-->
-        <attr name="sv_strokeWidth" format="dimension"/>
-<!--        背景色-->
-        <attr name="sv_soldColor" format="color"/>
+    <!--        全部角半径-->
+    <attr name="shape_cornersRadius" format="dimension"/>
+    <!--        左上角半径-->
+    <attr name="shape_cornerTopLeft" format="dimension"/>
+    <!--        右上角 半径-->
+    <attr name="shape_cornerTopRight" format="dimension"/>
+    <!--        左下角半径-->
+    <attr name="shape_cornerBottomLeft" format="dimension"/>
+    <!--        右下角半径-->
+    <attr name="shape_cornerBottomRight" format="dimension"/>
+    <!--        描边颜色-->
+    <attr name="shape_strokeColor" format="color" />
+    <!--        描边厚度-->
+    <attr name="shape_strokeWidth" format="dimension"/>
+    <!--        背景色-->
+    <attr name="shape_soldColor" format="color"/>
 
+<!--    View-->
+    <declare-styleable name="ShapeableView">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+<!--    TextView-->
+    <declare-styleable name="ShapeableTextView">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+<!--    Button-->
+    <declare-styleable name="ShapeableButton">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+<!--    frameLayout-->
+    <declare-styleable name="ShapeableFrameLayout">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+    <declare-styleable name="ShapeableLinearLayout">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeableRelativeLayout">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeableConstraintLayout">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeableNestedScrollView">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeableImageView">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius"/>
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft"/>
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight"/>
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft"/>
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight"/>
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth"/>
+        <!--        背景色-->
+        <attr name="shape_soldColor"/>
     </declare-styleable>
 </resources>

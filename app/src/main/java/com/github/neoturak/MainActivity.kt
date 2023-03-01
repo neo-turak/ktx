@@ -1,17 +1,13 @@
 package com.github.neoturak
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import com.github.neoturak.common.backgroundColor
 import com.github.neoturak.databinding.ActivityMainBinding
 import com.github.neoturak.ui.immersiveNavigationBar
 import com.github.neoturak.ui.immersiveStatusBar
 import com.github.neoturak.ui.setNavigationBarColor
-import java.util.UUID
 
 /**
  * @author 努尔江
@@ -33,8 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         this.immersiveStatusBar()
         this.setNavigationBarColor(Color.BLUE)
-        this.immersiveNavigationBar {
-
-        }
+        this.immersiveNavigationBar {}
     }
 }

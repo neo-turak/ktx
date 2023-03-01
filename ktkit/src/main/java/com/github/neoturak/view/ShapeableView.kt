@@ -18,18 +18,50 @@ class ShapeableView : View {
 
     //corners.
     private var cornersRadius = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
     private var cornerTopLeft = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
     private var cornerTopRight = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
     private var cornerBottomLeft = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
     private var cornerBottomRight = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     //strokes
     private var strokeColor = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     private var strokeWidth = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     //sold color
     private var soldColor: Int = 0
-
+        set(value) {
+            field = value
+            invalidate()
+        }
     private var mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val mPath = Path()
 
@@ -92,20 +124,21 @@ class ShapeableView : View {
         return f
     }
 
+
     private fun initView(context: Context?, attrs: AttributeSet?) {
         val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableView)
         //全部边框值
-        cornersRadius = ta.getDimension(R.styleable.ShapeableView_sv_cornersRadius, 0f)
+        cornersRadius = ta.getDimension(R.styleable.ShapeableView_shape_cornersRadius, 0f)
         //边框-边角
-        cornerTopLeft = ta.getDimension(R.styleable.ShapeableView_sv_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableView_sv_cornerTopRight, 0F)
-        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableView_sv_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableView_sv_cornerBottomRight, 0F)
+        cornerTopLeft = ta.getDimension(R.styleable.ShapeableView_shape_cornerTopLeft, 0F)
+        cornerTopRight = ta.getDimension(R.styleable.ShapeableView_shape_cornerTopRight, 0F)
+        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableView_shape_cornerBottomLeft, 0F)
+        cornerBottomRight = ta.getDimension(R.styleable.ShapeableView_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableView_sv_strokeColor, Color.BLUE)
-        strokeWidth = ta.getDimension(R.styleable.ShapeableView_sv_strokeWidth, 0f)
+        strokeColor = ta.getColor(R.styleable.ShapeableView_shape_strokeColor, Color.BLUE)
+        strokeWidth = ta.getDimension(R.styleable.ShapeableView_shape_strokeWidth, 0f)
         //背景颜色
-        soldColor = ta.getColor(R.styleable.ShapeableView_sv_soldColor, Color.CYAN)
+        soldColor = ta.getColor(R.styleable.ShapeableView_shape_soldColor, Color.CYAN)
         ta.recycle()
     }
 
