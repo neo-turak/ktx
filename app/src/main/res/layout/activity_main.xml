@@ -4,22 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
-    android:background="#000000"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-
-    <com.github.neoturak.view.ShapeableView
-        android:layout_marginTop="10dp"
+    <View
         android:layout_width="100dp"
         android:layout_height="40dp"
-        app:shape_soldColor="#00cccc"
-        app:shape_strokeColor="#2b2b2b"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_cc0000_2dp"
+        />
+
+    <com.github.neoturak.view.ShapeableImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/sv_shape"
+        app:shape_cornersRadius="5dp"
         app:shape_strokeWidth="5dp"
-        app:shape_cornersRadius="8dp"
+        app:shape_strokeColor="#123456"
+        app:shape_soldColor="#CC0000"
+        android:padding="5dp"
+        tools:src="@tools:sample/avatars"
         />
 
     <com.github.neoturak.view.ShapeableView
@@ -29,6 +36,8 @@
         app:shape_soldColor="#00cccc"
         app:shape_strokeColor="#2b2b2b"
         app:shape_strokeWidth="2dp"
+        app:gradient_startColor="#123456"
+        app:gradient_endColor="#223344"
         app:shape_cornerBottomLeft="10dp"
         app:shape_cornerTopRight="10dp"
         />
@@ -45,12 +54,27 @@
         app:shape_cornerTopLeft="15dp"
         />
 
-    <com.github.neoturak.view.ShapeableView
+    <com.github.neoturak.view.ShapeableButton
         android:layout_marginTop="10dp"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        app:shape_soldColor="#00cccc"
+        android:text="BOOST NOW"
+        android:textColor="#FFF"
+        app:shape_soldColor="#3879F0"
+        app:shape_cornersRadius="40dp"
+        />
+
+    <com.github.neoturak.view.ShapeableButton
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="BOOST NOW"
+        android:textColor="#FFF"
+        app:shape_soldColor="#3879F0"
         app:shape_cornersRadius="40dp"
         />
 

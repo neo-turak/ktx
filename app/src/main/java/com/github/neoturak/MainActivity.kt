@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.root.backgroundColor =Color.WHITE
 
+        binding.sbButton.cornerBottomLeft
         this.immersiveStatusBar()
         this.setNavigationBarColor(Color.BLUE)
         this.immersiveNavigationBar {}

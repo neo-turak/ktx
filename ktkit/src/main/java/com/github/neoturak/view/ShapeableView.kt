@@ -1,7 +1,10 @@
 package com.github.neoturak.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.*
+import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import com.github.neoturak.ktkit.R
@@ -14,56 +17,81 @@ import com.github.neoturak.ktkit.R
  **/
 
 class ShapeableView : View {
-    private var mRectF: RectF = RectF()
 
     //corners.
-    private var cornersRadius = 0f
+    var cornersRadius = 0f
         set(value) {
             field = value
             invalidate()
         }
-    private var cornerTopLeft = 0f
+    var cornerTopLeft = 0f
         set(value) {
             field = value
             invalidate()
         }
-    private var cornerTopRight = 0f
+    var cornerTopRight = 0f
         set(value) {
             field = value
             invalidate()
         }
-    private var cornerBottomLeft = 0f
+    var cornerBottomLeft = 0f
         set(value) {
             field = value
             invalidate()
         }
-    private var cornerBottomRight = 0f
+    var cornerBottomRight = 0f
         set(value) {
             field = value
             invalidate()
         }
 
     //strokes
-    private var strokeColor = 0
+    var strokeColor = 0
         set(value) {
             field = value
             invalidate()
         }
 
-    private var strokeWidth = 0f
+    var strokeWidth = 0f
         set(value) {
             field = value
             invalidate()
         }
 
     //sold color
-    private var soldColor: Int = 0
+    var soldColor: Int = 0
         set(value) {
             field = value
             invalidate()
         }
-    private var mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val mPath = Path()
+
+    //start color
+    var startColor = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    //end color
+    var endColor = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    //center color
+    var centerColor = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    //angle
+    var angle = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     constructor(context: Context?) : super(context) {
         initView(context, null)
@@ -81,49 +109,10 @@ class ShapeableView : View {
         initView(context, attrs)
     }
 
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        //为了4个角的角度值。
-        val corners = floatArrayOf(
-            provideWithCare(cornerTopLeft), provideWithCare(cornerTopLeft),
-            provideWithCare(cornerTopRight), provideWithCare(cornerTopRight),
-            provideWithCare(cornerBottomRight), provideWithCare(cornerBottomRight),
-            provideWithCare(cornerBottomLeft), provideWithCare(cornerBottomLeft)
-        )
-
-        //底色(背景色)
-        //style 是线风格。
-        mPaint.style = Paint.Style.FILL
-        mPaint.color = soldColor
-        mPaint.strokeWidth = 1f
-        mRectF.left = strokeWidth / 2f
-        mRectF.top = strokeWidth / 2f
-        mRectF.right = width - strokeWidth / 2f
-        mRectF.bottom = height - strokeWidth / 2f
-        mPath.addRoundRect(mRectF, corners, Path.Direction.CW)
-        canvas!!.drawPath(mPath, mPaint)
-
-        //如果为0，不需要绘制边
-        if (strokeWidth != 0f) {
-            //切换style属性实心。
-            mPaint.style = Paint.Style.STROKE
-            mPaint.strokeWidth = strokeWidth
-            mPaint.color = strokeColor
-            mRectF.left = strokeWidth / 2f
-            mRectF.top = strokeWidth / 2f
-            mRectF.right = width - strokeWidth / 2f
-            mRectF.bottom = height - strokeWidth / 2f
-            mPath.addRoundRect(mRectF, corners, Path.Direction.CW)
-            canvas.drawPath(mPath, mPaint)
-        }
-    }
-
     private fun provideWithCare(f: Float): Float {
         if (f == 0f) return cornersRadius
         return f
     }
-
 
     private fun initView(context: Context?, attrs: AttributeSet?) {
         val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableView)
@@ -135,11 +124,58 @@ class ShapeableView : View {
         cornerBottomLeft = ta.getDimension(R.styleable.ShapeableView_shape_cornerBottomLeft, 0F)
         cornerBottomRight = ta.getDimension(R.styleable.ShapeableView_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableView_shape_strokeColor, Color.BLUE)
+        strokeColor = ta.getColor(R.styleable.ShapeableView_shape_strokeColor, Color.WHITE)
         strokeWidth = ta.getDimension(R.styleable.ShapeableView_shape_strokeWidth, 0f)
         //背景颜色
-        soldColor = ta.getColor(R.styleable.ShapeableView_shape_soldColor, Color.CYAN)
+        soldColor = ta.getColor(R.styleable.ShapeableView_shape_soldColor, Color.WHITE)
+        //开始颜色
+        startColor =
+            ta.getColor(R.styleable.ShapeableView_gradient_startColor, 0)
+        //中间颜色
+        centerColor =
+            ta.getColor(R.styleable.ShapeableView_gradient_centerColor, 0)
+        //结束颜色
+        endColor = ta.getColor(R.styleable.ShapeableView_gradient_endColor, 0)
+        //角度值
+        angle = ta.getInteger(R.styleable.ShapeableView_gradient_angle, 6)
         ta.recycle()
+        setAttrs()
     }
 
+    /**
+     * 设置属性
+     */
+    private fun setAttrs() {
+        val shape = GradientDrawable()
+        shape.shape = GradientDrawable.RECTANGLE
+        //为了4个角的角度值。
+        val corners = floatArrayOf(
+            provideWithCare(cornerTopLeft), provideWithCare(cornerTopLeft),
+            provideWithCare(cornerTopRight), provideWithCare(cornerTopRight),
+            provideWithCare(cornerBottomRight), provideWithCare(cornerBottomRight),
+            provideWithCare(cornerBottomLeft), provideWithCare(cornerBottomLeft)
+        )
+        shape.cornerRadii = corners
+        val realAngle = ViewUtils().realAngle(angle)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (startColor == endColor && startColor == centerColor) {//没有渐变色
+                shape.color = ColorStateList.valueOf(soldColor)
+            } else {//有渐变色
+                if (endColor == 0) {
+                    endColor = Color.WHITE
+                }
+                //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
+                if (centerColor == 0) {
+                    centerColor =ViewUtils().middleColor(startColor,endColor)
+                }
+                shape.colors = intArrayOf(startColor, centerColor, endColor)
+                shape.orientation = realAngle
+            }
+            //描边。
+            if (strokeWidth != 0f && strokeColor != Color.TRANSPARENT) {
+                shape.setStroke(strokeWidth.toInt(), ColorStateList.valueOf(strokeColor))
+            }
+            this.background = shape
+        }
+    }
 }
