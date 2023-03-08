@@ -1,17 +1,10 @@
 # <p align="center"> KtKit </p>
 
 <p align="center">
-KtKit 小巧而实用，用 Kotlin 语言编写的工具库（长期更新中）<br/>
+KtKit Anko库的延伸，数据库，Intent处理，dp转换工具，自定义ShapeableView等<br/>
 </p>
 
-<p align="center">
-&nbsp;</a> &nbsp; 
-<img src="https://img.shields.io/badge/platform-android-lightgrey.svg"/> 
-</p>
-
-
-
-<p align="center"> 如果图片无法查看，请点击这里查看 <a href="http://img.hi-dhl.com/intent-act.png"> 图例</a>
+<p align="center"> <a href="http://img.hi-dhl.com/intent-act.png"> 图例</a>
 <image src="http://img.hi-dhl.com/intent-act.png" width = 700px/>
 </p>
 
@@ -48,7 +41,6 @@ dependencies {
 
 **如果这个仓库对你有帮助，请在仓库右上角帮我 star 一下，非常感谢你的支持，同时也欢迎你提交 PR**  ❤️❤️❤️
 
-项目中引用了 spotless 插件，执行 `./gradlew spotlessApply`  会将 Java 、Kotlin 、xml 、gradle 、md 、gitignore 等等文件按照官方标准去格式化。这也是 Google 提交代码的时候，推荐的方式。
 
 ## 如何使用
 
