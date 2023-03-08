@@ -1,9 +1,13 @@
 package com.github.neoturak
 
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.github.neoturak.common.backgroundColor
+import com.github.neoturak.common.dp2px
+import com.github.neoturak.common.px2dp
 import com.github.neoturak.databinding.ActivityMainBinding
 import com.github.neoturak.ui.immersiveNavigationBar
 import com.github.neoturak.ui.immersiveStatusBar
@@ -28,8 +32,12 @@ class MainActivity : AppCompatActivity() {
         binding.root.backgroundColor =Color.WHITE
 
         binding.sbButton.cornerBottomLeft
-        this.immersiveStatusBar()
+/*        this.immersiveStatusBar()
         this.setNavigationBarColor(Color.BLUE)
-        this.immersiveNavigationBar {}
+        this.immersiveNavigationBar {}*/
+        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.test)
+        val drawable = RoundedBitmapDrawableFactory.create(resources,bitmap)
+        drawable.isCircular = true
+        binding.svShape.setImageDrawable(drawable)
     }
 }
