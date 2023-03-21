@@ -24,26 +24,31 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //strokes
@@ -51,12 +56,14 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     var strokeWidth = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //sold color
@@ -64,6 +71,7 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //start color
@@ -71,6 +79,7 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //end color
@@ -78,6 +87,7 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //center color
@@ -85,6 +95,7 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //angle
@@ -92,6 +103,7 @@ class ShapeableNestedScrollView : NestedScrollView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     constructor(context: Context) : super(context) {
@@ -118,14 +130,20 @@ class ShapeableNestedScrollView : NestedScrollView {
     private fun initView(context: Context?, attrs: AttributeSet?) {
         val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableNestedScrollView)
         //全部边框值
-        cornersRadius = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornersRadius, 0f)
+        cornersRadius =
+            ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornersRadius, 0f)
         //边框-边角
-        cornerTopLeft = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerTopRight, 0F)
-        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerBottomRight, 0F)
+        cornerTopLeft =
+            ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerTopLeft, 0F)
+        cornerTopRight =
+            ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerTopRight, 0F)
+        cornerBottomLeft =
+            ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerBottomLeft, 0F)
+        cornerBottomRight =
+            ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableNestedScrollView_shape_strokeColor, Color.WHITE)
+        strokeColor =
+            ta.getColor(R.styleable.ShapeableNestedScrollView_shape_strokeColor, Color.WHITE)
         strokeWidth = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_strokeWidth, 0f)
         //背景颜色
         soldColor = ta.getColor(R.styleable.ShapeableNestedScrollView_shape_soldColor, Color.WHITE)
@@ -167,7 +185,7 @@ class ShapeableNestedScrollView : NestedScrollView {
                 }
                 //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
                 if (centerColor == 0) {
-                    centerColor =ViewUtils().middleColor(startColor,endColor)
+                    centerColor = ViewUtils().middleColor(startColor, endColor)
                 }
                 shape.colors = intArrayOf(startColor, centerColor, endColor)
                 shape.orientation = realAngle

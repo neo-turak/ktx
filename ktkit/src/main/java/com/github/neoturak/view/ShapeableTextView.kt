@@ -24,26 +24,31 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //strokes
@@ -51,12 +56,14 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     var strokeWidth = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //sold color
@@ -64,6 +71,7 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //start color
@@ -71,6 +79,7 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //end color
@@ -78,6 +87,7 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //center color
@@ -85,6 +95,7 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //angle
@@ -92,6 +103,7 @@ class ShapeableTextView : AppCompatTextView {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     constructor(context: Context) : super(context) {
@@ -123,7 +135,8 @@ class ShapeableTextView : AppCompatTextView {
         cornerTopLeft = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerTopLeft, 0F)
         cornerTopRight = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerTopRight, 0F)
         cornerBottomLeft = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerBottomRight, 0F)
+        cornerBottomRight =
+            ta.getDimension(R.styleable.ShapeableTextView_shape_cornerBottomRight, 0F)
         //边框颜色
         strokeColor = ta.getColor(R.styleable.ShapeableTextView_shape_strokeColor, Color.WHITE)
         strokeWidth = ta.getDimension(R.styleable.ShapeableTextView_shape_strokeWidth, 0f)
@@ -167,7 +180,7 @@ class ShapeableTextView : AppCompatTextView {
                 }
                 //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
                 if (centerColor == 0) {
-                    centerColor =ViewUtils().middleColor(startColor,endColor)
+                    centerColor = ViewUtils().middleColor(startColor, endColor)
                 }
                 shape.colors = intArrayOf(startColor, centerColor, endColor)
                 shape.orientation = realAngle

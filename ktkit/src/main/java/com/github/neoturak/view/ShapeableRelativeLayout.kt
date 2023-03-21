@@ -16,33 +16,38 @@ import com.github.neoturak.ktkit.R
  * Description:
  **/
 
-class ShapeableRelativeLayout  : RelativeLayout {
+class ShapeableRelativeLayout : RelativeLayout {
 
     //corners.
     var cornersRadius = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //strokes
@@ -50,12 +55,14 @@ class ShapeableRelativeLayout  : RelativeLayout {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     var strokeWidth = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //sold color
@@ -63,6 +70,7 @@ class ShapeableRelativeLayout  : RelativeLayout {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //start color
@@ -70,6 +78,7 @@ class ShapeableRelativeLayout  : RelativeLayout {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //end color
@@ -77,6 +86,7 @@ class ShapeableRelativeLayout  : RelativeLayout {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //center color
@@ -84,6 +94,7 @@ class ShapeableRelativeLayout  : RelativeLayout {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //angle
@@ -91,6 +102,7 @@ class ShapeableRelativeLayout  : RelativeLayout {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     constructor(context: Context) : super(context) {
@@ -120,11 +132,15 @@ class ShapeableRelativeLayout  : RelativeLayout {
         cornersRadius = ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornersRadius, 0f)
         //边框-边角
         cornerTopLeft = ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerTopRight, 0F)
-        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerBottomRight, 0F)
+        cornerTopRight =
+            ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerTopRight, 0F)
+        cornerBottomLeft =
+            ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerBottomLeft, 0F)
+        cornerBottomRight =
+            ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableRelativeLayout_shape_strokeColor, Color.WHITE)
+        strokeColor =
+            ta.getColor(R.styleable.ShapeableRelativeLayout_shape_strokeColor, Color.WHITE)
         strokeWidth = ta.getDimension(R.styleable.ShapeableRelativeLayout_shape_strokeWidth, 0f)
         //背景颜色
         soldColor = ta.getColor(R.styleable.ShapeableRelativeLayout_shape_soldColor, Color.WHITE)
@@ -166,7 +182,7 @@ class ShapeableRelativeLayout  : RelativeLayout {
                 }
                 //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
                 if (centerColor == 0) {
-                    centerColor =ViewUtils().middleColor(startColor,endColor)
+                    centerColor = ViewUtils().middleColor(startColor, endColor)
                 }
                 shape.colors = intArrayOf(startColor, centerColor, endColor)
                 shape.orientation = realAngle

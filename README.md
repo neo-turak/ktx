@@ -4,9 +4,7 @@
 KtKit Anko库的延伸，数据库，Intent处理，dp转换工具，自定义ShapeableView等<br/>
 </p>
 
-<p align="center"> <a href="http://img.hi-dhl.com/intent-act.png"> 图例</a>
-<image src="http://img.hi-dhl.com/intent-act.png" width = 700px/>
-</p>
+<p align="center"><image src="http://img.hi-dhl.com/intent-act.png" width = 700px/></p>
 
 ## 关于 KtKit
 
@@ -68,7 +66,7 @@ context.startActivity<ProfileActivity> {
     arrayOf(
             KEY_USER_NAME to "ByteCode",
             KEY_USER_PASSWORD to "1024",
-            KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+            KEY_PEOPLE_PARCELIZE to "hi"
     )
 }
 
@@ -87,7 +85,7 @@ context.startActivity<ProfileActivity>(
 context.startActivityForResult<ProfileActivity>(KEY_REQUEST_CODE,
         KEY_USER_NAME to "ByteCode",
         KEY_USER_PASSWORD to "1024",
-        KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+        KEY_PEOPLE_PARCELIZE to PeopleModel("hi")
 )
 
 // 方式二
@@ -95,7 +93,7 @@ context.startActivityForResult<ProfileActivity>(KEY_REQUEST_CODE) {
     arrayOf(
             KEY_USER_NAME to "ByteCode",
             KEY_USER_PASSWORD to "1024",
-            KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+            KEY_PEOPLE_PARCELIZE to PeopleModel("hi")
     )
 }
 ```
@@ -126,7 +124,7 @@ fun newInstance1(): Fragment {
     return LoginFragment().makeBundle(
             ProfileActivity.KEY_USER_NAME to "ByteCode",
             ProfileActivity.KEY_USER_PASSWORD to "1024",
-            ProfileActivity.KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+            ProfileActivity.KEY_PEOPLE_PARCELIZE to PeopleModel("hi")
     )
 }
 
@@ -136,7 +134,7 @@ fun newInstance2(): Fragment {
         arrayOf(
                 KEY_USER_NAME to "ByteCode",
                 KEY_USER_PASSWORD to "1024",
-                KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+                KEY_PEOPLE_PARCELIZE to PeopleModel("hi")
         )
     }
 }
