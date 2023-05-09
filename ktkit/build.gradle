@@ -24,7 +24,7 @@ android {
     // configure the AAR output
     libraryVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${project.name}-${variant.name}-1.0.9.aar"
+            outputFileName = "${project.name}-${variant.name}-1.2.0.aar"
         }
     }
     compileOptions {
@@ -35,6 +35,14 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
         suppressWarnings = true
     }
+
+    afterEvaluate {
+        generateReleaseBuildConfig.enabled = false
+        generateDebugBuildConfig.enabled = false
+        generateReleaseResValues.enabled = false
+        generateDebugResValues.enabled = false
+    }
+
     namespace 'com.github.neoturak.ktkit'
 }
 
