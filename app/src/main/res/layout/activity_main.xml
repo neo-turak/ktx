@@ -15,15 +15,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/shape_cc0000_2dp" />
 
-    <com.github.neoturak.view.ShapeableImageView
-        android:id="@+id/sv_shape"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        app:shape_cornersRadius="50dp"
-        app:shape_strokeColor="#123456"
-        app:shape_strokeWidth="5dp" />
 
     <com.github.neoturak.view.ShapeableView
         android:layout_width="100dp"
@@ -101,7 +92,20 @@
         android:text="hola"
         app:shape_cornersRadius="30dp"
         app:shape_soldColor="#005bab"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="10dp" />
 
+    <com.github.neoturak.MonthView
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp" />
+
+    <com.github.neoturak.view.CircleImageView
+        android:id="@+id/civImage"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="20dp"
+        app:civ_border_color="#CC0000"
+        app:civ_border_width="2dp"
+        app:civ_circle_background_color="#FF000000"
+        tools:src="@tools:sample/backgrounds/scenic" />
 </LinearLayout>

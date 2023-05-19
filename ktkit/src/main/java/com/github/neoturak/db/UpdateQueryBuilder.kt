@@ -5,7 +5,6 @@ package com.github.neoturak.db
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
-import com.github.neoturak.common.AnkoException
 
 abstract class UpdateQueryBuilder(
         val tableName: String,
@@ -40,7 +39,7 @@ abstract class UpdateQueryBuilder(
 
     fun whereArgs(select: String): UpdateQueryBuilder {
         if (selectionApplied)
-            throw AnkoException("Query selection was already applied.")
+            throw Exception("Query selection was already applied.")
 
         selectionApplied = true
         useNativeSelection = false
@@ -50,7 +49,7 @@ abstract class UpdateQueryBuilder(
 
     fun whereSimple(select: String, vararg args: String): UpdateQueryBuilder {
         if (selectionApplied)
-            throw AnkoException("Query selection was already applied.")
+            throw Exception("Query selection was already applied.")
 
         selectionApplied = true
         useNativeSelection = true

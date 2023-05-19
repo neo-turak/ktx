@@ -11,6 +11,7 @@ import java.io.File
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 /**
  * 数据扩展类
@@ -280,11 +281,11 @@ fun Long.timeParse(): String {
     } else {
         val minute = this / 60000
         val seconds = this % 60000
-        val second = Math.round(seconds.toFloat() / 1000).toLong()
+        val second = (seconds.toFloat() / 1000).roundToInt().toLong()
         if (minute < 10) {
             time += "0"
         }
-        time += minute.toString() + ":"
+        time += "$minute:"
         if (second < 10) {
             time += "0"
         }

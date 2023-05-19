@@ -23,21 +23,6 @@ import java.io.Serializable
  *@project  client-juran
  *Think Twice, Code Once!
  */
-inline val AnkoContext<*>.resources: Resources
-    get() = ctx.resources
-
-inline val AnkoContext<*>.assets: AssetManager
-    get() = ctx.assets
-
-inline val AnkoContext<*>.defaultSharedPreferences: SharedPreferences
-    get() = PreferenceManager.getDefaultSharedPreferences(ctx)
-
-inline val Context.defaultSharedPreferences: SharedPreferences
-    get() = PreferenceManager.getDefaultSharedPreferences(this)
-
-
-inline val Fragment.defaultSharedPreferences: SharedPreferences
-    get() = PreferenceManager.getDefaultSharedPreferences(activity)
 
 inline val Fragment.act: Activity
     get() = this.requireActivity()
@@ -53,11 +38,6 @@ inline val Context.ctx: Context
 inline val Activity.act: Activity
     get() = this
 
-/**
- * Returns the content view of this Activity if set, null otherwise.
- */
-inline val Activity.contentView: View?
-    get() = findOptional<ViewGroup>(android.R.id.content)?.getChildAt(0)
 
 inline fun <reified T : View> View.find(@IdRes id: Int): T = findViewById(id)
 inline fun <reified T : View> Activity.find(@IdRes id: Int): T = findViewById(id)
@@ -108,35 +88,15 @@ fun bundleOf(vararg params: Pair<String, Any?>): Bundle {
                     v.isArrayOf<Parcelable>() -> b.putParcelableArray(k, v as Array<out Parcelable>)
                     v.isArrayOf<CharSequence>() -> b.putCharSequenceArray(k, v as Array<out CharSequence>)
                     v.isArrayOf<String>() -> b.putStringArray(k, v as Array<out String>)
-                    else -> throw AnkoException("Unsupported bundle component (${v.javaClass})")
+                    else -> throw Exception("Unsupported bundle component (${v.javaClass})")
                 }
             }
             is ShortArray -> b.putShortArray(k, v)
             is Bundle -> b.putBundle(k, v)
-            else -> throw AnkoException("Unsupported bundle component (${v.javaClass})")
+            else -> throw Exception("Unsupported bundle component (${v.javaClass})")
         }
     }
 
     return b
 }
 
-inline val Context.displayMetrics: android.util.DisplayMetrics
-    get() = resources.displayMetrics
-
-inline val Context.configuration: Configuration
-    get() = resources.configuration
-
-inline val AnkoContext<*>.displayMetrics: android.util.DisplayMetrics
-    get() = ctx.resources.displayMetrics
-
-inline val AnkoContext<*>.configuration: Configuration
-    get() = ctx.resources.configuration
-
-inline val Configuration.portrait: Boolean
-    get() = orientation == Configuration.ORIENTATION_PORTRAIT
-
-inline val Configuration.landscape: Boolean
-    get() = orientation == Configuration.ORIENTATION_LANDSCAPE
-
-inline val Configuration.long: Boolean
-    get() = (screenLayout and Configuration.SCREENLAYOUT_LONG_YES) != 0

@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.fragment.app.Fragment
 
 
-open class AnkoException(message: String = "") : RuntimeException(message)
 
 /**
  * Return the grayscale color with the zero opacity using the single color value.
@@ -35,30 +34,6 @@ fun Int.withAlpha(alpha: Int): Int {
     require(alpha in 0..0xFF)
     return this and 0x00FFFFFF or (alpha shl 24)
 }
-
-enum class ScreenSize {
-    SMALL,
-    NORMAL,
-    LARGE,
-    XLARGE
-}
-
-enum class UiMode {
-    NORMAL,
-    CAR,
-    DESK,
-    TELEVISION,
-    APPLIANCE,
-    WATCH
-}
-
-enum class Orientation {
-    PORTRAIT,
-    LANDSCAPE,
-    SQUARE
-}
-
-
 
 /**
  * Execute [f] only if the current Android SDK version is [version] or older.

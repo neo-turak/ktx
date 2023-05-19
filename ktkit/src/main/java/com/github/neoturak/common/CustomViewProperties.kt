@@ -18,7 +18,7 @@ var View.backgroundDrawable: Drawable?
     set(value) = setBackgroundDrawable(value)
 
 var View.backgroundColorResource: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(colorId) = setBackgroundColor(context.resources.getColor(colorId))
 
 var View.leftPadding: Int
@@ -39,32 +39,32 @@ var View.bottomPadding: Int
 
 @Deprecated("Use horizontalPadding instead", ReplaceWith("horizontalPadding"))
 var View.paddingHorizontal: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(value) = setPadding(value, paddingTop, value, paddingBottom)
 
 var View.horizontalPadding: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(value) = setPadding(value, paddingTop, value, paddingBottom)
 
 @Deprecated("Use verticalPadding instead", ReplaceWith("verticalPadding"))
 var View.paddingVertical: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(value) = setPadding(paddingLeft, value, paddingRight, value)
 
 var View.verticalPadding: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(value) = setPadding(paddingLeft, value, paddingRight, value)
 
 var View.padding: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     inline set(value) = setPadding(value, value, value, value)
 
 var TextView.allCaps: Boolean
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     inline set(value) = setAllCaps(value)
 
 var TextView.ems: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     inline set(value) = setEms(value)
 
 inline var TextView.isSelectable: Boolean
@@ -72,15 +72,18 @@ inline var TextView.isSelectable: Boolean
     set(value) = setTextIsSelectable(value)
 
 var TextView.textAppearance: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
-    set(value) = if (Build.VERSION.SDK_INT >= 23) setTextAppearance(value) else setTextAppearance(context, value)
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
+    set(value) = if (Build.VERSION.SDK_INT >= 23) setTextAppearance(value) else setTextAppearance(
+        context,
+        value
+    )
 
 var TextView.textSizeDimen: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(value) = setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(value))
 
 var TextView.textColorResource: Int
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    @Deprecated(Internals.NO_GETTER, level = DeprecationLevel.ERROR) get() = Internals.noGetter()
     set(colorId) = setTextColor(context.resources.getColor(colorId))
 
 var ImageView.image: Drawable?

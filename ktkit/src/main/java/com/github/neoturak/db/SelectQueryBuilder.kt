@@ -4,8 +4,7 @@ package com.github.neoturak.db
 
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.github.neoturak.common.AnkoException
-import com.github.neoturak.common.AnkoInternals
+import com.github.neoturak.common.Internals
 
 
 abstract class SelectQueryBuilder(val tableName: String) {
@@ -26,34 +25,35 @@ abstract class SelectQueryBuilder(val tableName: String) {
 
     fun <T> exec(f: Cursor.() -> T): T {
         val cursor = doExec()
-        return AnkoInternals.useCursor(cursor) {
+        return Internals.useCursor(cursor) {
             cursor.f()
         }
     }
 
-    inline fun <T: Any> parseSingle(parser: RowParser<T>): T = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseSingle(parser: RowParser<T>): T = Internals.useCursor(doExec()) {
         it.parseSingle(parser)
     }
 
-    inline fun <T: Any> parseOpt(parser: RowParser<T>): T? = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseOpt(parser: RowParser<T>): T? = Internals.useCursor(doExec()) {
         it.parseOpt(parser)
     }
 
-    inline fun <T: Any> parseList(parser: RowParser<T>): List<T> = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseList(parser: RowParser<T>): List<T> = Internals.useCursor(doExec()) {
         it.parseList(parser)
     }
 
-    inline fun <T: Any> parseSingle(parser: MapRowParser<T>): T = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseSingle(parser: MapRowParser<T>): T = Internals.useCursor(doExec()) {
         it.parseSingle(parser)
     }
 
-    inline fun <T: Any> parseOpt(parser: MapRowParser<T>): T? = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseOpt(parser: MapRowParser<T>): T? = Internals.useCursor(doExec()) {
         it.parseOpt(parser)
     }
 
-    inline fun <T: Any> parseList(parser: MapRowParser<T>): List<T> = AnkoInternals.useCursor(doExec()) {
-        it.parseList(parser)
-    }
+    inline fun <T : Any> parseList(parser: MapRowParser<T>): List<T> =
+        Internals.useCursor(doExec()) {
+            it.parseList(parser)
+        }
 
     @PublishedApi
     internal fun doExec(): Cursor {
@@ -117,7 +117,7 @@ abstract class SelectQueryBuilder(val tableName: String) {
 
     fun having(having: String): SelectQueryBuilder {
         if (havingApplied) {
-            throw AnkoException("Query having was already applied.")
+            throw Exception("Query having was already applied.")
         }
 
         havingApplied = true
@@ -127,7 +127,7 @@ abstract class SelectQueryBuilder(val tableName: String) {
 
     fun having(having: String, vararg args: Pair<String, Any>): SelectQueryBuilder {
         if (selectionApplied) {
-            throw AnkoException("Query having was already applied.")
+            throw Exception("Query having was already applied.")
         }
 
         havingApplied = true
@@ -142,7 +142,7 @@ abstract class SelectQueryBuilder(val tableName: String) {
 
     fun whereArgs(select: String, vararg args: Pair<String, Any>): SelectQueryBuilder {
         if (selectionApplied) {
-            throw AnkoException("Query selection was already applied.")
+            throw Exception("Query selection was already applied.")
         }
 
         selectionApplied = true
@@ -158,7 +158,7 @@ abstract class SelectQueryBuilder(val tableName: String) {
 
     fun whereArgs(select: String): SelectQueryBuilder {
         if (selectionApplied) {
-            throw AnkoException("Query selection was already applied.")
+            throw Exception("Query selection was already applied.")
         }
 
         selectionApplied = true
@@ -169,7 +169,7 @@ abstract class SelectQueryBuilder(val tableName: String) {
 
     fun whereSimple(select: String, vararg args: String): SelectQueryBuilder {
         if (selectionApplied) {
-            throw AnkoException("Query selection was already applied.")
+            throw Exception("Query selection was already applied.")
         }
 
         selectionApplied = true
