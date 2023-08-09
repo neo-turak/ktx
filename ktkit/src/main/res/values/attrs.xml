@@ -22,31 +22,31 @@
     <attr name="gradient_endColor" format="color" />
     <!--    中间颜色-->
     <attr name="gradient_centerColor" format="color" />
-<!--            角度值-->
+    <!--            角度值-->
     <attr name="gradient_angle" format="enum">
-<!--        draw the gradient from the top to the bottom
-            从上到下-->
+        <!--        draw the gradient from the top to the bottom
+                    从上到下-->
         <enum name="TOP_BOTTOM" value="0" />
-<!--        draw the gradient from the top-right to the bottom-left
-            从上右边到下左边-->
+        <!--        draw the gradient from the top-right to the bottom-left
+                    从上右边到下左边-->
         <enum name="TR_BL" value="1" />
-<!--        draw the gradient from the right to the left
-            从右边到左边-->
+        <!--        draw the gradient from the right to the left
+                    从右边到左边-->
         <enum name="RIGHT_LEFT" value="2" />
-<!--        draw the gradient from the bottom-right to the top-left
-            从下右边到上左边-->
+        <!--        draw the gradient from the bottom-right to the top-left
+                    从下右边到上左边-->
         <enum name="BR_TL" value="3" />
-<!--        draw the gradient from the bottom to the top
-            从上到上-->
+        <!--        draw the gradient from the bottom to the top
+                    从上到上-->
         <enum name="BOTTOM_TOP" value="4" />
-<!--        draw the gradient from the bottom-left to the top-right
-            从下左到上右-->
+        <!--        draw the gradient from the bottom-left to the top-right
+                    从下左到上右-->
         <enum name="BL_TR" value="5" />
-<!--        draw the gradient from the left to the right
-            从左边到右边-->
+        <!--        draw the gradient from the left to the right
+                    从左边到右边-->
         <enum name="LEFT_RIGHT" value="6" />
-<!--        draw the gradient from the top-left to the bottom-right
-            从上左边到下右边 -->
+        <!--        draw the gradient from the top-left to the bottom-right
+                    从上左边到下右边 -->
         <enum name="TL_BR" value="7" />
     </attr>
 
@@ -332,5 +332,16 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <!--            描边厚度-->
+        <attr name="civ_border_width" format="dimension" />
+        <!--        描边颜色-->
+        <attr name="civ_border_color" format="color" />
+        <!--        要超过吗-->
+        <attr name="civ_border_overlay" format="boolean" />
+        <!--            背景色-->
+        <attr name="civ_circle_background_color" format="color" />
     </declare-styleable>
 </resources>
