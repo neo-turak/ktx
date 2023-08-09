@@ -23,7 +23,7 @@ private constructor() {
         gson = Gson()
     }
 
-    fun <MODEL> fromGson(json: String?, clazz: Class<MODEL>?): MODEL {
+    fun <MODEL> fromGson(json: String?, clazz: Class<MODEL>): MODEL {
         return gson.fromJson(json, clazz)
     }
 

@@ -96,6 +96,26 @@ inline fun <reified T:Any> Context.px2dp(v:T):T{
     }
 }
 
+@kotlin.internal.InlineOnly
+inline fun <reified T:Any> Context.px2sp(v:T):T{
+    when(v){
+        is Int->{
+            return v.div(resources.displayMetrics.scaledDensity).plus(0.5).toInt() as T
+        }
+        is Float->{
+            return v.div(resources.displayMetrics.scaledDensity).plus(0.5).toFloat() as T
+        }
+        is Double->{
+            return v.div(resources.displayMetrics.scaledDensity).plus(0.5) as T
+        }
+        is Long->{
+            return v.div(resources.displayMetrics.scaledDensity).plus(0.5).toLong() as T
+        }
+        else-> {
+            return 0 as T
+        }
+    }
+}
 /**
  * sp 转换万能公式
  */
