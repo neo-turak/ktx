@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
 
     defaultConfig {
         minSdkVersion 14
@@ -23,7 +23,7 @@ android {
     // configure the AAR output
     libraryVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${project.name}-${variant.name}-1.2.4.aar"
+            outputFileName = "${project.name}-${variant.name}-1.2.7.aar"
         }
     }
     compileOptions {
