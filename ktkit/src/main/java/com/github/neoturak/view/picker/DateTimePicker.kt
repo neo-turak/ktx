@@ -12,6 +12,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
+import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.EditorInfo
@@ -20,6 +21,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import com.github.neoturak.ktkit.R
 import com.github.neoturak.view.picker.NumberPicker.DividerType
@@ -45,12 +47,14 @@ class DateTimePicker : BasePicker {
     private var mOnChangedListener: OnChangedListener? = null
     private lateinit var mShortMonths: Array<String?>
     private var mNumberOfMonths = 0
-    private var  mTempDate: Calendar = Calendar.getInstance(Locale.CHINA)
-    private var mMinDate: Calendar = GregorianCalendar(1980,0,1)
-    private var mMaxDate: Calendar = GregorianCalendar(2050,0,1)
+    private var mTempDate: Calendar = Calendar.getInstance(Locale.CHINA)
+    private var mMinDate: Calendar = GregorianCalendar(1980, 0, 1)
+    private var mMaxDate: Calendar = GregorianCalendar(2050, 0, 1)
     private var mCurrentDate: Calendar = Calendar.getInstance(Locale.CHINA)
     private var mIsEnabled = true
     private var mIsAutoScroll = DEFAULT_AUTO_SCROLL_STATE
+    lateinit var timeSeparate: LinearLayoutCompat
+    lateinit var hourSeparate: View
 
     constructor(context: Context?) : super(context) {
         init(null)
@@ -70,6 +74,8 @@ class DateTimePicker : BasePicker {
 
     private fun init(attrs: AttributeSet?) {
         LayoutInflater.from(context).inflate(R.layout.date_time_picker, this)
+        timeSeparate = findViewById(R.id.ll_divider)
+        hourSeparate = findViewById(R.id.tv_hour_indicator)
         setCurrentLocale(Locale.getDefault())
         val startYear = DEFAULT_START_YEAR
         val endYear = DEFAULT_END_YEAR
@@ -114,8 +120,7 @@ class DateTimePicker : BasePicker {
                     mTempDate[Calendar.MONTH],
                     mTempDate[Calendar.DAY_OF_MONTH],
                     mTempDate[Calendar.HOUR_OF_DAY],
-                    mTempDate[Calendar.MINUTE],
-                    mTempDate[Calendar.SECOND]
+                    mTempDate[Calendar.MINUTE]
                 )
                 updateNPickers()
                 notifyDateChanged()
@@ -144,6 +149,7 @@ class DateTimePicker : BasePicker {
         mHourNPicker = findViewById(R.id.hour)
         mHourNPicker.setOnLongPressUpdateInterval(100)
         mHourNPicker.setOnChangedListener(onChangeListener)
+        mHourNPicker.setFormatter(NumberPicker.getTwoDigitFormatter())
         mHourNPicker.setImeOptions(EditorInfo.IME_ACTION_NEXT)
         // minute
         mMinuteNPicker = findViewById(R.id.minute)
@@ -184,7 +190,6 @@ class DateTimePicker : BasePicker {
             mCurrentDate[Calendar.DAY_OF_MONTH],
             mCurrentDate[Calendar.HOUR_OF_DAY],
             mCurrentDate[Calendar.MINUTE],
-            mCurrentDate[Calendar.SECOND]
         )
 
         // re-order the number NPickers to match the current date format
@@ -300,7 +305,7 @@ class DateTimePicker : BasePicker {
         mNumberOfMonths = mTempDate.getActualMaximum(Calendar.MONTH) + 1
         mShortMonths = arrayOfNulls(mNumberOfMonths)
         for (i in 0 until mNumberOfMonths) {
-            mShortMonths[i] = if (i<10) "0${i}" else i.toString()
+            mShortMonths[i] = if (i + 1 < 10) "0${i + 1}" else (i + 1).toString()
         }
     }
 
@@ -344,7 +349,7 @@ class DateTimePicker : BasePicker {
         if (!isNewDate(year, month, dayOfMonth, hourOfDay, minute)) {
             return
         }
-        setDate(year, month, dayOfMonth, hourOfDay, minute, second)
+        setDate(year, month, dayOfMonth, hourOfDay, minute)
         updateNPickers()
         notifyDateChanged()
     }
@@ -353,15 +358,15 @@ class DateTimePicker : BasePicker {
         dispatchThawSelfOnly(container)
     }
 
-    override fun onSaveInstanceState(): Parcelable? {
+    override fun onSaveInstanceState(): Parcelable {
         val superState = super.onSaveInstanceState()
-        return SavedState(superState, year, month, dayOfMonth, hourOfDay, minute, second)
+        return SavedState(superState, year, month, dayOfMonth, hourOfDay, minute)
     }
 
     override fun onRestoreInstanceState(state: Parcelable) {
         val ss = state as SavedState
         super.onRestoreInstanceState(ss.superState)
-        setDate(ss.mYear, ss.mMonth, ss.mDay, ss.mHour, ss.mMinute, ss.mSecond)
+        setDate(ss.mYear, ss.mMonth, ss.mDay, ss.mHour, ss.mMinute)
         updateNPickers()
     }
 
@@ -371,9 +376,8 @@ class DateTimePicker : BasePicker {
         dayOfMonth: Int,
         hourOfDay: Int,
         minute: Int,
-        second: Int
     ) {
-        setDate(year, monthOfYear, dayOfMonth, hourOfDay, minute, second)
+        setDate(year, monthOfYear, dayOfMonth, hourOfDay, minute)
         updateNPickers()
     }
 
@@ -408,9 +412,8 @@ class DateTimePicker : BasePicker {
         dayOfMonth: Int,
         hourOfDay: Int,
         minute: Int,
-        second: Int
     ) {
-        mCurrentDate[year, month, dayOfMonth, hourOfDay, minute] = second
+        mCurrentDate[year, month, dayOfMonth, hourOfDay, minute] = 0
         if (mCurrentDate.before(mMinDate)) {
             mCurrentDate.timeInMillis = mMinDate.timeInMillis
         } else if (mCurrentDate.after(mMaxDate)) {
@@ -478,7 +481,7 @@ class DateTimePicker : BasePicker {
         /**
          * @return The selected month.
          */
-        get() = mCurrentDate[Calendar.MONTH]
+        get() = mCurrentDate[Calendar.MONTH] + 1
     val dayOfMonth: Int
         /**
          * @return The selected day of month.
@@ -491,8 +494,6 @@ class DateTimePicker : BasePicker {
         get() = mCurrentDate[Calendar.HOUR_OF_DAY]
     val minute: Int
         get() = mCurrentDate[Calendar.MINUTE]
-    val second: Int
-        get() = mCurrentDate[Calendar.SECOND]
 
     /**
      * Notifies the listener, if such, for a change in the selected date.
@@ -500,7 +501,7 @@ class DateTimePicker : BasePicker {
     private fun notifyDateChanged() {
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED)
         if (mOnChangedListener != null) {
-            mOnChangedListener!!.onChanged(this, year, month, dayOfMonth, hourOfDay, minute, second)
+            mOnChangedListener!!.onChanged(this, year, month + 1, dayOfMonth, hourOfDay, minute)
         }
     }
 
@@ -551,7 +552,6 @@ class DateTimePicker : BasePicker {
             dayOfMonth: Int,
             hourOfDay: Int,
             minute: Int,
-            second: Int
         )
     }
 
@@ -564,7 +564,6 @@ class DateTimePicker : BasePicker {
         val mDay: Int
         val mHour: Int
         val mMinute: Int
-        val mSecond: Int
 
         /**
          * Constructor called from [DateTimePicker.onSaveInstanceState]
@@ -576,14 +575,12 @@ class DateTimePicker : BasePicker {
             day: Int,
             hour: Int,
             minute: Int,
-            second: Int
         ) : super(superState) {
             mYear = year
             mMonth = month
             mDay = day
             mHour = hour
             mMinute = minute
-            mSecond = second
         }
 
         /**
@@ -595,7 +592,6 @@ class DateTimePicker : BasePicker {
             mDay = pc.readInt()
             mHour = pc.readInt()
             mMinute = pc.readInt()
-            mSecond = pc.readInt()
         }
 
         override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -605,7 +601,6 @@ class DateTimePicker : BasePicker {
             dest.writeInt(mDay)
             dest.writeInt(mHour)
             dest.writeInt(mMinute)
-            dest.writeInt(mSecond)
         }
     }
 

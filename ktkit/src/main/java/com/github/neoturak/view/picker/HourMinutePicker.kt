@@ -37,12 +37,6 @@ class HourMinutePicker @JvmOverloads constructor(
     // ui components
     private var mHourNPicker: NumberPicker
     private val mMinuteNPicker: NumberPicker
-    private var mAmPmNPicker: NumberPicker? = null
-    // Note that the legacy implementation of the TimePicker is
-    // using a button for toggling between AM/PM while the new
-    // version uses a NumberPicker NPicker. Therefore the code
-    // accommodates these two cases to be backwards compatible.
-    private var mAmPmButton: Button? = null
     private val mAmPmStrings: Array<String>
 
     // state
@@ -93,7 +87,6 @@ class HourMinutePicker @JvmOverloads constructor(
                         hour = HOURS_IN_HALF_DAY
                     }
                 }
-                updateAmPmControl()
             }
             mHourNPicker.value = hour
             onChanged()
@@ -130,7 +123,6 @@ class HourMinutePicker @JvmOverloads constructor(
                     oldVal == HOURS_IN_HALF_DAY &&
                     newVal == HOURS_IN_HALF_DAY - 1) {
                     mIsAm = !mIsAm
-                    updateAmPmControl()
                 }
             }
             onChanged()
@@ -151,7 +143,6 @@ class HourMinutePicker @JvmOverloads constructor(
                 val newHour = mHourNPicker.value + 1
                 if (!is24HourView() && newHour == HOURS_IN_HALF_DAY) {
                     mIsAm = !mIsAm
-                    updateAmPmControl()
                 }
                 mHourNPicker.value = newHour
             } else if (oldVal == minValue && newVal == maxValue && isAutoScrollState) {
@@ -160,7 +151,6 @@ class HourMinutePicker @JvmOverloads constructor(
                     && newHour == HOURS_IN_HALF_DAY - 1
                 ) {
                     mIsAm = !mIsAm
-                    updateAmPmControl()
                 }
                 mHourNPicker.value = newHour
             }
@@ -171,36 +161,8 @@ class HourMinutePicker @JvmOverloads constructor(
         /* Get the localized am/pm strings and use them in the NPicker */mAmPmStrings =
             DateFormatSymbols().amPmStrings
 
-/*        // am/pm
-        val amPmView = findViewById<View>(R.id.amPm)
-        if (amPmView is Button) {
-            mAmPmNPicker = null
-            mAmPmButton = amPmView
-            mAmPmButton!!.setOnClickListener { button ->
-                button.requestFocus()
-                mIsAm = !mIsAm
-                updateAmPmControl()
-                onChanged()
-            }
-        } else {
-            mAmPmButton = null
-            mAmPmNPicker = amPmView as NumberPicker
-            mAmPmNPicker!!.minValue = 0
-            mAmPmNPicker!!.maxValue = 1
-            mAmPmNPicker!!.displayedValues = mAmPmStrings
-            mAmPmNPicker!!.setOnChangedListener { picker, oldVal, newVal ->
-                updateInputState()
-                picker.requestFocus()
-                mIsAm = !mIsAm
-                updateAmPmControl()
-                onChanged()
-            }
-            mAmPmNPicker!!.setImeOptions(EditorInfo.IME_ACTION_DONE)
-        }*/
-
         // update controls to initial state
         updateHourControl()
-        updateAmPmControl()
         setOnChangedListener(object : OnChangedListener {
             override fun onChanged(picker: HourMinutePicker?, hourOfDay: Int, minute: Int) {}
         })
@@ -233,11 +195,6 @@ class HourMinutePicker @JvmOverloads constructor(
         super.setEnabled(enabled)
         mMinuteNPicker.isEnabled = enabled
         mHourNPicker.isEnabled = enabled
-        if (mAmPmNPicker != null) {
-            mAmPmNPicker!!.isEnabled = enabled
-        } else {
-            mAmPmButton!!.isEnabled = enabled
-        }
         mIsEnabled = enabled
     }
 
@@ -295,7 +252,6 @@ class HourMinutePicker @JvmOverloads constructor(
         updateHourControl()
         // set value after NPicker range is updated
         this.currentHour = currentHour
-        updateAmPmControl()
     }
 
     /**
@@ -355,26 +311,6 @@ class HourMinutePicker @JvmOverloads constructor(
         }
     }
 
-    private fun updateAmPmControl() {
-        if (is24HourView()) {
-            if (mAmPmNPicker != null) {
-                mAmPmNPicker!!.visibility = GONE
-            } else {
-                mAmPmButton!!.visibility = GONE
-            }
-        } else {
-            val index = if (mIsAm) Calendar.AM else Calendar.PM
-            if (mAmPmNPicker != null) {
-                mAmPmNPicker!!.value = index
-                mAmPmNPicker!!.visibility = VISIBLE
-            } else {
-                mAmPmButton!!.text = mAmPmStrings[index]
-                mAmPmButton!!.visibility = VISIBLE
-            }
-        }
-        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED)
-    }
-
     private fun onChanged() {
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED)
         if (mOnChangedListener != null) {
@@ -406,17 +342,6 @@ class HourMinutePicker @JvmOverloads constructor(
             mHourNPicker, R.id.np__decrement,
             R.string.time_picker_decrement_hour_button
         )
-        // AM/PM
-        if (mAmPmNPicker != null) {
-            trySetContentDescription(
-                mAmPmNPicker!!, R.id.np__increment,
-                R.string.time_picker_increment_set_pm_button
-            )
-            trySetContentDescription(
-                mAmPmNPicker!!, R.id.np__decrement,
-                R.string.time_picker_decrement_set_am_button
-            )
-        }
     }
 
     private fun trySetContentDescription(
@@ -445,9 +370,6 @@ class HourMinutePicker @JvmOverloads constructor(
                 inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
             } else if (inputMethodManager.isActive(mMinuteNPicker)) {
                 mMinuteNPicker.clearFocus()
-                inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
-            } else if (inputMethodManager.isActive(mAmPmNPicker)) {
-                mAmPmNPicker!!.clearFocus()
                 inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
             }
         }

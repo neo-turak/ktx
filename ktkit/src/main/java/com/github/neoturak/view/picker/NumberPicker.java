@@ -180,7 +180,7 @@ public class NumberPicker extends LinearLayout {
      * way to do this; it avoids creating temporary objects on every call to
      * format().
      */
-    private static class TwoDigitFormatter implements Formatter {
+     static class TwoDigitFormatter implements Formatter {
         final StringBuilder mBuilder = new StringBuilder();
 
         char mZeroDigit;

@@ -3,12 +3,10 @@ package com.github.neoturak.view.picker
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import android.os.Parcelable.Creator
 import android.text.TextUtils
-import android.text.format.DateFormat
 import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.util.Log
@@ -39,12 +37,12 @@ class DatePicker
 @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = 0) : BasePicker(context, attrs, defStyle) {
+    defStyle: Int = 0
+) : BasePicker(context, attrs, defStyle) {
     private val mNPickers: LinearLayout
     private lateinit var mDayNPicker: NumberPicker
     private lateinit var mMonthNPicker: NumberPicker
     private lateinit var mYearNPicker: NumberPicker
-    private var mCurrentLocale: Locale? = null
     private var mOnChangedListener: OnChangedListener? = null
     private lateinit var mShortMonths: Array<String?>
     private var mNumberOfMonths = 0
@@ -59,8 +57,8 @@ class DatePicker
         setCurrentLocale(Locale.CHINA)
         val startYear = DEFAULT_START_YEAR
         val endYear = DEFAULT_END_YEAR
-        val minDate = "01/01/1980"
-        val maxDate = "01/01/2024"
+        val minDate = "1980-01-01"
+        val maxDate = "2050-01-01"
         LayoutInflater.from(getContext()).inflate(R.layout.date_picker, this)
         val onChangeListener: NumberPicker.OnValueChangeListener =
             NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
@@ -112,12 +110,14 @@ class DatePicker
         mMonthNPicker.minValue = 0
         mMonthNPicker.maxValue = mNumberOfMonths - 1
         mMonthNPicker.displayedValues = mShortMonths
+
         mMonthNPicker.setOnLongPressUpdateInterval(200)
         mMonthNPicker.setOnChangedListener(onChangeListener)
 
         // year
         mYearNPicker = findViewById(R.id.year)
         mYearNPicker.setOnLongPressUpdateInterval(100)
+        mYearNPicker.setFormatter { "${it}" }
         mYearNPicker.setOnChangedListener(onChangeListener)
 
         // set the min date giving priority of the minDate over startYear
@@ -151,7 +151,7 @@ class DatePicker
         )
 
         // re-order the number NPickers to match the current date format
-        reorderNPickers()
+        //reorderNPickers()
 
         // If not explicitly specified this view is important for accessibility.
         if (importantForAccessibility == IMPORTANT_FOR_ACCESSIBILITY_AUTO) {
@@ -290,10 +290,6 @@ class DatePicker
      * @param locale The current locale.
      */
     private fun setCurrentLocale(locale: Locale) {
-        if (locale == mCurrentLocale) {
-            return
-        }
-        mCurrentLocale = locale
         mTempDate = getCalendarForLocale(mTempDate, locale)
         mMinDate = getCalendarForLocale(mMinDate, locale)
         mMaxDate = getCalendarForLocale(mMaxDate, locale)
@@ -301,8 +297,7 @@ class DatePicker
         mNumberOfMonths = mTempDate!!.getActualMaximum(Calendar.MONTH) + 1
         mShortMonths = arrayOfNulls(mNumberOfMonths)
         for (i in 0 until mNumberOfMonths) {
-            mShortMonths[i] =
-                DateUtils.getMonthString(Calendar.JANUARY + i, DateUtils.LENGTH_MEDIUM)
+            mShortMonths[i] = if (i + 1 < 10) "0${i + 1}" else "${i + 1}"
         }
     }
 
@@ -321,41 +316,6 @@ class DatePicker
             val newCalendar = Calendar.getInstance(locale)
             newCalendar.timeInMillis = currentTimeMillis
             newCalendar
-        }
-    }
-
-    /**
-     * Reorders the NPickers according to the date format that is explicitly set
-     * by the user and if no such is set fall back to the current locale's
-     * default format.
-     */
-    private fun reorderNPickers() {
-        mNPickers.removeAllViews()
-        val order: CharArray = try {
-            DateFormat.getDateFormatOrder(context)
-        } catch (expected: IllegalArgumentException) {
-            CharArray(0)
-        }
-        val nPickerCount = order.size
-        for (i in 0 until nPickerCount) {
-            when (order[i]) {
-                'd' -> {
-                    mNPickers.addView(mDayNPicker)
-                    setImeOptions(mDayNPicker, nPickerCount, i)
-                }
-
-                'M' -> {
-                    mNPickers.addView(mMonthNPicker)
-                    setImeOptions(mMonthNPicker, nPickerCount, i)
-                }
-
-                'y' -> {
-                    mNPickers.addView(mYearNPicker)
-                    setImeOptions(mYearNPicker, nPickerCount, i)
-                }
-
-                else -> throw IllegalArgumentException()
-            }
         }
     }
 
@@ -413,7 +373,7 @@ class DatePicker
      */
     private fun parseDate(date: String, outDate: Calendar?): Boolean {
         return try {
-            val mDateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+            val mDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
             outDate!!.time = Objects.requireNonNull(mDateFormat.parse(date))
             true
         } catch (e: ParseException) {
@@ -489,7 +449,7 @@ class DatePicker
         /**
          * @return The selected month.
          */
-        get() = mCurrentDate!![Calendar.MONTH]
+        get() = mCurrentDate!![Calendar.MONTH] + 1
     val dayOfMonth: Int
         /**
          * @return The selected day of month.
@@ -502,7 +462,7 @@ class DatePicker
     private fun notifyDateChanged() {
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED)
         if (mOnChangedListener != null) {
-            mOnChangedListener!!.onChanged(this, year, month, dayOfMonth)
+            mOnChangedListener!!.onChanged(this, year, month + 1, dayOfMonth)
         }
     }
 
@@ -518,8 +478,7 @@ class DatePicker
         numberPickerCount: Int,
         numberPickerIndex: Int
     ) {
-        val imeOptions: Int
-        imeOptions = if (numberPickerIndex < numberPickerCount - 1) {
+        val imeOptions: Int = if (numberPickerIndex < numberPickerCount - 1) {
             EditorInfo.IME_ACTION_NEXT
         } else {
             EditorInfo.IME_ACTION_DONE
@@ -596,10 +555,10 @@ class DatePicker
         /**
          * Constructor called from [.CREATOR]
          */
-        private constructor(`in`: Parcel) : super(`in`) {
-            mYear = `in`.readInt()
-            mMonth = `in`.readInt()
-            mDay = `in`.readInt()
+        private constructor(pc: Parcel) : super(pc) {
+            mYear = pc.readInt()
+            mMonth = pc.readInt()
+            mDay = pc.readInt()
         }
 
         override fun writeToParcel(dest: Parcel, flags: Int) {

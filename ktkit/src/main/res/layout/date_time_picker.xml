@@ -26,7 +26,6 @@
         app:picker_selectionDividerHeight="1dp" />
 
     <!-- Day -->
-
     <com.github.neoturak.view.picker.NumberPicker
         android:id="@+id/day"
         android:layout_width="wrap_content"
@@ -39,6 +38,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
+        android:id="@+id/ll_divider"
         >
         <View
             android:layout_width="50dp"
@@ -57,22 +57,50 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!-- hour -->
-    <com.github.neoturak.view.picker.NumberPicker
-        android:id="@+id/hour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:picker_selectionDividerHeight="1dp" />
 
-    <!-- minute -->
-    <com.github.neoturak.view.picker.NumberPicker
-        android:id="@+id/minute"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:picker_selectionDividerHeight="1dp" />
+        android:layout_gravity="center"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <!-- hour -->
+            <com.github.neoturak.view.picker.NumberPicker
+                android:id="@+id/hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:picker_selectionDividerHeight="1dp" />
+            <!-- minute -->
+            <com.github.neoturak.view.picker.NumberPicker
+                android:id="@+id/minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:picker_selectionDividerHeight="1dp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/tv_hour_indicator"
+            android:textColor="#000000"
+            />
+    </FrameLayout>
+
 
 </LinearLayout>

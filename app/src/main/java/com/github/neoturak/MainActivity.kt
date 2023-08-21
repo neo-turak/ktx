@@ -3,6 +3,7 @@ package com.github.neoturak
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.github.neoturak.common.backgroundColor
@@ -10,6 +11,9 @@ import com.github.neoturak.databinding.ActivityMainBinding
 import com.github.neoturak.ui.immersiveNavigationBar
 import com.github.neoturak.ui.immersiveStatusBar
 import com.github.neoturak.ui.setNavigationBarColor
+import com.github.neoturak.view.picker.DatePicker
+import com.github.neoturak.view.picker.DateTimePicker
+import com.github.neoturak.view.picker.HourMinutePicker
 import java.util.Calendar
 import java.util.GregorianCalendar
 
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.root.backgroundColor =Color.WHITE
+        binding.root.backgroundColor = Color.WHITE
 
         binding.sbButton.cornerBottomLeft
         this.immersiveStatusBar()
@@ -36,13 +40,18 @@ class MainActivity : AppCompatActivity() {
         this.immersiveNavigationBar {
 
         }
-        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.test)
-        val drawable = RoundedBitmapDrawableFactory.create(resources,bitmap)
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.test)
+        val drawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
         drawable.isCircular = true
         binding.svShape.setImageDrawable(drawable)
         val defaultDate: Calendar = GregorianCalendar(1980, 0, 1)
         val minDate: Calendar = GregorianCalendar(1900, 0, 1)
         val maxDate: Calendar = GregorianCalendar(2100, 0, 1)
+        binding.hourMinute.setOnChangedListener(object :HourMinutePicker.OnChangedListener{
+            override fun onChanged(picker: HourMinutePicker?, hourOfDay: Int, minute: Int) {
+                Log.e(this.javaClass.simpleName,"${hourOfDay}:${minute}")
+            }
 
+        })
     }
 }
