@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <!-- Year -->
+    <com.github.neoturak.view.picker.NumberPicker
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:picker_selectionDividerHeight="1dp" />
+    <!-- Month -->
+
+    <com.github.neoturak.view.picker.NumberPicker
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:picker_selectionDividerHeight="1dp" />
+
+    <!-- Day -->
+
+    <com.github.neoturak.view.picker.NumberPicker
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:picker_selectionDividerHeight="1dp" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <View
+            android:layout_width="50dp"
+            android:layout_height="0.8dp"
+            android:background="@drawable/picker_divider"
+            />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="43.9dp"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="0.8dp"
+            android:background="@drawable/picker_divider"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- hour -->
+    <com.github.neoturak.view.picker.NumberPicker
+        android:id="@+id/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:picker_selectionDividerHeight="1dp" />
+
+    <!-- minute -->
+    <com.github.neoturak.view.picker.NumberPicker
+        android:id="@+id/minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:picker_selectionDividerHeight="1dp" />
+
+</LinearLayout>

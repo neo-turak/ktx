@@ -9,7 +9,7 @@ android {
     compileSdk 33
     defaultConfig {
         applicationId "com.github.neoturak"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode 10000
         versionName "1.0.0"

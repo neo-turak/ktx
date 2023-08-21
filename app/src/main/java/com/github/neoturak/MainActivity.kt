@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.github.neoturak.common.backgroundColor
-import com.github.neoturak.common.dp2px
-import com.github.neoturak.common.px2dp
 import com.github.neoturak.databinding.ActivityMainBinding
 import com.github.neoturak.ui.immersiveNavigationBar
 import com.github.neoturak.ui.immersiveStatusBar
 import com.github.neoturak.ui.setNavigationBarColor
+import java.util.Calendar
+import java.util.GregorianCalendar
 
 /**
  * @author 努尔江
@@ -22,7 +22,6 @@ import com.github.neoturak.ui.setNavigationBarColor
 
 class MainActivity : AppCompatActivity() {
 
-    private var notification: Any? = null
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +31,18 @@ class MainActivity : AppCompatActivity() {
         binding.root.backgroundColor =Color.WHITE
 
         binding.sbButton.cornerBottomLeft
-/*        this.immersiveStatusBar()
+        this.immersiveStatusBar()
         this.setNavigationBarColor(Color.BLUE)
-        this.immersiveNavigationBar {}*/
+        this.immersiveNavigationBar {
+
+        }
         val bitmap = BitmapFactory.decodeResource(resources,R.drawable.test)
         val drawable = RoundedBitmapDrawableFactory.create(resources,bitmap)
         drawable.isCircular = true
         binding.svShape.setImageDrawable(drawable)
+        val defaultDate: Calendar = GregorianCalendar(1980, 0, 1)
+        val minDate: Calendar = GregorianCalendar(1900, 0, 1)
+        val maxDate: Calendar = GregorianCalendar(2100, 0, 1)
+
     }
 }

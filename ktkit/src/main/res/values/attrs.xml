@@ -361,4 +361,5 @@
         <!--    角度值-->
         <attr name="gradient_angle" />
     </declare-styleable>
+
 </resources>
