@@ -26,26 +26,31 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerTopRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomLeft = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
     var cornerBottomRight = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //strokes
@@ -53,12 +58,14 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     var strokeWidth = 0f
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //sold color
@@ -66,6 +73,7 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //start color
@@ -73,6 +81,7 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //end color
@@ -80,6 +89,7 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //center color
@@ -87,6 +97,7 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     //angle
@@ -94,6 +105,7 @@ class ShapeableButton : AppCompatButton {
         set(value) {
             field = value
             invalidate()
+            setAttrs()
         }
 
     constructor(context: Context) : super(context) {
