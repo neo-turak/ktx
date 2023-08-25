@@ -2,6 +2,7 @@ package com.github.neoturak
 
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -44,14 +45,5 @@ class MainActivity : AppCompatActivity() {
         val drawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
         drawable.isCircular = true
         binding.svShape.setImageDrawable(drawable)
-        val defaultDate: Calendar = GregorianCalendar(1980, 0, 1)
-        val minDate: Calendar = GregorianCalendar(1900, 0, 1)
-        val maxDate: Calendar = GregorianCalendar(2100, 0, 1)
-        binding.hourMinute.setOnChangedListener(object :HourMinutePicker.OnChangedListener{
-            override fun onChanged(picker: HourMinutePicker?, hourOfDay: Int, minute: Int) {
-                Log.e(this.javaClass.simpleName,"${hourOfDay}:${minute}")
-            }
-
-        })
     }
 }

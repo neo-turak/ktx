@@ -87,10 +87,5 @@
             android:text="hola" />
     </com.github.neoturak.view.ShapeableFrameLayout>
 
-    <com.github.neoturak.view.picker.HourMinutePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/hour_minute"
-        />
 
 </LinearLayout>
