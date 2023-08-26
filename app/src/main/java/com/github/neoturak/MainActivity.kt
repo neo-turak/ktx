@@ -2,7 +2,6 @@ package com.github.neoturak
 
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
