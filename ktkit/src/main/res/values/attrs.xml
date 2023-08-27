@@ -362,4 +362,16 @@
         <attr name="gradient_angle" />
     </declare-styleable>
 
+
+    <declare-styleable name="CircleImageView">
+        <!--            描边厚度-->
+        <attr name="civ_border_width" format="dimension" />
+        <!--        描边颜色-->
+        <attr name="civ_border_color" format="color" />
+        <!--        要超过吗-->
+        <attr name="civ_border_overlay" format="boolean" />
+        <!--            背景色-->
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
+
 </resources>
