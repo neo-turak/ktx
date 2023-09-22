@@ -8,7 +8,7 @@ KtKit Anko库的延伸，数据库，Intent处理，dp转换工具，自定义Sh
 <image src="http://img.hi-dhl.com/intent-act.png" width = 700px/>
 </p>
 
-## 关于 KtKit
+## 关于 Ktx
 
 KtKit 是用 Kotlin 语言编写的工具库，包含了项目中常用的一系列工具，是 Jetpack ktx 系列的补充，涉及到了很多从 Kotlin 源码、Jetpack ktx、anko 等等知名的开源项目中学习的技巧，包含了 Kotlin 委托属性、高阶函数、扩展函数、内联、注解的使用等等，再次感谢以下项目提供的思路。
 
@@ -35,7 +35,7 @@ allprojects {
 
 // 模块级 `build.gradle`
 dependencies {
-    implementation 'com.github.Neo-Turak:KtKit:Tag'
+    implementation 'com.github.neo-turak:ktx:Tag'
 }
 ```
 
@@ -54,7 +54,7 @@ private val userPassword by intent<String>(KEY_USER_PASSWORD)
 
 // 方式二：带默认值：如果获取失败，返回一个默认值
 private val userName by intent<String>(KEY_USER_NAME) {
-    "公众号：ByteCode"
+    "ktx"
 }
 ```
 
@@ -66,16 +66,16 @@ private val userName by intent<String>(KEY_USER_NAME) {
 // 方式一
 context.startActivity<ProfileActivity> {
     arrayOf(
-            KEY_USER_NAME to "ByteCode",
-            KEY_USER_PASSWORD to "1024",
-            KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+            KEY_USER_NAME to "neo-turak",
+            KEY_USER_PASSWORD to "ktx1234",
+            KEY_PEOPLE_PARCELIZE to PeopleModel("hugo")
     )
 }
 
 // 方式二
 context.startActivity<ProfileActivity>(
-        KEY_USER_NAME to "ByteCode",
-        KEY_USER_PASSWORD to "1024"
+        KEY_USER_NAME to "neo-turak",
+        KEY_USER_PASSWORD to "ktx1234"
 )
 ```
 
@@ -85,17 +85,17 @@ context.startActivity<ProfileActivity>(
 ```
 // 方式一
 context.startActivityForResult<ProfileActivity>(KEY_REQUEST_CODE,
-        KEY_USER_NAME to "ByteCode",
-        KEY_USER_PASSWORD to "1024",
-        KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+        KEY_USER_NAME to "neo-turak",
+        KEY_USER_PASSWORD to "ktx1024",
+        KEY_PEOPLE_PARCELIZE to PeopleModel("hugo")
 )
 
 // 方式二
 context.startActivityForResult<ProfileActivity>(KEY_REQUEST_CODE) {
     arrayOf(
-            KEY_USER_NAME to "ByteCode",
-            KEY_USER_PASSWORD to "1024",
-            KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+            KEY_USER_NAME to "neo-turak",
+            KEY_USER_PASSWORD to "ktx1024",
+            KEY_PEOPLE_PARCELIZE to PeopleModel("hugo")
     )
 }
 ```
@@ -114,7 +114,7 @@ setActivityResult(Activity.RESULT_OK) {
 setActivityResult(
         Activity.RESULT_OK,
         KEY_RESULT to "success",
-        KEY_USER_NAME to "ByteCode"
+        KEY_USER_NAME to "neo-turak"
 )
 ```
 
@@ -124,9 +124,9 @@ setActivityResult(
 // 方式一
 fun newInstance1(): Fragment {
     return LoginFragment().makeBundle(
-            ProfileActivity.KEY_USER_NAME to "ByteCode",
-            ProfileActivity.KEY_USER_PASSWORD to "1024",
-            ProfileActivity.KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+            ProfileActivity.KEY_USER_NAME to "neo-turak",
+            ProfileActivity.KEY_USER_PASSWORD to "ktx1024",
+            ProfileActivity.KEY_PEOPLE_PARCELIZE to PeopleModel("hugo")
     )
 }
 
@@ -134,9 +134,9 @@ fun newInstance1(): Fragment {
 fun newInstance2(): Fragment {
     return LoginFragment().makeBundle {
         arrayOf(
-                KEY_USER_NAME to "ByteCode",
-                KEY_USER_PASSWORD to "1024",
-                KEY_PEOPLE_PARCELIZE to PeopleModel("hi-dhl")
+                KEY_USER_NAME to "neo-turak",
+                KEY_USER_PASSWORD to "ktx1024",
+                KEY_PEOPLE_PARCELIZE to PeopleModel("hugo")
         )
     }
 }
@@ -149,7 +149,7 @@ KtKit 提供了常用的三个 API：单击事件、延迟第一次点击事件�
 **单击事件**
 
 ```
-view.click(lifecycleScope) { showShortToast("公众号：ByteCode" }
+view.click(lifecycleScope) { showShortToast("neo-turak" }
 ```
 
 
@@ -157,10 +157,10 @@ view.click(lifecycleScope) { showShortToast("公众号：ByteCode" }
 
 ```
 // 默认延迟时间是 500ms
-view.clickDelayed(lifecycleScope){ showShortToast("公众号：ByteCode" }
+view.clickDelayed(lifecycleScope){ showShortToast("neo-tuak" }
 
 // or
-view.clickDelayed(lifecycleScope, 1000){ showShortToast("公众号：ByteCode") }
+view.clickDelayed(lifecycleScope, 1000){ showShortToast("neo-turak") }
 ```
 
 
@@ -168,10 +168,10 @@ view.clickDelayed(lifecycleScope, 1000){ showShortToast("公众号：ByteCode") 
 
 ```
 // 默认间隔时间是 500ms
-view.clickTrigger(lifecycleScope){ showShortToast("公众号：ByteCode") }
+view.clickTrigger(lifecycleScope){ showShortToast("neo-turak") }
 
 // or
-view.clickTrigger(lifecycleScope, 1000){ showShortToast("公众号：ByteCode") }
+view.clickTrigger(lifecycleScope, 1000){ showShortToast("neo-turak") }
 ```
 
 
