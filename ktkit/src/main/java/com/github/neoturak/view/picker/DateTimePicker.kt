@@ -2,7 +2,9 @@ package com.github.neoturak.view.picker
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.TextUtils
@@ -11,18 +13,22 @@ import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseArray
-import android.view.LayoutInflater
+import android.view.Gravity
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.Space
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
-import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import com.github.neoturak.common.dp2px
 import com.github.neoturak.ktkit.R
 import com.github.neoturak.view.picker.NumberPicker.DividerType
 import com.github.neoturak.view.picker.NumberPicker.Order
@@ -53,15 +59,15 @@ class DateTimePicker : BasePicker {
     private var mCurrentDate: Calendar = Calendar.getInstance(Locale.CHINA)
     private var mIsEnabled = true
     private var mIsAutoScroll = DEFAULT_AUTO_SCROLL_STATE
-    lateinit var timeSeparate: LinearLayoutCompat
+    lateinit var timeSeparate: LinearLayout
     lateinit var hourSeparate: View
 
     constructor(context: Context?) : super(context) {
-        init(null)
+        init(context,null)
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        init(attrs)
+        init(context,attrs)
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -69,11 +75,114 @@ class DateTimePicker : BasePicker {
         attrs,
         defStyleAttr
     ) {
-        init(attrs)
+        init(context,attrs)
     }
 
-    private fun init(attrs: AttributeSet?) {
-        LayoutInflater.from(context).inflate(R.layout.date_time_picker, this)
+    private fun init(context: Context?,attrs: AttributeSet?) {
+
+       // LayoutInflater.from(context).inflate(R.layout.date_time_picker, this)
+
+        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        val mainParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        mainParams.gravity = Gravity.CENTER
+
+        val mainLayout = LinearLayout(context)
+        mainLayout.orientation = LinearLayout.HORIZONTAL
+        mainLayout.layoutParams = mainParams
+        mainLayout.gravity = Gravity.CENTER
+
+        // Year
+        val yearPicker = NumberPicker(context)
+        yearPicker.id = R.id.year
+        yearPicker.layoutParams = layoutParams
+        yearPicker.isFocusable = true
+        yearPicker.isFocusableInTouchMode = true
+        mainLayout.addView(yearPicker)
+
+        // Month
+        val monthPicker = NumberPicker(context)
+        monthPicker.id = R.id.month
+        monthPicker.layoutParams = layoutParams
+        monthPicker.isFocusable = true
+        monthPicker.isFocusableInTouchMode = true
+        mainLayout.addView(monthPicker)
+
+        // Day
+        val dayPicker = NumberPicker(context)
+        dayPicker.id = R.id.day
+        dayPicker.layoutParams = layoutParams
+        dayPicker.isFocusable = true
+        dayPicker.isFocusableInTouchMode = true
+        mainLayout.addView(dayPicker)
+
+        val dividerLayout = LinearLayout(context)
+        dividerLayout.layoutParams = LayoutParams(context!!.dp2px(50), LayoutParams.WRAP_CONTENT)
+        dividerLayout.orientation = LinearLayout.VERTICAL
+        dividerLayout.gravity = Gravity.CENTER
+        dividerLayout.id = R.id.ll_divider
+
+        //bg shape
+        // Create a new GradientDrawable
+        val shape = GradientDrawable()
+// Set the shape's size
+        shape.setSize(GradientDrawable.RECTANGLE, 1) // 1dp height
+
+// Set the solid color
+        shape.setColor(Color.BLACK)
+        //divider1
+        val dividerView1 = View(context)
+        dividerView1.layoutParams = LayoutParams(context.dp2px(50), context.dp2px(1))
+        dividerView1.background = shape
+        dividerLayout.addView(dividerView1)
+
+        val space = Space(context)
+        space.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, context.dp2px(44))
+        dividerLayout.addView(space)
+
+        val dividerView2 = View(context)
+        dividerView2.layoutParams = LayoutParams(context.dp2px(50), context.dp2px(1))
+        dividerView2.background = shape
+        dividerLayout.addView(dividerView2)
+
+        mainLayout.addView(dividerLayout)
+
+        val frameLayout = FrameLayout(context)
+        frameLayout.layoutParams = LayoutParams(-2,-1)
+
+        val timeLayout = LinearLayout(context)
+        timeLayout.layoutParams = layoutParams
+        timeLayout.orientation = LinearLayout.HORIZONTAL
+
+        // Hour
+        val hourPicker = NumberPicker(context)
+        hourPicker.id = R.id.hour
+        hourPicker.layoutParams = layoutParams
+        hourPicker.isFocusable = true
+        hourPicker.isFocusableInTouchMode = true
+        timeLayout.addView(hourPicker)
+
+        // Minute
+        val minutePicker = NumberPicker(context)
+        minutePicker.id = R.id.minute
+        minutePicker.layoutParams = layoutParams
+        minutePicker.isFocusable = true
+        minutePicker.isFocusableInTouchMode = true
+        timeLayout.addView(minutePicker)
+
+        val hourIndicator = AppCompatTextView(context)
+        hourIndicator.layoutParams = LayoutParams(-1,-1)
+        hourIndicator.text = ":"
+        hourIndicator.textSize = 22f
+        hourIndicator.gravity = Gravity.CENTER
+        hourIndicator.setPadding(0, 0, 0, context.dp2px(5))
+        hourIndicator.id = R.id.tv_hour_indicator
+        hourIndicator.setTextColor(0xFF000000.toInt())
+
+        frameLayout.addView(timeLayout)
+        frameLayout.addView(hourIndicator)
+        mainLayout.addView(frameLayout)
+        addView(mainLayout)
+
         timeSeparate = findViewById(R.id.ll_divider)
         hourSeparate = findViewById(R.id.tv_hour_indicator)
         setCurrentLocale(Locale.getDefault())

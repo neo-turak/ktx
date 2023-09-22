@@ -7,17 +7,17 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateUtils
 import android.util.AttributeSet
-import android.view.LayoutInflater
+import android.view.Gravity
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import com.github.neoturak.ktkit.R
 import com.github.neoturak.view.picker.NumberPicker.DividerType
@@ -108,10 +108,35 @@ class HourMinutePicker @JvmOverloads constructor(
         }
 
     init {
-
-        // initialization based on locale
         setCurrentLocale(Locale.getDefault())
-        LayoutInflater.from(getContext()).inflate(R.layout.hour_minute_picker, this)
+        val layoutParams = LinearLayoutCompat.LayoutParams(
+            LinearLayoutCompat.LayoutParams.MATCH_PARENT,
+            LinearLayoutCompat.LayoutParams.MATCH_PARENT
+        )
+        val childParam = LinearLayoutCompat.LayoutParams(-2,-2)
+        val linearLayout = LinearLayoutCompat(context!!)
+        linearLayout.layoutParams = layoutParams
+        linearLayout.gravity = Gravity.CENTER
+        linearLayout.orientation = LinearLayoutCompat.HORIZONTAL
+
+        // Hour NumberPicker
+        val hourPicker = NumberPicker(context)
+        hourPicker.id = R.id.hour
+        hourPicker.layoutParams = childParam
+        hourPicker.gravity = Gravity.CENTER
+        hourPicker.isFocusable = true
+        hourPicker.isFocusableInTouchMode = true
+        linearLayout.addView(hourPicker)
+
+        // Minute NumberPicker
+        val minutePicker = NumberPicker(context)
+        minutePicker.id = R.id.minute
+        minutePicker.layoutParams = childParam
+        minutePicker.gravity = Gravity.CENTER
+        minutePicker.isFocusable = true
+        minutePicker.isFocusableInTouchMode = true
+        linearLayout.addView(minutePicker)
+        addView(linearLayout)
 
         // hour
         mHourNPicker = findViewById(R.id.hour)

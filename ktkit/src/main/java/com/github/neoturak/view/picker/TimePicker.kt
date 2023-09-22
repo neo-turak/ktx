@@ -7,12 +7,12 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateUtils
 import android.util.AttributeSet
-import android.view.LayoutInflater
+import android.view.Gravity
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
@@ -75,7 +75,28 @@ constructor(
         }
     init {
         setCurrentLocale(Locale.getDefault())
-        LayoutInflater.from(getContext()).inflate(R.layout.time_picker, this)
+        //LayoutInflater.from(getContext()).inflate(R.layout.time_picker, this)
+        val layoutParams = LayoutParams(-1,-1)
+        val timeLayout = LinearLayout(context)
+        timeLayout.layoutParams = layoutParams
+        timeLayout.gravity = Gravity.CENTER
+
+        // Hour
+        val hourPicker = NumberPicker(context)
+        hourPicker.id = R.id.picker_time_hour
+        hourPicker.layoutParams = LayoutParams(-2,-2)
+        hourPicker.isFocusable = true
+        hourPicker.isFocusableInTouchMode = true
+        timeLayout.addView(hourPicker)
+
+        // Minute
+        val minutePicker = NumberPicker(context)
+        minutePicker.id = R.id.picker_time_minute
+        minutePicker.layoutParams = LayoutParams(-2,-2)
+        minutePicker.isFocusable = true
+        minutePicker.isFocusableInTouchMode = true
+        timeLayout.addView(minutePicker)
+        addView(timeLayout)
 
         // hour
         mHourNPicker = findViewById(R.id.picker_time_hour)

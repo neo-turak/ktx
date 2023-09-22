@@ -11,7 +11,7 @@ import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseArray
-import android.view.LayoutInflater
+import android.view.Gravity
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
@@ -59,7 +59,47 @@ class DatePicker
         val endYear = DEFAULT_END_YEAR
         val minDate = "1980-01-01"
         val maxDate = "2050-01-01"
-        LayoutInflater.from(getContext()).inflate(R.layout.date_picker, this)
+        //LayoutInflater.from(getContext()).inflate(R.layout.date_picker, this)
+
+
+        val lParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        val linearLayout = LinearLayout(context)
+        linearLayout.gravity = Gravity.CENTER
+        linearLayout.id = R.id.pickers
+        linearLayout.layoutParams = lParams
+        linearLayout.orientation = LinearLayout.HORIZONTAL
+
+        val pickerParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        // Month
+        val monthPicker = NumberPicker(context)
+        monthPicker.id = R.id.month
+        monthPicker.layoutParams = pickerParams
+        monthPicker.isFocusable = true
+        monthPicker.gravity = Gravity.CENTER
+        monthPicker.isFocusableInTouchMode = true
+       // monthPicker.setSelectionDividerHeight(1)
+        linearLayout.addView(monthPicker)
+
+        // Day
+        val dayPicker = NumberPicker(context)
+        dayPicker.id = R.id.day
+        dayPicker.layoutParams = pickerParams
+        dayPicker.isFocusable = true
+        dayPicker.gravity = Gravity.CENTER
+        dayPicker.isFocusableInTouchMode = true
+      //  dayPicker.setSelectionDividerHeight(1)
+        linearLayout.addView(dayPicker)
+
+        // Year
+        val yearPicker = NumberPicker(context)
+        yearPicker.id = R.id.year
+        yearPicker.layoutParams = pickerParams
+        yearPicker.isFocusable = true
+        yearPicker.gravity = Gravity.CENTER
+        yearPicker.isFocusableInTouchMode = true
+      //  yearPicker.setSelectionDividerHeight(1)
+        linearLayout.addView(yearPicker)
+        addView(linearLayout)
         val onChangeListener: NumberPicker.OnValueChangeListener =
             NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
                 updateInputState()

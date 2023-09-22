@@ -19,8 +19,8 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.SparseArray;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.LayoutInflater.Filter;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -822,12 +822,21 @@ public class NumberPicker extends LinearLayout {
         // draw() method to be called. Therefore, we declare we will draw.
         setWillNotDraw(false);
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(
+/*        LayoutInflater inflater = (LayoutInflater) context.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.number_picker, this, true);
+        inflater.inflate(R.layout.number_picker, this, true);*/
 
         // input text
-        mSelectedText = findViewById(R.id.np__numberpicker_input);
+        mSelectedText = new EditText(context);
+        mSelectedText.setLayoutParams(new LayoutParams(-1,-2));
+        mSelectedText.setBackground(null);
+        mSelectedText.setSingleLine(true);
+        mSelectedText.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        mSelectedText.setGravity(Gravity.CENTER);
+        mSelectedText.setHint(null);
+        mSelectedText.setVisibility(View.INVISIBLE);
+        mSelectedText.setGravity(Gravity.CENTER);
+        addView(mSelectedText);
         mSelectedText.setEnabled(false);
         mSelectedText.setFocusable(false);
         mSelectedText.setImeOptions(EditorInfo.IME_ACTION_NONE);
