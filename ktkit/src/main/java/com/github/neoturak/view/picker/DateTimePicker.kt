@@ -28,6 +28,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import com.github.neoturak.common.backgroundColor
 import com.github.neoturak.common.dp2px
 import com.github.neoturak.ktkit.R
 import com.github.neoturak.view.picker.NumberPicker.DividerType
@@ -49,7 +50,6 @@ class DateTimePicker : BasePicker {
     private lateinit var mDayNPicker: NumberPicker
     private lateinit var mMonthNPicker: NumberPicker
     private lateinit var mYearNPicker: NumberPicker
-    private var mCurrentLocale: Locale = Locale.CHINA
     private var mOnChangedListener: OnChangedListener? = null
     private lateinit var mShortMonths: Array<String?>
     private var mNumberOfMonths = 0
@@ -59,8 +59,6 @@ class DateTimePicker : BasePicker {
     private var mCurrentDate: Calendar = Calendar.getInstance(Locale.CHINA)
     private var mIsEnabled = true
     private var mIsAutoScroll = DEFAULT_AUTO_SCROLL_STATE
-    lateinit var timeSeparate: LinearLayout
-    lateinit var hourSeparate: View
 
     constructor(context: Context?) : super(context) {
         init(context,null)
@@ -79,9 +77,7 @@ class DateTimePicker : BasePicker {
     }
 
     private fun init(context: Context?,attrs: AttributeSet?) {
-
-       // LayoutInflater.from(context).inflate(R.layout.date_time_picker, this)
-
+        layoutDirection = LAYOUT_DIRECTION_LTR
         val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         val mainParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         mainParams.gravity = Gravity.CENTER
@@ -115,40 +111,18 @@ class DateTimePicker : BasePicker {
         dayPicker.isFocusableInTouchMode = true
         mainLayout.addView(dayPicker)
 
-        val dividerLayout = LinearLayout(context)
-        dividerLayout.layoutParams = LayoutParams(context!!.dp2px(50), LayoutParams.WRAP_CONTENT)
-        dividerLayout.orientation = LinearLayout.VERTICAL
-        dividerLayout.gravity = Gravity.CENTER
-        dividerLayout.id = R.id.ll_divider
-
-        //bg shape
-        // Create a new GradientDrawable
-        val shape = GradientDrawable()
-// Set the shape's size
-        shape.setSize(GradientDrawable.RECTANGLE, 1) // 1dp height
-
-// Set the solid color
-        shape.setColor(Color.BLACK)
-        //divider1
-        val dividerView1 = View(context)
-        dividerView1.layoutParams = LayoutParams(context.dp2px(50), context.dp2px(1))
-        dividerView1.background = shape
-        dividerLayout.addView(dividerView1)
-
-        val space = Space(context)
-        space.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, context.dp2px(44))
-        dividerLayout.addView(space)
-
-        val dividerView2 = View(context)
-        dividerView2.layoutParams = LayoutParams(context.dp2px(50), context.dp2px(1))
-        dividerView2.background = shape
-        dividerLayout.addView(dividerView2)
-
-        mainLayout.addView(dividerLayout)
+        //****empty view*******
+        val emptyPicker = NumberPicker(context!!)
+        emptyPicker.layoutParams = layoutParams
+        emptyPicker.isFocusable = true
+        emptyPicker.isFocusableInTouchMode = true
+        emptyPicker.textColor = Color.TRANSPARENT
+        emptyPicker.selectedTextColor = Color.TRANSPARENT
+        mainLayout.addView(emptyPicker)
+        //***********
 
         val frameLayout = FrameLayout(context)
-        frameLayout.layoutParams = LayoutParams(-2,-1)
-
+        frameLayout.layoutParams = layoutParams
         val timeLayout = LinearLayout(context)
         timeLayout.layoutParams = layoutParams
         timeLayout.orientation = LinearLayout.HORIZONTAL
@@ -168,24 +142,27 @@ class DateTimePicker : BasePicker {
         minutePicker.isFocusable = true
         minutePicker.isFocusableInTouchMode = true
         timeLayout.addView(minutePicker)
-
+        //hour indicator
         val hourIndicator = AppCompatTextView(context)
-        hourIndicator.layoutParams = LayoutParams(-1,-1)
         hourIndicator.text = ":"
         hourIndicator.textSize = 22f
+        val indicatorParam = LayoutParams(-2,-2)
+        indicatorParam.gravity = Gravity.CENTER
+        hourIndicator.layoutParams = indicatorParam
         hourIndicator.gravity = Gravity.CENTER
+        hourIndicator.textAlignment = TEXT_ALIGNMENT_CENTER
         hourIndicator.setPadding(0, 0, 0, context.dp2px(5))
         hourIndicator.id = R.id.tv_hour_indicator
         hourIndicator.setTextColor(0xFF000000.toInt())
-
+        //added to the linearLayout
         frameLayout.addView(timeLayout)
         frameLayout.addView(hourIndicator)
         mainLayout.addView(frameLayout)
         addView(mainLayout)
 
-        timeSeparate = findViewById(R.id.ll_divider)
-        hourSeparate = findViewById(R.id.tv_hour_indicator)
-        setCurrentLocale(Locale.getDefault())
+       // timeSeparate = findViewById(R.id.ll_divider)
+        //hourSeparate = findViewById(R.id.tv_hour_indicator)
+        setCurrentLocale(Locale.CHINA)
         val startYear = DEFAULT_START_YEAR
         val endYear = DEFAULT_END_YEAR
         val minDate = ""
@@ -397,16 +374,8 @@ class DateTimePicker : BasePicker {
         info.className = DateTimePicker::class.java.name
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        setCurrentLocale(newConfig.locale)
-    }
 
-    private fun setCurrentLocale(locale: Locale) {
-        if (locale == mCurrentLocale) {
-            return
-        }
-        mCurrentLocale = locale
+     fun setCurrentLocale(locale: Locale) {
         mTempDate = getCalendarForLocale(mTempDate, locale)
         mMinDate = getCalendarForLocale(mMinDate, locale)
         mMaxDate = getCalendarForLocale(mMaxDate, locale)

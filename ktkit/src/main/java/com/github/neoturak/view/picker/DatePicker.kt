@@ -9,6 +9,7 @@ import android.os.Parcelable.Creator
 import android.text.TextUtils
 import android.text.format.DateUtils
 import android.util.AttributeSet
+import android.util.LayoutDirection
 import android.util.Log
 import android.util.SparseArray
 import android.view.Gravity
@@ -54,7 +55,7 @@ class DatePicker
     private var mIsAutoScroll = DEFAULT_AUTO_SCROLL_STATE
 
     init {
-        setCurrentLocale(Locale.CHINA)
+        setCurrentLocale(Locale.CHINESE)
         val startYear = DEFAULT_START_YEAR
         val endYear = DEFAULT_END_YEAR
         val minDate = "1980-01-01"
@@ -70,6 +71,17 @@ class DatePicker
         linearLayout.orientation = LinearLayout.HORIZONTAL
 
         val pickerParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+
+        // Day
+        val dayPicker = NumberPicker(context)
+        dayPicker.id = R.id.day
+        dayPicker.layoutParams = pickerParams
+        dayPicker.isFocusable = true
+        dayPicker.gravity = Gravity.CENTER
+        dayPicker.isFocusableInTouchMode = true
+        //  dayPicker.setSelectionDividerHeight(1)
+        linearLayout.addView(dayPicker)
+
         // Month
         val monthPicker = NumberPicker(context)
         monthPicker.id = R.id.month
@@ -80,16 +92,6 @@ class DatePicker
        // monthPicker.setSelectionDividerHeight(1)
         linearLayout.addView(monthPicker)
 
-        // Day
-        val dayPicker = NumberPicker(context)
-        dayPicker.id = R.id.day
-        dayPicker.layoutParams = pickerParams
-        dayPicker.isFocusable = true
-        dayPicker.gravity = Gravity.CENTER
-        dayPicker.isFocusableInTouchMode = true
-      //  dayPicker.setSelectionDividerHeight(1)
-        linearLayout.addView(dayPicker)
-
         // Year
         val yearPicker = NumberPicker(context)
         yearPicker.id = R.id.year
@@ -99,6 +101,7 @@ class DatePicker
         yearPicker.isFocusableInTouchMode = true
       //  yearPicker.setSelectionDividerHeight(1)
         linearLayout.addView(yearPicker)
+
         addView(linearLayout)
         val onChangeListener: NumberPicker.OnValueChangeListener =
             NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
@@ -294,7 +297,7 @@ class DatePicker
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        setCurrentLocale(newConfig.locale)
+       // setCurrentLocale(newConfig.locale)
     }
 
     /**
@@ -329,7 +332,7 @@ class DatePicker
      *
      * @param locale The current locale.
      */
-    private fun setCurrentLocale(locale: Locale) {
+     fun setCurrentLocale(locale: Locale) {
         mTempDate = getCalendarForLocale(mTempDate, locale)
         mMinDate = getCalendarForLocale(mMinDate, locale)
         mMaxDate = getCalendarForLocale(mMaxDate, locale)

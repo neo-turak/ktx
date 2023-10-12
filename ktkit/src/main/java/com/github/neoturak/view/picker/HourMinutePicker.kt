@@ -256,10 +256,10 @@ class HourMinutePicker @JvmOverloads constructor(
     /**
      * Set the callback that indicates the time has been adjusted by the user.
      *
-     * @param OnChangedListener the callback, should not be null.
+     * @param onChangedListener the callback, should not be null.
      */
-    fun setOnChangedListener(OnChangedListener: OnChangedListener?) {
-        mOnChangedListener = OnChangedListener
+    fun setOnChangedListener(onChangedListener: OnChangedListener?) {
+        mOnChangedListener = onChangedListener
     }
 
     /**
