@@ -49,6 +49,8 @@
             从上左边到下右边 -->
         <enum name="TL_BR" value="7" />
     </attr>
+<!--    是否需要剪切child,对父类布局有效。-->
+    <attr name="cut_child" format="boolean"/>
 
     <!--    View-->
     <declare-styleable name="ShapeableView">
