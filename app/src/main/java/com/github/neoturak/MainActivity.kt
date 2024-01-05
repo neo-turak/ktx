@@ -7,6 +7,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.github.neoturak.common.backgroundColor
+import com.github.neoturak.common.singleClick
+import com.github.neoturak.common.startActivity
 import com.github.neoturak.databinding.ActivityMainBinding
 import com.github.neoturak.ui.immersiveNavigationBar
 import com.github.neoturak.ui.immersiveStatusBar
@@ -38,11 +40,14 @@ class MainActivity : AppCompatActivity() {
         this.immersiveStatusBar()
         this.setNavigationBarColor(Color.BLUE)
         this.immersiveNavigationBar {
-
         }
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.test)
         val drawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
         drawable.isCircular = true
         binding.svShape.setImageDrawable(drawable)
+        //
+        binding.sbButton.singleClick {
+            startActivity<SecondActivity>()
+        }
     }
 }

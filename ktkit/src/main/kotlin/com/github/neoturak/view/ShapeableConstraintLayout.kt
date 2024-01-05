@@ -2,7 +2,10 @@ package com.github.neoturak.view
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Path
+import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
@@ -105,6 +108,14 @@ class ShapeableConstraintLayout  : ConstraintLayout {
             setAttrs()
         }
 
+    var cutChild = false
+        set(value) {
+            field = value
+            invalidate()
+            setAttrs()
+        }
+    private val path = Path()
+
     constructor(context: Context) : super(context) {
         initView(context, null)
     }
@@ -150,6 +161,8 @@ class ShapeableConstraintLayout  : ConstraintLayout {
         endColor = ta.getColor(R.styleable.ShapeableConstraintLayout_gradient_endColor, 0)
         //角度值
         angle = ta.getInteger(R.styleable.ShapeableConstraintLayout_gradient_angle, 6)
+        //是否要剪切child
+        cutChild = ta.getBoolean(R.styleable.ShapeableConstraintLayout_cut_child, false)
         ta.recycle()
         setAttrs()
     }
@@ -169,25 +182,64 @@ class ShapeableConstraintLayout  : ConstraintLayout {
         )
         shape.cornerRadii = corners
         val realAngle = ViewUtils().realAngle(angle)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (startColor == endColor && startColor == centerColor) {//没有渐变色
-                shape.color = ColorStateList.valueOf(soldColor)
-            } else {//有渐变色
-                if (endColor == 0) {
-                    endColor = Color.WHITE
-                }
-                //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
-                if (centerColor == 0) {
-                    centerColor =ViewUtils().middleColor(startColor,endColor)
-                }
-                shape.colors = intArrayOf(startColor, centerColor, endColor)
-                shape.orientation = realAngle
+        if (startColor == endColor && startColor == centerColor) {//没有渐变色
+            shape.color = ColorStateList.valueOf(soldColor)
+        } else {//有渐变色
+            if (endColor == 0) {
+                endColor = Color.WHITE
             }
-            //描边。
-            if (strokeWidth != 0f && strokeColor != Color.TRANSPARENT) {
-                shape.setStroke(strokeWidth.toInt(), ColorStateList.valueOf(strokeColor))
+            //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
+            if (centerColor == 0) {
+                centerColor =ViewUtils().middleColor(startColor,endColor)
             }
-            this.background = shape
+            shape.colors = intArrayOf(startColor, centerColor, endColor)
+            shape.orientation = realAngle
         }
+        //描边。
+        if (strokeWidth != 0f && strokeColor != Color.TRANSPARENT) {
+            shape.setStroke(strokeWidth.toInt(), ColorStateList.valueOf(strokeColor))
+        }
+        this.background = shape
+    }
+
+    override fun dispatchDraw(canvas: Canvas?) {
+        val save = canvas?.save()
+        path.reset()
+        val width = width.toFloat()
+        val height = height.toFloat()
+        //需要剪切child的时候。
+        if (cutChild) {
+            if (cornersRadius != 0f) {
+                path.addRoundRect(
+                    0f,
+                    0f,
+                    width,
+                    height,
+                    cornersRadius,
+                    cornersRadius,
+                    Path.Direction.CW
+                )
+            } else {
+                val rect = RectF(0f, 0f, getWidth().toFloat(), getHeight().toFloat())
+                rect.set(0f, 0f, width, height)
+                path.addRoundRect(
+                    rect,
+                    floatArrayOf(
+                        cornerTopLeft,
+                        cornerTopLeft,
+                        cornerTopRight,
+                        cornerTopRight,
+                        cornerBottomRight,
+                        cornerBottomRight,
+                        cornerBottomLeft,
+                        cornerBottomLeft
+                    ),
+                    Path.Direction.CW
+                )
+            }
+            canvas?.clipPath(path)
+        }
+        super.dispatchDraw(canvas)
+        save?.let { canvas.restoreToCount(it) }
     }
 }

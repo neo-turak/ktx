@@ -105,6 +105,14 @@ class ShapeableAppBarLayout : AppBarLayout {
             invalidate()
             setAttrs()
         }
+    var cutChild = false
+        set(value) {
+            field = value
+            invalidate()
+            setAttrs()
+        }
+
+    private val path = Path()
 
     constructor(context: Context) : super(context) {
         initView(context, null)
@@ -151,6 +159,8 @@ class ShapeableAppBarLayout : AppBarLayout {
         endColor = ta.getColor(R.styleable.ShapeableAppBarLayout_gradient_endColor, 0)
         //角度值
         angle = ta.getInteger(R.styleable.ShapeableAppBarLayout_gradient_angle, 6)
+        //是否要剪切child
+        cutChild = ta.getBoolean(R.styleable.ShapeableAppBarLayout_cut_child, false)
         ta.recycle()
         setAttrs()
     }
@@ -188,5 +198,46 @@ class ShapeableAppBarLayout : AppBarLayout {
             shape.setStroke(strokeWidth.toInt(), ColorStateList.valueOf(strokeColor))
         }
         this.background = shape
+    }
+
+    override fun dispatchDraw(canvas: Canvas?) {
+        val save = canvas?.save()
+        path.reset()
+        val width = width.toFloat()
+        val height = height.toFloat()
+        //需要剪切child的时候。
+        if (cutChild) {
+            if (cornersRadius != 0f) {
+                path.addRoundRect(
+                    0f,
+                    0f,
+                    width,
+                    height,
+                    cornersRadius,
+                    cornersRadius,
+                    Path.Direction.CW
+                )
+            } else {
+                val rect = RectF(0f, 0f, getWidth().toFloat(), getHeight().toFloat())
+                rect.set(0f, 0f, width, height)
+                path.addRoundRect(
+                    rect,
+                    floatArrayOf(
+                        cornerTopLeft,
+                        cornerTopLeft,
+                        cornerTopRight,
+                        cornerTopRight,
+                        cornerBottomRight,
+                        cornerBottomRight,
+                        cornerBottomLeft,
+                        cornerBottomLeft
+                    ),
+                    Path.Direction.CW
+                )
+            }
+            canvas?.clipPath(path)
+        }
+        super.dispatchDraw(canvas)
+        save?.let { canvas.restoreToCount(it) }
     }
 }

@@ -167,6 +167,8 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+<!--        要剪切child-->
+        <attr name="cut_child"/>
     </declare-styleable>
     <declare-styleable name="ShapeableLinearLayout">
         <!--        全部角半径-->
@@ -194,6 +196,8 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
     </declare-styleable>
 
     <declare-styleable name="ShapeableRelativeLayout">
@@ -222,6 +226,8 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
     </declare-styleable>
 
     <declare-styleable name="ShapeableConstraintLayout">
@@ -250,6 +256,8 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
     </declare-styleable>
 
     <declare-styleable name="ShapeableNestedScrollView">
@@ -278,6 +286,8 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
     </declare-styleable>
 
     <declare-styleable name="ShapeableImageView">
@@ -334,6 +344,8 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
     </declare-styleable>
 
     <declare-styleable name="ShapeableEditText">
@@ -402,6 +414,9 @@
         <attr name="gradient_centerColor" />
         <!--    角度值-->
         <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
+
     </declare-styleable>
 
 </resources>
