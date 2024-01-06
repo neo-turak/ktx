@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loginContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <com.github.neoturak.view.ShapeableFrameLayout
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        app:shape_soldColor="#CC0000"
         android:layout_gravity="center"
         app:cut_child="true"
         app:shape_cornersRadius="8dp"
-        >
+        app:shape_soldColor="#CC0000">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/button"
-android:background="#00FF00"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:background="#00FF00"
             android:gravity="center"
             android:text="Button" />
 
