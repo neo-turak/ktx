@@ -419,4 +419,35 @@
 
     </declare-styleable>
 
+    <declare-styleable name="ShapeableCoordinatorLayout">
+        <!--        全部角半径-->
+        <attr name="shape_cornersRadius" />
+        <!--        左上角半径-->
+        <attr name="shape_cornerTopLeft" />
+        <!--        右上角 半径-->
+        <attr name="shape_cornerTopRight" />
+        <!--        左下角半径-->
+        <attr name="shape_cornerBottomLeft" />
+        <!--        右下角半径-->
+        <attr name="shape_cornerBottomRight" />
+        <!--        描边颜色-->
+        <attr name="shape_strokeColor" />
+        <!--        描边厚度-->
+        <attr name="shape_strokeWidth" />
+        <!--        背景色-->
+        <attr name="shape_soldColor" />
+
+        <!--    开始颜色-->
+        <attr name="gradient_startColor" />
+        <!--    结束颜色-->
+        <attr name="gradient_endColor" />
+        <!--    中间颜色-->
+        <attr name="gradient_centerColor" />
+        <!--    角度值-->
+        <attr name="gradient_angle" />
+        <!--        要剪切child-->
+        <attr name="cut_child"/>
+
+    </declare-styleable>
+
 </resources>
