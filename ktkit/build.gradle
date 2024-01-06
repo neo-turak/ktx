@@ -23,7 +23,7 @@ android {
     // configure the AAR output
     libraryVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${project.name}-${variant.name}-1.3.7.aar"
+            outputFileName = "${project.name}-${variant.name}-1.3.8.aar"
         }
     }
     compileOptions {
