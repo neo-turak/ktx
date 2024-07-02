@@ -6,17 +6,17 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
-import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import com.github.neoturak.ktkit.R
 
 /**
  * @author 努尔江
- * Created on: 2023/2/28
- * @project kt-kit
- * Description: 带属性的view
+ * Created on: 2023/3/1
+ * @project ktkit
+ * Description:
  **/
 
-class ShapeableView : View {
+class ShapeableImageView : AppCompatImageView {
 
     //corners.
     var cornersRadius = 0f
@@ -105,15 +105,15 @@ class ShapeableView : View {
             setAttrs()
         }
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         initView(context, null)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initView(context, attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
         context,
         attrs,
         defStyleAttr
@@ -127,29 +127,29 @@ class ShapeableView : View {
     }
 
     private fun initView(context: Context?, attrs: AttributeSet?) {
-        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableView)
+        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableImageView)
         //全部边框值
-        cornersRadius = ta.getDimension(R.styleable.ShapeableView_shape_cornersRadius, 0f)
+        cornersRadius = ta.getDimension(R.styleable.ShapeableImageView_shape_cornersRadius, 0f)
         //边框-边角
-        cornerTopLeft = ta.getDimension(R.styleable.ShapeableView_shape_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableView_shape_cornerTopRight, 0F)
-        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableView_shape_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableView_shape_cornerBottomRight, 0F)
+        cornerTopLeft = ta.getDimension(R.styleable.ShapeableImageView_shape_cornerTopLeft, 0F)
+        cornerTopRight = ta.getDimension(R.styleable.ShapeableImageView_shape_cornerTopRight, 0F)
+        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableImageView_shape_cornerBottomLeft, 0F)
+        cornerBottomRight = ta.getDimension(R.styleable.ShapeableImageView_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableView_shape_strokeColor, Color.WHITE)
-        strokeWidth = ta.getDimension(R.styleable.ShapeableView_shape_strokeWidth, 0f)
+        strokeColor = ta.getColor(R.styleable.ShapeableImageView_shape_strokeColor, Color.WHITE)
+        strokeWidth = ta.getDimension(R.styleable.ShapeableImageView_shape_strokeWidth, 0f)
         //背景颜色
-        soldColor = ta.getColor(R.styleable.ShapeableView_shape_soldColor, Color.WHITE)
+        soldColor = ta.getColor(R.styleable.ShapeableImageView_shape_soldColor, Color.WHITE)
         //开始颜色
         startColor =
-            ta.getColor(R.styleable.ShapeableView_gradient_startColor, 0)
+            ta.getColor(R.styleable.ShapeableImageView_gradient_startColor, 0)
         //中间颜色
         centerColor =
-            ta.getColor(R.styleable.ShapeableView_gradient_centerColor, 0)
+            ta.getColor(R.styleable.ShapeableImageView_gradient_centerColor, 0)
         //结束颜色
-        endColor = ta.getColor(R.styleable.ShapeableView_gradient_endColor, 0)
+        endColor = ta.getColor(R.styleable.ShapeableImageView_gradient_endColor, 0)
         //角度值
-        angle = ta.getInteger(R.styleable.ShapeableView_gradient_angle, 6)
+        angle = ta.getInteger(R.styleable.ShapeableImageView_gradient_angle, 6)
         ta.recycle()
         setAttrs()
     }

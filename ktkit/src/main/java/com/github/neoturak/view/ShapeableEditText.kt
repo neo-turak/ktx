@@ -2,12 +2,11 @@ package com.github.neoturak.view
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.*
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
-import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.AppCompatEditText
 import com.github.neoturak.ktkit.R
 
 /**
@@ -17,7 +16,7 @@ import com.github.neoturak.ktkit.R
  * Description: 带属性的view
  **/
 
-class ShapeableTextView : AppCompatTextView {
+class ShapeableEditText : AppCompatEditText {
 
     //corners.
     var cornersRadius = 0f
@@ -114,7 +113,7 @@ class ShapeableTextView : AppCompatTextView {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
         context,
         attrs,
         defStyleAttr
@@ -128,29 +127,29 @@ class ShapeableTextView : AppCompatTextView {
     }
 
     private fun initView(context: Context?, attrs: AttributeSet?) {
-        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableTextView)
+        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableEditText)
         //全部边框值
-        cornersRadius = ta.getDimension(R.styleable.ShapeableTextView_shape_cornersRadius, 0f)
+        cornersRadius = ta.getDimension(R.styleable.ShapeableEditText_shape_cornersRadius, 0f)
         //边框-边角
-        cornerTopLeft = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerTopRight, 0F)
-        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableTextView_shape_cornerBottomRight, 0F)
+        cornerTopLeft = ta.getDimension(R.styleable.ShapeableEditText_shape_cornerTopLeft, 0F)
+        cornerTopRight = ta.getDimension(R.styleable.ShapeableEditText_shape_cornerTopRight, 0F)
+        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableEditText_shape_cornerBottomLeft, 0F)
+        cornerBottomRight = ta.getDimension(R.styleable.ShapeableEditText_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableTextView_shape_strokeColor, Color.WHITE)
-        strokeWidth = ta.getDimension(R.styleable.ShapeableTextView_shape_strokeWidth, 0f)
+        strokeColor = ta.getColor(R.styleable.ShapeableEditText_shape_strokeColor, Color.WHITE)
+        strokeWidth = ta.getDimension(R.styleable.ShapeableEditText_shape_strokeWidth, 0f)
         //背景颜色
-        soldColor = ta.getColor(R.styleable.ShapeableTextView_shape_soldColor, Color.WHITE)
+        soldColor = ta.getColor(R.styleable.ShapeableEditText_shape_soldColor, Color.WHITE)
         //开始颜色
         startColor =
-            ta.getColor(R.styleable.ShapeableTextView_gradient_startColor, 0)
+            ta.getColor(R.styleable.ShapeableEditText_gradient_startColor, 0)
         //中间颜色
         centerColor =
-            ta.getColor(R.styleable.ShapeableTextView_gradient_centerColor, 0)
+            ta.getColor(R.styleable.ShapeableEditText_gradient_centerColor, 0)
         //结束颜色
-        endColor = ta.getColor(R.styleable.ShapeableTextView_gradient_endColor, 0)
+        endColor = ta.getColor(R.styleable.ShapeableEditText_gradient_endColor, 0)
         //角度值
-        angle = ta.getInteger(R.styleable.ShapeableTextView_gradient_angle, 6)
+        angle = ta.getInteger(R.styleable.ShapeableEditText_gradient_angle, 6)
         ta.recycle()
         setAttrs()
     }

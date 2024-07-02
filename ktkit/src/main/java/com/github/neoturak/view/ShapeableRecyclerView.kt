@@ -7,20 +7,18 @@ import android.graphics.Color
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
-import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
 import com.github.neoturak.ktkit.R
 
 /**
- * @author 努尔江
- * Created on: 2023/3/1
- * @project ktkit
- * Description:
- **/
-
-class ShapeableNestedScrollView : NestedScrollView {
-
+ *@author   Hugo
+ *@Description
+ *@time    2023/7/27 上午11:16
+ *@project  ktkit
+ *Think Twice, Code Once!
+ */
+class ShapeableRecyclerView : RecyclerView {
 
     //corners.
     var cornersRadius = 0f
@@ -124,7 +122,7 @@ class ShapeableNestedScrollView : NestedScrollView {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
         context,
         attrs,
         defStyleAttr
@@ -138,33 +136,31 @@ class ShapeableNestedScrollView : NestedScrollView {
     }
 
     private fun initView(context: Context?, attrs: AttributeSet?) {
-        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableNestedScrollView)
+        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableRecyclerView)
         //全部边框值
-        cornersRadius = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornersRadius, 0f)
+        cornersRadius = ta.getDimension(R.styleable.ShapeableRecyclerView_shape_cornersRadius, 0f)
         //边框-边角
-        cornerTopLeft = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerTopRight, 0F)
-        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerBottomLeft, 0F)
-        cornerBottomRight = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_cornerBottomRight, 0F)
+        cornerTopLeft = ta.getDimension(R.styleable.ShapeableRecyclerView_shape_cornerTopLeft, 0F)
+        cornerTopRight = ta.getDimension(R.styleable.ShapeableRecyclerView_shape_cornerTopRight, 0F)
+        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableRecyclerView_shape_cornerBottomLeft, 0F)
+        cornerBottomRight = ta.getDimension(R.styleable.ShapeableRecyclerView_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableNestedScrollView_shape_strokeColor, Color.WHITE)
-        strokeWidth = ta.getDimension(R.styleable.ShapeableNestedScrollView_shape_strokeWidth, 0f)
+        strokeColor = ta.getColor(R.styleable.ShapeableRecyclerView_shape_strokeColor, Color.WHITE)
+        strokeWidth = ta.getDimension(R.styleable.ShapeableRecyclerView_shape_strokeWidth, 0f)
         //背景颜色
-        soldColor = ta.getColor(R.styleable.ShapeableNestedScrollView_shape_soldColor, Color.WHITE)
+        soldColor = ta.getColor(R.styleable.ShapeableRecyclerView_shape_soldColor, Color.WHITE)
         //开始颜色
         startColor =
-            ta.getColor(R.styleable.ShapeableNestedScrollView_gradient_startColor, 0)
+            ta.getColor(R.styleable.ShapeableRecyclerView_gradient_startColor, 0)
         //中间颜色
         centerColor =
-            ta.getColor(R.styleable.ShapeableNestedScrollView_gradient_centerColor, 0)
+            ta.getColor(R.styleable.ShapeableRecyclerView_gradient_centerColor, 0)
         //结束颜色
-        endColor = ta.getColor(R.styleable.ShapeableNestedScrollView_gradient_endColor, 0)
+        endColor = ta.getColor(R.styleable.ShapeableRecyclerView_gradient_endColor, 0)
         //角度值
-        angle = ta.getInteger(R.styleable.ShapeableNestedScrollView_gradient_angle, 6)
+        angle = ta.getInteger(R.styleable.ShapeableRecyclerView_gradient_angle, 6)
         //是否要剪切child
-        cutChild = ta.getBoolean(R.styleable.ShapeableNestedScrollView_cut_child, false)
-        //是否要剪切child
-        cutChild = ta.getBoolean(R.styleable.ShapeableNestedScrollView_cut_child, false)
+        cutChild = ta.getBoolean(R.styleable.ShapeableRecyclerView_cut_child, false)
         ta.recycle()
         setAttrs()
     }

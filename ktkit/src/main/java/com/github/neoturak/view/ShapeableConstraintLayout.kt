@@ -4,14 +4,12 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.github.neoturak.ktkit.R
-
 
 /**
  * @author 努尔江
@@ -20,8 +18,7 @@ import com.github.neoturak.ktkit.R
  * Description:
  **/
 
-class ShapeableFrameLayout : FrameLayout {
-
+class ShapeableConstraintLayout  : ConstraintLayout {
 
     //corners.
     var cornersRadius = 0f
@@ -117,6 +114,7 @@ class ShapeableFrameLayout : FrameLayout {
             setAttrs()
         }
     private val path = Path()
+
     constructor(context: Context) : super(context) {
         initView(context, null)
     }
@@ -125,7 +123,7 @@ class ShapeableFrameLayout : FrameLayout {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
         context,
         attrs,
         defStyleAttr
@@ -139,33 +137,31 @@ class ShapeableFrameLayout : FrameLayout {
     }
 
     private fun initView(context: Context?, attrs: AttributeSet?) {
-        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableFrameLayout)
+        val ta = context!!.obtainStyledAttributes(attrs, R.styleable.ShapeableConstraintLayout)
         //全部边框值
-        cornersRadius = ta.getDimension(R.styleable.ShapeableFrameLayout_shape_cornersRadius, 0f)
+        cornersRadius = ta.getDimension(R.styleable.ShapeableConstraintLayout_shape_cornersRadius, 0f)
         //边框-边角
-        cornerTopLeft = ta.getDimension(R.styleable.ShapeableFrameLayout_shape_cornerTopLeft, 0F)
-        cornerTopRight = ta.getDimension(R.styleable.ShapeableFrameLayout_shape_cornerTopRight, 0F)
-        cornerBottomLeft =
-            ta.getDimension(R.styleable.ShapeableFrameLayout_shape_cornerBottomLeft, 0F)
-        cornerBottomRight =
-            ta.getDimension(R.styleable.ShapeableFrameLayout_shape_cornerBottomRight, 0F)
+        cornerTopLeft = ta.getDimension(R.styleable.ShapeableConstraintLayout_shape_cornerTopLeft, 0F)
+        cornerTopRight = ta.getDimension(R.styleable.ShapeableConstraintLayout_shape_cornerTopRight, 0F)
+        cornerBottomLeft = ta.getDimension(R.styleable.ShapeableConstraintLayout_shape_cornerBottomLeft, 0F)
+        cornerBottomRight = ta.getDimension(R.styleable.ShapeableConstraintLayout_shape_cornerBottomRight, 0F)
         //边框颜色
-        strokeColor = ta.getColor(R.styleable.ShapeableFrameLayout_shape_strokeColor, Color.WHITE)
-        strokeWidth = ta.getDimension(R.styleable.ShapeableFrameLayout_shape_strokeWidth, 0f)
+        strokeColor = ta.getColor(R.styleable.ShapeableConstraintLayout_shape_strokeColor, Color.WHITE)
+        strokeWidth = ta.getDimension(R.styleable.ShapeableConstraintLayout_shape_strokeWidth, 0f)
         //背景颜色
-        soldColor = ta.getColor(R.styleable.ShapeableFrameLayout_shape_soldColor, Color.WHITE)
+        soldColor = ta.getColor(R.styleable.ShapeableConstraintLayout_shape_soldColor, Color.WHITE)
         //开始颜色
         startColor =
-            ta.getColor(R.styleable.ShapeableFrameLayout_gradient_startColor, 0)
+            ta.getColor(R.styleable.ShapeableConstraintLayout_gradient_startColor, 0)
         //中间颜色
         centerColor =
-            ta.getColor(R.styleable.ShapeableFrameLayout_gradient_centerColor, 0)
+            ta.getColor(R.styleable.ShapeableConstraintLayout_gradient_centerColor, 0)
         //结束颜色
-        endColor = ta.getColor(R.styleable.ShapeableFrameLayout_gradient_endColor, 0)
+        endColor = ta.getColor(R.styleable.ShapeableConstraintLayout_gradient_endColor, 0)
         //角度值
-        angle = ta.getInteger(R.styleable.ShapeableFrameLayout_gradient_angle, 6)
+        angle = ta.getInteger(R.styleable.ShapeableConstraintLayout_gradient_angle, 6)
         //是否要剪切child
-        cutChild = ta.getBoolean(R.styleable.ShapeableFrameLayout_cut_child, false)
+        cutChild = ta.getBoolean(R.styleable.ShapeableConstraintLayout_cut_child, false)
         ta.recycle()
         setAttrs()
     }
@@ -193,7 +189,7 @@ class ShapeableFrameLayout : FrameLayout {
             }
             //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
             if (centerColor == 0) {
-                centerColor = ViewUtils().middleColor(startColor, endColor)
+                centerColor =ViewUtils().middleColor(startColor,endColor)
             }
             shape.colors = intArrayOf(startColor, centerColor, endColor)
             shape.orientation = realAngle

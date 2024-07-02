@@ -2,11 +2,12 @@ package com.github.neoturak.view
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Path
+import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
-import android.view.View
 import com.github.neoturak.ktkit.R
 import com.google.android.material.appbar.AppBarLayout
 
@@ -122,7 +123,7 @@ class ShapeableAppBarLayout : AppBarLayout {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
         context,
         attrs,
         defStyleAttr

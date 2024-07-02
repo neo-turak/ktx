@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.github.neoturak.ktkit.R
@@ -125,7 +124,7 @@ class ShapeableLinearLayout : LinearLayoutCompat {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
         context,
         attrs,
         defStyleAttr
