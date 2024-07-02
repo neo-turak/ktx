@@ -2,7 +2,7 @@ package com.github.neoturak.view
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.*
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
@@ -113,7 +113,7 @@ class ShapeableView : View {
         initView(context, attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(
         context,
         attrs,
         defStyleAttr
