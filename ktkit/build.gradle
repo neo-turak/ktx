@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -23,7 +23,7 @@ android {
     // configure the AAR output
     libraryVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${project.name}-${variant.name}-1.4.1.aar"
+            outputFileName = "${project.name}-${variant.name}-1.4.2.aar"
         }
     }
     compileOptions {
