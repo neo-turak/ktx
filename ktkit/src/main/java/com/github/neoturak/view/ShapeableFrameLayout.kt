@@ -204,8 +204,8 @@ class ShapeableFrameLayout : FrameLayout {
         this.background = shape
     }
 
-    override fun dispatchDraw(canvas: Canvas?) {
-        val save = canvas?.save()
+    override fun dispatchDraw(canvas: Canvas) {
+        val save = canvas.save()
         path.reset()
         val width = width.toFloat()
         val height = height.toFloat()
@@ -239,9 +239,9 @@ class ShapeableFrameLayout : FrameLayout {
                     Path.Direction.CW
                 )
             }
-            canvas?.clipPath(path)
+            canvas.clipPath(path)
         }
         super.dispatchDraw(canvas)
-        save?.let { canvas.restoreToCount(it) }
+        save.let { canvas.restoreToCount(it) }
     }
 }
