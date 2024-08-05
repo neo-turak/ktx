@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.github.neoturak.common.backgroundColor
+import com.github.neoturak.common.setStatusBarColor
 import com.github.neoturak.databinding.ActivityMainBinding
 import com.github.neoturak.ui.setLightNavigationBar
 import com.github.neoturak.ui.setNavigationBarColor
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding.root.backgroundColor = Color.WHITE
 
         this.setLightNavigationBar(false)
-        this.setNavigationBarColor(Color.RED)
+        this.setNavigationBarColor(Color.BLUE)
+        this.setStatusBarColor(R.color.design_default_color_secondary)
 
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.test)
         val drawable = RoundedBitmapDrawableFactory.create(resources, bitmap)

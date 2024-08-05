@@ -21,9 +21,9 @@ android {
         }
     }
     // configure the AAR output
-    libraryVariants.all { variant ->
+    libraryVariants.configureEach { variant ->
         variant.outputs.all {
-            outputFileName = "${project.name}-${variant.name}-1.4.2.aar"
+            outputFileName = "${project.name}-${variant.name}-1.4.4.aar"
         }
     }
     compileOptions {
@@ -32,7 +32,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
-        suppressWarnings = true
     }
 
     afterEvaluate {
@@ -42,16 +41,16 @@ android {
         generateDebugResValues.enabled = false
     }
 
-    namespace 'com.github.neoturak.ktkit'
+    namespace 'com.github.neoturak.ktx'
 }
 
 dependencies {
 
-    implementation('androidx.appcompat:appcompat:1.7.0')
+    implementation('androidx.appcompat:appcompat:1.6.1')
     implementation('com.google.code.gson:gson:2.10.1')
-    implementation('com.google.android.material:material:1.12.0')
-    implementation('androidx.lifecycle:lifecycle-runtime-ktx:2.8.3')
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation('com.google.android.material:material:1.6.1')
+    implementation('androidx.lifecycle:lifecycle-runtime-ktx:2.5.1')
+    implementation 'androidx.core:core-ktx:1.9.0'
 
 }
 

@@ -18,9 +18,8 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.github.neoturak.ktkit.R
-import com.github.neoturak.view.picker.NumberPicker.DividerType
-import com.github.neoturak.view.picker.NumberPicker.Order
+import com.github.neoturak.ktx.R
+import com.github.neoturak.view.NumberPicker
 import java.util.Calendar
 import java.util.Locale
 
@@ -100,7 +99,7 @@ constructor(
 
         // hour
         mHourNPicker = findViewById(R.id.picker_time_hour)
-        mHourNPicker.setOnChangedListener { NPicker: NumberPicker?, _: Int, _: Int ->
+        mHourNPicker.setOnChangedListener { _, _, _ ->
             updateInputState()
             onChanged()
         }
@@ -112,7 +111,7 @@ constructor(
         mMinuteNPicker.maxValue = 59
         mMinuteNPicker.setOnLongPressUpdateInterval(100)
         mMinuteNPicker.formatter = NumberPicker.getTwoDigitFormatter()
-        mMinuteNPicker.setOnChangedListener { NPicker: NumberPicker?, oldVal: Int, newVal: Int ->
+        mMinuteNPicker.setOnChangedListener { _, oldVal, newVal ->
             updateInputState()
             val minValue = mMinuteNPicker.minValue
             val maxValue = mMinuteNPicker.maxValue
@@ -312,7 +311,7 @@ constructor(
         super.setDividerDistanceResource(dimenId, mHourNPicker, mMinuteNPicker)
     }
 
-    fun setDividerType(@DividerType dividerType: Int) {
+    fun setDividerType(@NumberPicker.DividerType dividerType: Int) {
         super.setDividerType(dividerType, mHourNPicker, mMinuteNPicker)
     }
 
@@ -324,7 +323,7 @@ constructor(
         super.setDividerThicknessResource(dimenId, mHourNPicker, mMinuteNPicker)
     }
 
-    fun setOrder(@Order order: Int) {
+    fun setOrder(@NumberPicker.Order order: Int) {
         super.setOrder(order, mHourNPicker, mMinuteNPicker,)
     }
 
@@ -336,7 +335,7 @@ constructor(
         super.setWheelItemCount(count, mHourNPicker, mMinuteNPicker)
     }
 
-    fun setFormatter(hourFormatter: String?, minuteFormatter: String?, secondFormatter: String?) {
+    fun setFormatter(hourFormatter: String?, minuteFormatter: String?) {
         mHourNPicker.setFormatter(hourFormatter)
         mMinuteNPicker.setFormatter(minuteFormatter)
     }
@@ -344,7 +343,6 @@ constructor(
     fun setFormatter(
         @StringRes hourFormatterId: Int,
         @StringRes minuteFormatterId: Int,
-        @StringRes secondFormatterId: Int
     ) {
         mHourNPicker.setFormatter(resources.getString(hourFormatterId))
         mMinuteNPicker.setFormatter(resources.getString(minuteFormatterId))

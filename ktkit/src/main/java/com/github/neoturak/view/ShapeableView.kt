@@ -6,12 +6,12 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.View
-import com.github.neoturak.ktkit.R
+import com.github.neoturak.ktx.R
 
 /**
  * @author 努尔江
  * Created on: 2023/2/28
- * @project kt-kit
+ * @project ktx
  * Description: 带属性的view
  **/
 

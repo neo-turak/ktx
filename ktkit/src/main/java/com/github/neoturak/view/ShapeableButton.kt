@@ -2,17 +2,18 @@ package com.github.neoturak.view
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
+import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
-import com.github.neoturak.ktkit.R
+import com.github.neoturak.ktx.R
+
 
 /**
  * @author 努尔江
  * Created on: 2023/2/28
- * @project kt-kit
+ * @project ktx
  * Description: 带属性的Button
  **/
 
@@ -114,7 +115,7 @@ class ShapeableButton : AppCompatButton {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr

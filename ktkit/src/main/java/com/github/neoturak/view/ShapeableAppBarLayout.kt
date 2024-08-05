@@ -8,13 +8,14 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import com.github.neoturak.ktkit.R
+import com.github.neoturak.ktx.R
+
 import com.google.android.material.appbar.AppBarLayout
 
 /**
  * @author 努尔江
  * Created on: 2023/2/28
- * @project kt-kit
+ * @project ktx
  * Description: 带属性的view
  **/
 
@@ -123,7 +124,7 @@ class ShapeableAppBarLayout : AppBarLayout {
         initView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int=0) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr

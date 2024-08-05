@@ -9,8 +9,8 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.github.neoturak.view.picker.NumberPicker.DividerType
-import com.github.neoturak.view.picker.NumberPicker.Order
+import com.github.neoturak.view.NumberPicker
+
 
 abstract class BasePicker : FrameLayout {
     constructor(context: Context?) : super(context!!)
@@ -55,7 +55,7 @@ abstract class BasePicker : FrameLayout {
         }
     }
 
-    protected fun setDividerType(@DividerType dividerType: Int, vararg pickers: NumberPicker) {
+    protected fun setDividerType(@NumberPicker.DividerType dividerType: Int, vararg pickers: NumberPicker) {
         for (picker in pickers) {
             picker.setDividerType(dividerType)
         }
@@ -76,7 +76,7 @@ abstract class BasePicker : FrameLayout {
         }
     }
 
-    protected fun setOrder(@Order order: Int, vararg pickers: NumberPicker) {
+    protected fun setOrder(@NumberPicker.Order order: Int, vararg pickers: NumberPicker) {
         for (picker in pickers) {
             picker.order = order
         }

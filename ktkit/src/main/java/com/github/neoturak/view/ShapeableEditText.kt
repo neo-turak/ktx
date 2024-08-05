@@ -4,15 +4,15 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import com.github.neoturak.ktkit.R
+import com.github.neoturak.ktx.R
+
 
 /**
  * @author 努尔江
  * Created on: 2023/2/28
- * @project kt-kit
+ * @project ktx
  * Description: 带属性的view
  **/
 
@@ -169,25 +169,23 @@ class ShapeableEditText : AppCompatEditText {
         )
         shape.cornerRadii = corners
         val realAngle = ViewUtils().realAngle(angle)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (startColor == endColor && startColor == centerColor) {//没有渐变色
-                shape.color = ColorStateList.valueOf(soldColor)
-            } else {//有渐变色
-                if (endColor == 0) {
-                    endColor = Color.WHITE
-                }
-                //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
-                if (centerColor == 0) {
-                    centerColor =ViewUtils().middleColor(startColor,endColor)
-                }
-                shape.colors = intArrayOf(startColor, centerColor, endColor)
-                shape.orientation = realAngle
+        if (startColor == endColor && startColor == centerColor) {//没有渐变色
+            shape.color = ColorStateList.valueOf(soldColor)
+        } else {//有渐变色
+            if (endColor == 0) {
+                endColor = Color.WHITE
             }
-            //描边。
-            if (strokeWidth != 0f && strokeColor != Color.TRANSPARENT) {
-                shape.setStroke(strokeWidth.toInt(), ColorStateList.valueOf(strokeColor))
+            //如果中间颜色没有，那么按照官方的逻辑取中间颜色。
+            if (centerColor == 0) {
+                centerColor =ViewUtils().middleColor(startColor,endColor)
             }
-            this.background = shape
+            shape.colors = intArrayOf(startColor, centerColor, endColor)
+            shape.orientation = realAngle
         }
+        //描边。
+        if (strokeWidth != 0f && strokeColor != Color.TRANSPARENT) {
+            shape.setStroke(strokeWidth.toInt(), ColorStateList.valueOf(strokeColor))
+        }
+        this.background = shape
     }
 }

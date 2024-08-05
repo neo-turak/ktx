@@ -1,7 +1,6 @@
 package com.github.neoturak.view.picker
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Typeface
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,7 +8,6 @@ import android.os.Parcelable.Creator
 import android.text.TextUtils
 import android.text.format.DateUtils
 import android.util.AttributeSet
-import android.util.LayoutDirection
 import android.util.Log
 import android.util.SparseArray
 import android.view.Gravity
@@ -24,9 +22,8 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.github.neoturak.ktkit.R
-import com.github.neoturak.view.picker.NumberPicker.DividerType
-import com.github.neoturak.view.picker.NumberPicker.Order
+import com.github.neoturak.ktx.R
+import com.github.neoturak.view.NumberPicker
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Arrays
@@ -35,7 +32,8 @@ import java.util.Locale
 import java.util.Objects
 
 class DatePicker
-@JvmOverloads constructor(
+@JvmOverloads
+constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
@@ -60,8 +58,6 @@ class DatePicker
         val endYear = DEFAULT_END_YEAR
         val minDate = "1980-01-01"
         val maxDate = "2050-01-01"
-        //LayoutInflater.from(getContext()).inflate(R.layout.date_picker, this)
-
 
         val lParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         val linearLayout = LinearLayout(context)
@@ -205,7 +201,6 @@ class DatePicker
     /**
      * Sets the minimal date supported by this [NumberPicker] in
      * milliseconds since January 1, 1970 00:00:00 in
-     * [TimeZone.getDefault] time zone.
      *
      * @param minDate The minimal supported date.
      */
@@ -225,8 +220,6 @@ class DatePicker
 
     /**
      * Sets the maximal date supported by this [DatePicker] in
-     * milliseconds since January 1, 1970 00:00:00 in
-     * [TimeZone.getDefault] time zone.
      *
      * @param maxDate The maximal supported date.
      */
@@ -295,13 +288,8 @@ class DatePicker
         info.className = DatePicker::class.java.name
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-       // setCurrentLocale(newConfig.locale)
-    }
 
     /**
-     * Sets whether the [CalendarView] is shown.
      *
      * @param shown True if the calendar view is to be shown.
      */
@@ -651,7 +639,7 @@ class DatePicker
         super.setDividerDistanceResource(dimenId, mYearNPicker, mMonthNPicker, mDayNPicker)
     }
 
-    fun setDividerType(@DividerType dividerType: Int) {
+    fun setDividerType(@NumberPicker.DividerType dividerType: Int) {
         super.setDividerType(dividerType, mYearNPicker, mMonthNPicker, mDayNPicker)
     }
 
@@ -663,7 +651,7 @@ class DatePicker
         super.setDividerThicknessResource(dimenId, mYearNPicker, mMonthNPicker, mDayNPicker)
     }
 
-    fun setOrder(@Order order: Int) {
+    fun setOrder(@NumberPicker.Order order: Int) {
         super.setOrder(order, mYearNPicker, mMonthNPicker, mDayNPicker)
     }
 

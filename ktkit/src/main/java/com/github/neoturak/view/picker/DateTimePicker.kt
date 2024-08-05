@@ -1,10 +1,8 @@
 package com.github.neoturak.view.picker
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.GradientDrawable
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.TextUtils
@@ -14,25 +12,21 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseArray
 import android.view.Gravity
-import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.Space
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.github.neoturak.common.backgroundColor
 import com.github.neoturak.common.dp2px
-import com.github.neoturak.ktkit.R
-import com.github.neoturak.view.picker.NumberPicker.DividerType
-import com.github.neoturak.view.picker.NumberPicker.Order
+import com.github.neoturak.ktx.R
+import com.github.neoturak.view.NumberPicker
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Arrays
@@ -61,11 +55,11 @@ class DateTimePicker : BasePicker {
     private var mIsAutoScroll = DEFAULT_AUTO_SCROLL_STATE
 
     constructor(context: Context?) : super(context) {
-        init(context,null)
+        init(context)
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        init(context,attrs)
+        init(context)
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -73,10 +67,10 @@ class DateTimePicker : BasePicker {
         attrs,
         defStyleAttr
     ) {
-        init(context,attrs)
+        init(context)
     }
 
-    private fun init(context: Context?,attrs: AttributeSet?) {
+    private fun init(context: Context?) {
         layoutDirection = LAYOUT_DIRECTION_LTR
         val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         val mainParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -741,7 +735,7 @@ class DateTimePicker : BasePicker {
             )
     }
 
-    fun setDividerType(@DividerType dividerType: Int) {
+    fun setDividerType(@NumberPicker.DividerType dividerType: Int) {
         super.setDividerType(
             dividerType,
             mYearNPicker,
@@ -777,7 +771,7 @@ class DateTimePicker : BasePicker {
             )
     }
 
-    fun setOrder(@Order order: Int) {
+    fun setOrder(@NumberPicker.Order order: Int) {
         super.setOrder(
             order,
             mYearNPicker,

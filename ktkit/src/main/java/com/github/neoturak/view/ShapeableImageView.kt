@@ -7,7 +7,8 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
-import com.github.neoturak.ktkit.R
+import com.github.neoturak.ktx.R
+
 
 /**
  * @author 努尔江

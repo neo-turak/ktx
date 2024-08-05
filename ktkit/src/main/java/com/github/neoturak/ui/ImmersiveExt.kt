@@ -2,8 +2,6 @@
 
 package com.github.neoturak.ui
 
-
-import com.github.neoturak.ktkit.R
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
@@ -17,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.github.neoturak.ktx.R
 
 /**
  * @author 努尔江

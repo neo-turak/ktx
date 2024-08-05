@@ -1,4 +1,4 @@
-package com.github.neoturak.view.picker;
+package com.github.neoturak.view;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
@@ -39,9 +39,10 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 
-import com.github.neoturak.ktkit.R;
+import com.github.neoturak.ktx.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -49,7 +50,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class NumberPicker extends LinearLayout {
+public class NumberPicker extends LinearLayoutCompat {
 
     @Retention(SOURCE)
     @IntDef({VERTICAL, HORIZONTAL})
@@ -2905,7 +2906,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public boolean isHorizontalMode() {
-        return getOrientation() == HORIZONTAL;
+        return getOrientation() == LinearLayoutCompat.HORIZONTAL;
     }
 
     public boolean isAscendingOrder() {

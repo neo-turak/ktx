@@ -19,9 +19,8 @@ import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
-import com.github.neoturak.ktkit.R
-import com.github.neoturak.view.picker.NumberPicker.DividerType
-import com.github.neoturak.view.picker.NumberPicker.Order
+import com.github.neoturak.ktx.R
+import com.github.neoturak.view.NumberPicker
 import java.text.DateFormatSymbols
 import java.util.Calendar
 import java.util.Locale
@@ -100,7 +99,7 @@ class HourMinutePicker @JvmOverloads constructor(
          * Set the current minute (0-59).
          */
         set(currentMinute) {
-            if (currentMinute === this.currentMinute) {
+            if (currentMinute == this.currentMinute) {
                 return
             }
             mMinuteNPicker.value = currentMinute
@@ -460,7 +459,7 @@ class HourMinutePicker @JvmOverloads constructor(
         super.setDividerDistanceResource(dimenId, mHourNPicker, mMinuteNPicker)
     }
 
-    fun setDividerType(@DividerType dividerType: Int) {
+    fun setDividerType(@NumberPicker.DividerType dividerType: Int) {
         super.setDividerType(dividerType, mHourNPicker, mMinuteNPicker)
     }
 
@@ -472,7 +471,7 @@ class HourMinutePicker @JvmOverloads constructor(
         super.setDividerThicknessResource(dimenId, mHourNPicker, mMinuteNPicker)
     }
 
-    fun setOrder(@Order order: Int) {
+    fun setOrder(@NumberPicker.Order order: Int) {
         super.setOrder(order, mHourNPicker, mMinuteNPicker)
     }
 

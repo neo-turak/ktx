@@ -26,7 +26,7 @@ constructor(
         type = POKER_HEART
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         drawSmallUp(canvas)
         drawSmallDown(canvas)

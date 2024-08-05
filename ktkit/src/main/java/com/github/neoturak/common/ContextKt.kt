@@ -4,7 +4,7 @@ package com.github.neoturak.common
 
 import android.app.Activity
 import android.content.Context
-import android.os.Build
+import android.util.TypedValue
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -52,21 +52,25 @@ inline val Context.density: Float
  * 万能公式
  */
 @kotlin.internal.InlineOnly
-inline fun <reified T:Any> Context.dp2px(v:T):T{
-    when(v){
-        is Int->{
+inline fun <reified T : Any> Context.dp2px(v: T): T {
+    when (v) {
+        is Int -> {
             return (resources.displayMetrics.density.times(v).plus(0.5)).toInt() as T
         }
-        is Float->{
+
+        is Float -> {
             return (resources.displayMetrics.density.times(v).plus(0.5)).toFloat() as T
         }
-        is Double->{
+
+        is Double -> {
             return (resources.displayMetrics.density.times(v).plus(0.5)) as T
         }
-        is Long->{
+
+        is Long -> {
             return (resources.displayMetrics.density.times(v).plus(0.5)).toLong() as T
         }
-        else-> {
+
+        else -> {
             return 0 as T
         }
     }
@@ -76,67 +80,66 @@ inline fun <reified T:Any> Context.dp2px(v:T):T{
  * px 转换万能公式
  */
 @kotlin.internal.InlineOnly
-inline fun <reified T:Any> Context.px2dp(v:T):T{
-    when(v){
-        is Int->{
+inline fun <reified T : Any> Context.px2dp(v: T): T {
+    when (v) {
+        is Int -> {
             return v.div(resources.displayMetrics.density).plus(0.5).toInt() as T
         }
-        is Float->{
+
+        is Float -> {
             return v.div(resources.displayMetrics.density).plus(0.5).toFloat() as T
         }
-        is Double->{
+
+        is Double -> {
             return v.div(resources.displayMetrics.density).plus(0.5) as T
         }
-        is Long->{
+
+        is Long -> {
             return v.div(resources.displayMetrics.density).plus(0.5).toLong() as T
         }
-        else-> {
+
+        else -> {
             return 0 as T
         }
     }
 }
 
+
 @kotlin.internal.InlineOnly
-inline fun <reified T:Any> Context.px2sp(v:T):T{
-    when(v){
-        is Int->{
-            return v.div(resources.displayMetrics.scaledDensity).plus(0.5).toInt() as T
-        }
-        is Float->{
-            return v.div(resources.displayMetrics.scaledDensity).plus(0.5).toFloat() as T
-        }
-        is Double->{
-            return v.div(resources.displayMetrics.scaledDensity).plus(0.5) as T
-        }
-        is Long->{
-            return v.div(resources.displayMetrics.scaledDensity).plus(0.5).toLong() as T
-        }
-        else-> {
-            return 0 as T
-        }
+inline fun <reified T : Any> Context.px2sp(v: T): T {
+    val scale = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP,
+        1f,
+        resources.displayMetrics
+    ) / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 1f, resources.displayMetrics)
+    return when (v) {
+        is Int -> (v * scale).plus(0.5).toInt() as T
+        is Float -> (v * scale).plus(0.5f) as T
+        is Double -> (v * scale).plus(0.5) as T
+        is Long -> (v * scale).plus(0.5).toLong() as T
+        else -> 0 as T
     }
 }
+
 /**
  * sp 转换万能公式
  */
 @kotlin.internal.InlineOnly
-inline fun <reified T:Any> Context.sp2px(v:T):T{
-    when(v){
-        is Int->{
-            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toInt() as T
-        }
-        is Float->{
-            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toFloat() as T
-        }
-        is Double->{
-            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)) as T
-        }
-        is Long->{
-            return (resources.displayMetrics.scaledDensity.times(v).plus(0.5)).toLong() as T
-        }
-        else-> {
-            return 0 as T
-        }
+inline fun <reified T : Any> Context.sp2px(v: T): T {
+    val pxValue: Float = when (v) {
+        is Int -> TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, v.toFloat(), resources.displayMetrics)
+        is Float -> TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, v, resources.displayMetrics)
+        is Double -> TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, v.toFloat(), resources.displayMetrics)
+        is Long -> TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, v.toFloat(), resources.displayMetrics)
+        else -> return 0 as T
+    }
+
+    return when (v) {
+        is Int -> pxValue.plus(0.5).toInt() as T
+        is Float -> pxValue.plus(0.5f) as T
+        is Double -> pxValue.plus(0.5) as T
+        is Long -> pxValue.plus(0.5).toLong() as T
+        else -> 0 as T
     }
 }
 
@@ -147,7 +150,6 @@ inline fun <reified T:Any> Context.sp2px(v:T):T{
  * setSatatusBarColor(android.R.color.darker_gray)
  */
 fun Context.setStatusBarColor(@ColorRes colorResId: Int) {
-
     if (this is Activity) {
         setStatusBarColor(WeakReference<Activity>(this), colorResId)
     }
@@ -155,11 +157,9 @@ fun Context.setStatusBarColor(@ColorRes colorResId: Int) {
 
 private fun Context.setStatusBarColor(context: WeakReference<Activity>, @ColorRes colorResId: Int) {
     context.get()?.run {
-        if (Build.VERSION.SDK_INT >= 21) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.statusBarColor = resources.getColor(colorResId)
-        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = resources.getColor(colorResId)
     }
 }
 

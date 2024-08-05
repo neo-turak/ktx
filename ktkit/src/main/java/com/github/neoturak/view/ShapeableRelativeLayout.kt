@@ -9,7 +9,8 @@ import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import com.github.neoturak.ktkit.R
+import com.github.neoturak.ktx.R
+
 
 /**
  * @author 努尔江

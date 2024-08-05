@@ -1,10 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.7.10"
+    ext.kotlin_version = "1.8.1"
     repositories {
+        //国内最快的镜像源,没有之一
         google()
-        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://repo1.maven.org/maven2' }
         maven { url 'https://jitpack.io' }
+        mavenCentral()
+        mavenLocal()
+
+        gradlePluginPortal()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.2'
@@ -14,12 +23,20 @@ buildscript {
 
 allprojects {
     repositories {
+        //国内最快的镜像源,没有之一
         google()
-        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://repo1.maven.org/maven2' }
         maven { url 'https://jitpack.io' }
+        mavenCentral()
+        mavenLocal()
+        gradlePluginPortal()
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
