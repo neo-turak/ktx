@@ -16,73 +16,29 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/shape_cc0000_2dp" />
 
-    <com.github.neoturak.view.ShapeableImageView
-        android:id="@+id/sv_shape"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        app:shape_cornersRadius="50dp"
-        app:shape_strokeColor="#123456"
-        app:shape_strokeWidth="5dp" />
 
-    <com.github.neoturak.view.ShapeableView
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        app:gradient_endColor="#223344"
-        app:gradient_startColor="#123456"
-        app:shape_cornerBottomLeft="10dp"
-        app:shape_cornerTopRight="10dp"
-        app:shape_soldColor="#00cccc"
-        app:shape_strokeColor="#2b2b2b"
-        app:shape_strokeWidth="2dp" />
-
-
-    <com.github.neoturak.view.ShapeableView
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        app:shape_cornerTopLeft="15dp"
-        app:shape_cornerTopRight="15dp"
-        app:shape_soldColor="#00cccc"
-        app:shape_strokeColor="#000000" />
-
-    <com.github.neoturak.view.ShapeableButton
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:text="BOOST NOW"
-        android:id="@+id/tv_next"
-        android:textColor="#FFF"
-        app:shape_cornersRadius="4dp"
-        app:shape_soldColor="#3879F0" />
-
-
-    <com.github.neoturak.view.ShapeableView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        app:shape_cornersRadius="40dp"
-        app:shape_soldColor="#00cccc" />
-
-    <com.github.neoturak.view.ShapeableFrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hola" />
-    </com.github.neoturak.view.ShapeableFrameLayout>
 
     <com.github.neoturak.PokerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et"
+        />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekbar"
+        />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appcompat_seek_bar"
+        />
 
 </LinearLayout>

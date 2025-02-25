@@ -38,7 +38,7 @@ class MainFragment : Fragment(){
             binding.tvName.text = it?.getStringExtra("hola")
         }
         binding.btnGo.singleClick {
-            startActivityWithResult<SecondActivity>(launcher)
+            startActivityWithResult<AnkoActivity>(launcher)
         }
     }
 }

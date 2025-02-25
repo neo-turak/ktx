@@ -3,7 +3,7 @@
 
 package com.github.neoturak.ui
 
-import android.content.Context
+
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.annotation.ColorInt
@@ -85,15 +85,13 @@ inline fun View.showActionSnackBar(
  * @param cornerRadius Float 圆角 单位px
  */
 @kotlin.internal.InlineOnly
-inline fun View.setRoundRectBg(
+inline fun View.setRoundRectBackground(
     @ColorInt color: Int,
     cornerRadius: Float = 15F
 ) {
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-        background = GradientDrawable().apply {
-            setColor(color)
-            setCornerRadius(cornerRadius)
-        }
+    background = GradientDrawable().apply {
+        setColor(color)
+        setCornerRadius(cornerRadius)
     }
 }
 
