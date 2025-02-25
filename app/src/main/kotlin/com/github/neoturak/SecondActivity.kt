@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.neoturak.common.singleClick
 import com.github.neoturak.databinding.ActivityLoginBinding
+import com.github.neoturak.ui.startActivity
 import kotlin.random.Random
 
 /**
@@ -28,6 +29,7 @@ class SecondActivity : AppCompatActivity() {
             i.putExtra("hola","congratulation! $random")
             setResult(Activity.RESULT_OK,i)
             finish()
+            startActivity<SecondActivity>()
         }
     }
 }
